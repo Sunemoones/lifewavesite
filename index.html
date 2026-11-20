@@ -1,0 +1,1916 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LifeWave — новая волна возможностей</title>
+<meta name="description" content="LifeWave: инновационная продукция, собственное дело, новые финансовые перспективы. Партнёрство с международной компанией.">
+<style>
+  :root {
+    --navy: #0b2440;
+    --navy-2: #123c63;
+    --blue: #1f6fd0;
+    --teal: #1fc6c6;
+    --teal-2: #4fd6d0;
+    --teal-dark: #0e8d8d;
+    --silver: #c9d6e0;
+    --silver-2: #eef3f7;
+    --cyan: #e6f6f8;
+    --cyan-2: #d5eef3;
+    --ink: #0d2440;
+    --body: #2e4258;
+    --muted: #5d7287;
+    --line: rgba(15,120,150,.16);
+    --glass: rgba(255,255,255,.78);
+    --bg-dark: #08182c;
+    --gold: #e3a82b;
+    --warm: #fff7ea;
+    --white: #ffffff;
+    --shadow: 0 18px 50px rgba(13,40,70,.14);
+    --shadow-lg: 0 30px 80px rgba(13,40,70,.22);
+    --radius: 20px;
+  }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; color: var(--body);
+    font: 400 18px/1.75 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    background:
+      radial-gradient(1100px 700px at 85% -5%, rgba(31,198,198,.28), transparent 60%),
+      radial-gradient(900px 600px at -10% 20%, rgba(31,111,208,.22), transparent 55%),
+      radial-gradient(1000px 700px at 50% 120%, rgba(97,150,220,.25), transparent 60%),
+      linear-gradient(160deg, #eef7fb 0%, #e3f2f7 40%, #dbeaf4 100%);
+    background-attachment: fixed;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1,h2,h3,h4 { color: var(--ink); line-height: 1.18; font-weight: 800; margin: 0; letter-spacing:-.02em; }
+  p { margin: 0 0 1.1rem; }
+  a { color: var(--blue); text-decoration: none; }
+  img { max-width: 100%; display: block; }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+  /* NAV */
+  .nav { position: sticky; top: 0; z-index: 70; background: rgba(255,255,255,.8);
+    backdrop-filter: blur(20px) saturate(1.5); -webkit-backdrop-filter: blur(20px) saturate(1.5);
+    border-bottom: 1px solid rgba(15,120,150,.12); box-shadow: 0 6px 24px rgba(13,40,70,.06); }
+  .nav-in { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 80px; }
+  .brand { display: flex; align-items: center; gap: 9px; white-space:nowrap; }
+  .brand .brand-logo { display:block; height:54px; width:auto; max-width:none; }
+  .brand .brand-logo-invert { display:block; height:54px; width:auto; max-width:none; background:#fff; border-radius:10px; padding:5px; }
+  .brand .dot { color: var(--teal); -webkit-text-fill-color: var(--teal); }
+  .nav-right { display: flex; align-items: center; gap: 18px; }
+  .nav-links { display: flex; align-items: center; gap: 4px; }
+  .nav-links a { color: var(--body); font-size: .98rem; padding: 9px 13px; border-radius: 10px; font-weight: 600; white-space: nowrap; transition:.2s; }
+  .nav-links a:hover { color: var(--teal-dark); background: rgba(31,198,198,.14); transform: translateY(-1px); }
+  .nav-cta { background: linear-gradient(120deg, var(--teal) 0%, var(--blue) 130%); color: #fff !important;
+    padding: 11px 20px !important; border-radius: 12px; font-weight: 700; font-size: .98rem; white-space:nowrap; box-shadow: 0 8px 22px rgba(31,198,198,.35); }
+  .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(31,198,198,.48); }
+  .burger { display: none; background: none; border: 0; cursor: pointer; width: 36px; height: 36px; position: relative; }
+  .burger span { display: block; height: 2px; width: 24px; background: var(--ink); margin: 5px auto; border-radius: 2px; transition: .2s; }
+
+  /* LANG SELECTOR */
+  .lang { position: relative; }
+  .lang-btn { display: inline-flex; align-items: center; gap: 7px; padding: 9px 13px; border: 1px solid rgba(15,120,150,.2); border-radius: 10px;
+    background: rgba(255,255,255,.6); color: var(--navy-2); font-weight: 700; font-size: .9rem; cursor: pointer; transition:.2s; white-space:nowrap; }
+  .lang-btn:hover { border-color: rgba(31,198,198,.5); background: #fff; }
+  .lang-btn .flag { font-size: 1.1rem; }
+  .lang-btn .caret { font-size: .6rem; opacity:.7; transition: transform .2s; }
+  .lang.open .lang-btn .caret { transform: rotate(180deg); }
+  .lang-menu { position: absolute; top: calc(100% + 8px); right: 0; min-width: 150px; background: #fff; border:1px solid var(--line);
+    border-radius: 14px; box-shadow: var(--shadow-lg); padding: 6px; display:none; z-index: 80; }
+  .lang.open .lang-menu { display: block; animation: fadeIn .18s ease; }
+  .lang-menu button { display: flex; align-items: center; gap: 10px; width: 100%; padding: 10px 12px; border:0; background:none; border-radius:9px;
+    font: inherit; font-size:.95rem; font-weight:600; color: var(--body); cursor:pointer; text-align:left; }
+  .lang-menu button:hover { background: var(--cyan); }
+  .lang-menu button.active { color: var(--teal-dark); background: var(--cyan); font-weight:700; }
+  .lang-menu .flag { font-size:1.05rem; }
+  @keyframes fadeIn { from{opacity:0; transform: translateY(-4px)} to{opacity:1; transform:none} }
+
+  /* HERO */
+  .hero { position: relative; overflow: hidden; color: var(--ink); }
+  .hero::before { content:""; position:absolute; inset:0; z-index:0;
+    background:
+      radial-gradient(900px 500px at 15% 10%, rgba(255,255,255,.75), transparent 60%),
+      radial-gradient(700px 500px at 85% 20%, rgba(79,214,208,.4), transparent 60%),
+      radial-gradient(600px 480px at 60% 100%, rgba(111,160,225,.35), transparent 60%);
+  }
+  .hero::after { content:""; position:absolute; inset:0; z-index:0; pointer-events:none;
+    background:
+      repeating-radial-gradient(circle at 78% 26%, rgba(31,198,198,.14) 0 2px, transparent 3px 36px),
+      linear-gradient(180deg, rgba(255,255,255,.15), rgba(220,238,245,.05)); }
+  .hero .wrap { position: relative; z-index: 2; padding-top: 100px; padding-bottom: 110px; }
+  .eyebrow { display:inline-flex; align-items:center; gap:8px; font-size:.82rem; letter-spacing:2px;
+    text-transform:uppercase; color:var(--teal-dark); font-weight:800; margin-bottom: 24px;
+    background: rgba(255,255,255,.6); border:1px solid rgba(31,198,198,.35); padding:8px 16px; border-radius:100px;
+    box-shadow:0 4px 18px rgba(13,40,70,.08); backdrop-filter: blur(8px); }
+  .hero h1 { color: var(--ink); font-size: clamp(2.45rem, 5.4vw, 3.9rem); max-width: 15em; }
+  .hero h1 .wave { background: linear-gradient(92deg, var(--teal-dark), var(--blue), var(--teal-dark));
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .hero .lead { font-size: 1.3rem; color: var(--navy-2); font-weight:700; max-width: 34em; margin: 24px 0 0; }
+  .hero .sub { color: var(--muted); max-width: 42em; margin-top: 18px; font-size: 1.06rem; }
+  .hero-actions { display:flex; flex-wrap:wrap; gap:14px; margin-top: 36px; }
+  .btn { display:inline-flex; align-items:center; justify-content:center; gap:8px; padding: 16px 30px;
+    border-radius: 14px; font-weight:700; font-size:1rem; border:0; cursor:pointer; transition:.22s; }
+  .btn-primary { background: linear-gradient(115deg, var(--teal) 0%, var(--blue) 130%); color:#fff;
+    box-shadow: 0 14px 30px rgba(31,120,200,.35), inset 0 1px 0 rgba(255,255,255,.35); }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 18px 40px rgba(31,120,200,.45); }
+  .btn-ghost { background: rgba(255,255,255,.7); color: var(--blue); border:1px solid rgba(31,120,200,.3);
+    box-shadow:0 6px 20px rgba(13,40,70,.08); backdrop-filter: blur(8px); }
+  .btn-ghost:hover { background: #fff; }
+  .btn-dark { background: linear-gradient(115deg, var(--blue), var(--navy-2)); color:#fff; box-shadow:0 10px 24px rgba(13,40,70,.3); }
+  .btn-dark:hover { transform: translateY(-2px); }
+  .btn-outline { background: rgba(255,255,255,.7); color: var(--blue); border:1px solid var(--line); backdrop-filter: blur(8px); }
+  .btn-outline:hover { border-color: var(--blue); }
+  .hero-stats { display:flex; flex-wrap:wrap; gap:0; margin-top: 58px; }
+  .hstat { padding: 0 30px; border-left:1px solid rgba(15,120,150,.25); }
+  .hstat:first-child { border-left:0; padding-left:0; }
+  .hstat b { display:block; font-size:2.1rem; color: var(--ink); line-height:1; font-variant-numeric:tabular-nums;
+    background: linear-gradient(95deg, var(--blue), var(--teal-dark)); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
+  .hstat b em { font-style:normal; }
+  .hstat span { color: var(--muted); font-size:.9rem; }
+
+  /* SECTION HEAD */
+  section { padding: 64px 0; position: relative; }
+  .kicker { display:inline-block; font-size:.85rem; letter-spacing:2px; text-transform:uppercase; font-weight:800;
+    color: var(--teal-dark); margin-bottom: 18px;
+    background: linear-gradient(92deg, var(--teal-dark), var(--blue)); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
+  .sec-title { font-size: clamp(2.1rem, 4.2vw, 3.1rem); max-width: 22em; }
+  .sec-lead { max-width: 50em; margin-top: 20px; font-size: 1.22rem; color: var(--muted); line-height:1.7; }
+  .center { text-align: center; }
+  .center .sec-title, .center .sec-lead { margin-left:auto; margin-right:auto; }
+  .soft { background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,.32) 50%, rgba(255,255,255,0) 100%);
+    backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+
+  /* GRID CARDS — glass */
+  .grid { display:grid; gap:22px; margin-top: 48px; }
+  .g3 { grid-template-columns: repeat(3,1fr); }
+  .g2 { grid-template-columns: repeat(2,1fr); }
+  .g4 { grid-template-columns: repeat(4,1fr); }
+  .card { background: var(--glass); border:1px solid rgba(255,255,255,.7); border-radius: var(--radius); padding:32px;
+    transition:.28s; position:relative; overflow:hidden;
+    box-shadow: 0 8px 30px rgba(13,40,70,.08), inset 0 1px 0 rgba(255,255,255,.8);
+    backdrop-filter: blur(14px) saturate(1.3); -webkit-backdrop-filter: blur(14px) saturate(1.3); }
+  .card::before { content:""; position:absolute; top:-40%; right:-20%; width:70%; height:120%;
+    background: radial-gradient(circle, rgba(31,198,198,.16), transparent 60%); pointer-events:none; }
+  .card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg), inset 0 1px 0 rgba(255,255,255,.9); border-color: rgba(31,198,198,.35); }
+  .card .ic { width:58px; height:58px; border-radius:17px; display:flex; align-items:center; justify-content:center;
+    background: linear-gradient(135deg, rgba(31,198,198,.22), rgba(31,111,208,.18)); color: var(--teal-dark); margin-bottom:20px;
+    border:1px solid rgba(255,255,255,.7); box-shadow: inset 0 1px 0 rgba(255,255,255,.6); }
+  .card h3 { font-size:1.3rem; margin-bottom:12px; }
+  .card p { font-size:1.04rem; margin:0; color: var(--body); line-height:1.65; }
+  .dark-card { background: linear-gradient(140deg, rgba(31,198,198,.13), rgba(31,111,208,.13)), rgba(255,255,255,.55);
+    border:1px solid rgba(255,255,255,.75); color:var(--body); box-shadow: var(--shadow); backdrop-filter: blur(14px); }
+  .dark-card h3 { color:var(--ink); }
+  .dark-card .ic { background: linear-gradient(135deg, #fff, var(--cyan)); color:var(--teal-dark); }
+  .dark-card p { color:var(--body); }
+  .card-num { position:absolute; top:22px; right:28px; font-size:2.8rem; font-weight:800; color:rgba(15,163,163,.16); font-variant-numeric:tabular-nums; }
+  .dark-card .card-num { color:rgba(255,255,255,.12); }
+
+  /* STORY / PROCESS */
+  .two { display:grid; grid-template-columns: 1fr 1fr; gap:56px; align-items:center; }
+  .founder-card { background: var(--glass); border:1px solid rgba(255,255,255,.75); border-radius:22px; overflow:hidden;
+    box-shadow: var(--shadow-lg); backdrop-filter: blur(14px); }
+  .founder-photo { height:320px; overflow:hidden; }
+  .founder-photo img { width:100%; height:100%; object-fit:cover; object-position:top center; }
+  .founder-caption { padding:26px 30px 28px; }
+  .founder-caption strong { display:block; color:var(--ink); font-size:1.4rem; }
+  .founder-caption > span { display:block; color:var(--teal-dark); font-size:1rem; font-weight:600; margin-top:4px; }
+  .founder-caption p { margin:14px 0 0; color:var(--body); font-size:1.02rem; font-style:italic; line-height:1.6; }
+  .steps { margin:26px 0 0; counter-reset:st; }
+  .step { display:flex; gap:22px; padding:24px 0; border-top:1px solid var(--line); }
+  .step:last-child { border-bottom:1px solid var(--line); }
+  .step-n { flex:0 0 auto; width:50px; height:50px; border-radius:15px; background:linear-gradient(135deg,var(--teal),var(--blue)); color:#fff;
+    display:flex; align-items:center; justify-content:center; font-weight:700; font-size:1.2rem; box-shadow:0 8px 18px rgba(31,140,190,.4), inset 0 1px 0 rgba(255,255,255,.4); }
+  .step h4 { font-size:1.25rem; margin-bottom:8px; }
+  .step p { margin:0; font-size:1.08rem; color: var(--body); line-height:1.65; }
+
+  /* PRODUCTS — SHOWCASE */
+  .showcase { margin-top:52px; background: rgba(255,255,255,.82); border:1px solid rgba(255,255,255,.8); border-radius:30px; overflow:hidden;
+    box-shadow: var(--shadow-lg); backdrop-filter: blur(16px) saturate(1.3); -webkit-backdrop-filter: blur(16px) saturate(1.3); }
+  .showcase-stage { position:relative; min-height:580px; display:grid; grid-template-columns: 1.15fr 1fr; gap:0;
+    background: linear-gradient(120deg, #eaf4fb 0%, #f4fafd 100%); }
+  .showcase-media { position:relative; display:flex; align-items:center; justify-content:center; min-height:580px; overflow:hidden; }
+  .showcase-media::before { content:""; position:absolute; inset:0;
+    background: radial-gradient(500px 420px at 40% 40%, rgba(255,255,255,.5), transparent 65%); }
+  .showcase-media .imgwrap { position:relative; width:78%; max-width:420px; display:flex; align-items:center; justify-content:center; }
+  .showcase-media img { width:100%; height:auto; object-fit:contain; filter: drop-shadow(0 30px 45px rgba(8,24,44,.32));
+    transform: perspective(900px) rotateY(-6deg); transition: transform .7s cubic-bezier(.2,.8,.2,1); animation: floaty 5.5s ease-in-out infinite; }
+  .showcase-media img.pop { animation: popimg .5s cubic-bezier(.2,.8,.2,1); }
+  @keyframes popimg { 0%{ transform:perspective(900px) rotateY(-6deg) scale(.7); opacity:0 } 100%{ transform:perspective(900px) rotateY(-6deg) scale(1); opacity:1 } }
+  @keyframes floaty { 0%,100%{ margin-top:0 } 50%{ margin-top:-12px } }
+  .showcase-info { position:relative; z-index:2; margin:24px 24px 24px 0; padding:42px 44px; display:flex; flex-direction:column; justify-content:center;
+    background: rgba(255,255,255,.88); border:1px solid rgba(255,255,255,.95); border-radius:22px; box-shadow: var(--shadow); backdrop-filter: blur(10px); }
+  .showcase-tag { font-size:.78rem; letter-spacing:1.8px; text-transform:uppercase; font-weight:800;
+    color:var(--teal-dark); background: linear-gradient(92deg, var(--teal-dark), var(--blue)); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
+  .showcase-info h3 { font-size: clamp(2rem, 3.5vw, 2.9rem); margin:14px 0 0; }
+  .showcase-info .lead { color:var(--body); font-size:1.18rem; margin-top:20px; line-height:1.7; }
+  .showcase-points { display:grid; gap:13px; margin-top:28px; }
+  .showcase-point { display:flex; align-items:center; gap:12px; color:var(--body); font-size:1.06rem; }
+  .showcase-point .chk { flex:0 0 auto; width:28px; height:28px; border-radius:50%; background:linear-gradient(135deg,var(--teal),var(--blue)); color:#fff;
+    display:flex; align-items:center; justify-content:center; font-weight:800; box-shadow:0 4px 10px rgba(31,140,190,.3); }
+  .showcase-info .btn { margin-top:34px; align-self:flex-start; }
+  .showcase-selector { display:flex; gap:10px; padding:20px 22px; background: rgba(255,255,255,.7); border-top:1px solid rgba(15,120,150,.12); overflow-x:auto; scrollbar-width:thin; }
+  .showcase-pill { flex:1 0 auto; min-width:160px; display:flex; align-items:center; gap:12px; padding:14px 18px;
+    border:1px solid rgba(15,120,150,.16); border-radius:15px; background: rgba(255,255,255,.75); cursor:pointer; transition:.22s; text-align:left; backdrop-filter: blur(8px); }
+  .showcase-pill:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+  .showcase-pill.active { border-color: var(--teal); box-shadow:0 0 0 2px rgba(31,198,198,.5), var(--shadow); background:#fff; }
+  .showcase-pill .th { width:52px; height:52px; border-radius:12px; overflow:hidden; flex:0 0 auto; display:flex; align-items:center; justify-content:center; background:#eaf4fb; }
+  .showcase-pill .th img { width:100%; height:100%; object-fit:cover; }
+  .showcase-pill b { display:block; font-size:1rem; color:var(--ink); white-space:nowrap; }
+  .showcase-pill span { font-size:.82rem; color:var(--muted); white-space:nowrap; }
+  @keyframes pop { 0%{ opacity:0; transform: translateY(10px) } 100%{ opacity:1; transform:none } }
+  .showcase-info.pop > * { animation: pop .5s ease both; }
+  @media (max-width: 860px){
+    .showcase-stage { grid-template-columns:1fr; min-height:auto; }
+    .showcase-media { min-height:260px; }
+    .showcase-info { margin:14px; padding:32px 28px; }
+  }
+
+/* PRODUCT TAG (shared small label) */
+  .prod-tag { font-size:.72rem; font-weight:800; letter-spacing:1.4px; text-transform:uppercase; }
+
+  /* MP — маркетинг-план (инфографика) */
+  .mp-hero { background:
+      radial-gradient(700px 300px at 90% 0%, rgba(31,198,198,.22), transparent 60%),
+      radial-gradient(600px 300px at 10% 100%, rgba(31,111,208,.18), transparent 60%),
+      rgba(255,255,255,.72);
+    border:1px solid rgba(255,255,255,.9); border-radius:26px; padding:52px 56px; margin-top:44px; position:relative; overflow:hidden;
+    backdrop-filter: blur(16px); box-shadow: var(--shadow-lg); text-align:center; }
+  .mp-hero::after { content:""; position:absolute; top:-40%; right:-8%; width:60%; height:160%;
+    background: radial-gradient(circle, rgba(255,255,255,.7), transparent 60%); pointer-events:none; }
+  .mp-hero .tagline { font-size:.82rem; letter-spacing:2px; text-transform:uppercase; font-weight:800;
+    background: linear-gradient(92deg, var(--teal-dark), var(--blue)); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; position:relative; }
+  .mp-hero h3 { font-size: clamp(1.7rem, 3.4vw, 2.5rem); margin:16px auto 0; max-width:18em; position:relative; }
+  .mp-hero p.lead { max-width:52em; font-size:1.16rem; color:var(--body); margin:18px auto 0; line-height:1.7; position:relative; }
+  .mp-offer { position:relative; display:flex; flex-wrap:wrap; justify-content:center; gap:14px; margin-top:28px; }
+  .mp-offer .chip { display:inline-flex; align-items:center; gap:9px; background:#fff; border:1px solid rgba(15,120,150,.16);
+    border-radius:100px; padding:12px 20px; font-weight:700; color:var(--navy-2); font-size:1rem; box-shadow:0 6px 18px rgba(13,40,70,.08); }
+  .mp-offer .chip .big { font-size:1.4rem; font-weight:900; background:linear-gradient(120deg,var(--teal),var(--blue)); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
+  .mp-hero .cta { display:inline-flex; align-items:center; justify-content:center; gap:8px; margin-top:30px; padding:16px 34px; border-radius:14px;
+    background: linear-gradient(120deg, var(--teal) 0%, var(--blue) 130%); color:#fff; font-weight:800; font-size:1.06rem; box-shadow: 0 12px 28px rgba(31,120,200,.35); transition:.2s; position:relative; }
+  .mp-hero .cta:hover { transform: translateY(-3px); box-shadow: 0 16px 36px rgba(31,120,200,.45); }
+
+  /* Интро-определение */
+  .mp-intro { display:flex; align-items:center; gap:22px; margin-top:28px; background: rgba(255,255,255,.6); border:1px solid rgba(255,255,255,.85);
+    border-radius:20px; padding:28px 32px; box-shadow:0 10px 30px rgba(13,40,70,.07); backdrop-filter: blur(10px); }
+  .mp-intro .ic { flex:0 0 auto; width:60px; height:60px; border-radius:18px; display:flex; align-items:center; justify-content:center;
+    background: linear-gradient(135deg, var(--teal), var(--blue)); color:#fff; box-shadow:0 8px 20px rgba(31,140,190,.35); }
+  .mp-intro p { margin:0; font-size:1.12rem; color:var(--body); line-height:1.7; }
+  .mp-intro p b { color:var(--ink); }
+
+  /* Три составляющие */
+  .mp-def { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:18px; }
+  .mp-card { background: var(--glass); border:1px solid rgba(255,255,255,.85); border-radius:22px; padding:28px; transition:.25s; position:relative; overflow:hidden;
+    box-shadow: 0 12px 34px rgba(13,40,70,.09), inset 0 1px 0 rgba(255,255,255,.85); backdrop-filter: blur(14px); }
+  .mp-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); border-color: rgba(31,198,198,.45); }
+  .mp-card .mp-step-label { display:inline-block; font-size:.7rem; letter-spacing:1.6px; text-transform:uppercase; font-weight:800; margin-bottom:12px;
+    background: linear-gradient(120deg, var(--teal-dark), var(--blue)); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
+  .mp-card h4 { font-size:1.3rem; margin-bottom:10px; line-height:1.3; }
+  .mp-card p { font-size:1rem; margin:0; color:var(--body); line-height:1.6; }
+  .mp-card .scheme { display:flex; justify-content:center; padding:16px 0 10px; }
+  .mp-card .mini { margin-top:14px; padding-top:12px; border-top:1px dashed rgba(15,120,150,.25); font-size:.92rem; color:var(--muted); display:flex; gap:8px; align-items:flex-start; }
+  .mp-card .mini .ok { color: var(--teal-dark); font-weight:800; flex:0 0 auto; }
+
+  /* Блок ранги + начисление */
+  .mp-band { display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:18px; align-items:stretch; }
+  .mp-box { background: var(--glass); border:1px solid rgba(255,255,255,.85); border-radius:22px; padding:26px 32px 14px;
+    box-shadow: 0 14px 40px rgba(13,40,70,.10), inset 0 1px 0 rgba(255,255,255,.9); backdrop-filter: blur(14px); display:flex; flex-direction:column; }
+  .mp-box h4 { font-size:1.22rem; margin-bottom:6px; display:flex; align-items:center; gap:12px; color:var(--ink); }
+  .mp-box h4 .dot { width:34px; height:34px; flex:0 0 auto; border-radius:11px; background:linear-gradient(135deg,var(--teal),var(--blue)); color:#fff; display:inline-flex; align-items:center; justify-content:center; font-size:.95rem; box-shadow:0 6px 14px rgba(31,140,190,.38); }
+  .mp-box .box-sub { font-size:.96rem; color:var(--muted); margin-bottom:20px; line-height:1.55; }
+
+  /* Лестница рангов */
+  .rank-ladder { display:flex; flex-direction:column; margin:6px 0 0 24px; position:relative; flex:1; }
+  .rank-ladder::after { content:""; position:absolute; left:-24px; top:6px; bottom:6px; border-left:3px dashed #2f9e6a; opacity:.7; }
+  .rank-step { display:flex; align-items:center; gap:12px; background: linear-gradient(180deg,#ffffff,#eef7fa);
+    border:1px solid rgba(15,120,150,.2); border-left:none; border-radius:0 12px 12px 0; padding:12px 18px; width:100%; position:relative; min-width:0;
+    box-shadow:0 4px 10px rgba(13,40,70,.06); transition:.2s; z-index:1; }
+  .rank-step + .rank-step { margin-top:-1px; }
+  .rank-step:hover { z-index:5; box-shadow:0 0 0 2px rgba(31,140,190,.25), 0 12px 26px rgba(13,40,70,.18); }
+  .rank-step::before { content:""; position:absolute; left:0; top:0; bottom:0; width:5px; }
+  /* Равные по длине и высоте ступени; растягиваются, заполняя весь блок без просветов */
+  .rank-step.r1{ flex:1 1 0; } .rank-step.r1::before{ background:#2ed6c9; } .rank-step.r1 .r-ic{ background:linear-gradient(135deg,#2ed6c9,#1aa9b8); }
+  .rank-step.r2{ flex:1 1 0; } .rank-step.r2::before{ background:#2fae6a; } .rank-step.r2 .r-ic{ background:linear-gradient(135deg,#3ccf8a,#1f9a5e); }
+  .rank-step.r3{ flex:1 1 0; } .rank-step.r3::before{ background:#3a7be0; } .rank-step.r3 .r-ic{ background:linear-gradient(135deg,#4a90e6,#2a5fd0); }
+  .rank-step.r4{ flex:1 1 0; } .rank-step.r4::before{ background:#7a58d6; } .rank-step.r4 .r-ic{ background:linear-gradient(135deg,#9b6ce6,#6f4cd0); }
+  .rank-step .r-ic { width:42px; height:42px; flex:0 0 auto; border-radius:12px; color:#fff; display:flex; align-items:center; justify-content:center; box-shadow:0 6px 14px rgba(0,0,0,.18); }
+  .rank-step .r-txt { min-width:0; margin-right:8px; }
+  .rank-step .r-txt b { display:block; color:var(--ink); font-size:1.18rem; line-height:1.2; white-space:nowrap; }
+  .rank-step .r-txt span { font-size:.9rem; color:var(--muted); margin-top:2px; }
+  .rank-step .r-deg { margin-left:auto; flex:0 0 auto; display:flex; align-items:center; gap:5px; }
+  .rank-step .deg { display:inline-flex; flex-direction:column; align-items:center; justify-content:center; min-width:34px; height:38px;
+    border-radius:8px; border:1.5px solid rgba(240,190,60,.9); background:radial-gradient(circle at 30% 25%,#fff8dd,#ffe9a8 60%,#f4c93c);
+    box-shadow:0 3px 8px rgba(180,140,20,.28), inset 0 1px 0 rgba(255,255,255,.8); font-weight:700; line-height:1; }
+  .rank-step .deg span { font-size:1.05rem; color:#7a5a08; letter-spacing:.5px; }
+  .rank-step .deg svg { width:14px; height:14px; margin-top:2px; color:#e8a400; filter:drop-shadow(0 1px 0 rgba(255,255,255,.6)); }
+
+  /* Цепочка начисления */
+  .mech-line { display:grid; grid-template-columns:1fr; gap:12px; margin-top:6px; position:relative; }
+  .mech-step { display:grid; grid-template-columns:auto 1fr; align-items:center; gap:16px; padding:18px 20px; border-radius:16px;
+    background: rgba(255,255,255,.92); border:1px solid rgba(15,120,150,.16); transition:.2s; box-shadow: 0 8px 24px rgba(13,40,70,.10); }
+  .mech-step:hover { transform: translateX(4px); box-shadow: 0 12px 32px rgba(13,40,70,.16); border-color: rgba(31,198,198,.45); }
+  .mech-step::after { content:""; position:absolute; left:0; top:0; bottom:0; width:5px; background: linear-gradient(180deg, var(--teal), var(--blue)); border-radius:0 6px 6px 0; opacity:.9; }
+  .mech-step .step-body { display:flex; align-items:center; gap:16px; }
+  .mech-step .step-ic { width:58px; height:58px; flex:0 0 auto; border-radius:18px; display:flex; align-items:center; justify-content:center;
+    background: linear-gradient(145deg, #37c8c8 0%, #1f7ed0 60%, #1a5fb0 100%); color:#fff;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.35), 0 10px 22px rgba(31,120,200,.4);
+    position:relative; overflow:hidden; }
+  .mech-step .step-ic::before { content:""; position:absolute; top:-40%; left:-20%; width:90%; height:120%;
+    background: radial-gradient(circle, rgba(255,255,255,.35), transparent 60%); pointer-events:none; }
+  .mech-step .step-ic svg { position:relative; z-index:1; filter: drop-shadow(0 2px 4px rgba(0,40,80,.35)); }
+  .mech-step .step-txt b { display:block; color:var(--ink); font-size:1.08rem; margin-bottom:3px; }
+  .mech-step .step-txt span { font-size:.88rem; color:var(--body); }
+  .mech-arrow { display:flex; align-items:center; justify-content:center; color:#fff; line-height:0; padding:4px 0; }
+  .mech-arrow svg { width:28px; height:28px; filter: drop-shadow(0 3px 6px rgba(31,140,190,.35)); }
+
+  .mp-benefits { margin-top:18px; }
+  .mp-benefits h4 { text-align:center; font-size:1.2rem; margin-bottom:22px; }
+  .benefit-row { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+  .benefit { background: var(--glass); border:1px solid rgba(255,255,255,.8); border-radius:18px; padding:24px 18px; text-align:center;
+    box-shadow: 0 8px 24px rgba(13,40,70,.07), inset 0 1px 0 rgba(255,255,255,.8); backdrop-filter: blur(10px); transition:.2s; }
+  .benefit:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+  .benefit .ic { width:48px; height:48px; margin:0 auto 12px; border-radius:14px; background:linear-gradient(135deg, rgba(31,198,198,.3), rgba(31,111,208,.22)); color:var(--teal-dark); display:flex; align-items:center; justify-content:center; }
+  .benefit b { display:block; font-size:1.02rem; color:var(--ink); margin-bottom:6px; }
+  .benefit span { font-size:.86rem; color:var(--muted); line-height:1.45; }
+
+  .mp-steps-row { display:grid; grid-template-columns:repeat(5,1fr); gap:12px; margin-top:6px; }
+  .stepp { position:relative; text-align:center; padding:20px 14px; border-radius:16px; background: rgba(255,255,255,.85); border:1px solid rgba(15,120,150,.16); box-shadow:0 8px 22px rgba(13,40,70,.08); }
+  .stepp b { display:flex; align-items:center; justify-content:center; width:38px; height:38px; margin:0 auto 12px; border-radius:50%;
+    background:linear-gradient(135deg,var(--teal),var(--blue)); color:#fff; font-weight:800; font-size:1.05rem; box-shadow:0 6px 14px rgba(31,140,190,.38); }
+  .stepp p { margin:0; font-size:.92rem; color:var(--body); line-height:1.5; }
+  .bonus-row { display:flex; flex-wrap:wrap; gap:10px; margin-top:6px; }
+  .bonus-chip { display:flex; align-items:center; gap:10px; background: linear-gradient(120deg, rgba(255,255,255,.9), rgba(240,247,250,.8)); color:var(--navy-2); border:1px solid rgba(15,120,150,.2);
+    padding:12px 18px; border-radius:100px; font-size:.95rem; font-weight:600; box-shadow:0 4px 12px rgba(13,40,70,.06); }
+  .bonus-chip svg { flex:0 0 auto; color: var(--teal-dark); }
+  .mp-outro { margin-top:18px; background:
+      radial-gradient(700px 220px at 80% 0%, rgba(31,198,198,.25), transparent 60%),
+      linear-gradient(130deg, rgba(31,198,198,.16), rgba(31,111,208,.14)), rgba(255,255,255,.75);
+    border:1px solid rgba(255,255,255,.88); border-radius:20px; padding:28px 36px; text-align:center; box-shadow: var(--shadow); }
+  .mp-outro p { margin:0; font-size:1.1rem; color:var(--body); font-weight:600; }
+  .mp-cta-band { margin-top:18px; background:
+      radial-gradient(700px 260px at 85% 0%, rgba(31,198,198,.28), transparent 60%),
+      linear-gradient(130deg, rgba(31,198,198,.16), rgba(31,111,208,.14)), rgba(255,255,255,.7);
+    border:1px solid rgba(255,255,255,.85); border-radius:24px; padding:48px 50px; text-align:center; backdrop-filter: blur(14px); box-shadow: var(--shadow); }
+  .mp-cta-band h4 { font-size:clamp(1.4rem,2.6vw,1.9rem); }
+  .mp-cta-band p { max-width:40em; margin:14px auto 0; color:var(--body); font-size:1.08rem; line-height:1.65; }
+  .mp-cta-band .cta { display:inline-flex; align-items:center; justify-content:center; gap:8px; margin-top:18px; padding:16px 36px; border-radius:14px;
+    background: linear-gradient(120deg, var(--teal) 0%, var(--blue) 130%); color:#fff; font-weight:800; font-size:1.08rem; box-shadow: 0 12px 28px rgba(31,120,200,.35); transition:.2s; }
+  .mp-cta-band .cta:hover { transform: translateY(-3px); box-shadow: 0 16px 36px rgba(31,120,200,.45); }
+
+  /* Почему партнёрство с LifeWave */
+  .why-band { margin-top:0; background:
+      radial-gradient(760px 320px at 0% 0%, rgba(31,198,198,.20), transparent 62%);
+    border:0; padding:20px 0 6px; }
+  .why-head { text-align:center; max-width:46em; margin:0 auto 30px; }
+  .why-head h4 { font-size:clamp(1.5rem,2.8vw,2rem); margin:0 0 14px; }
+  .why-head h4 em { font-style:normal; color:var(--teal-dark); }
+  .why-intro { color:var(--body); font-size:1.1rem; line-height:1.7; margin:0; }
+  .why-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  .why-item { display:flex; align-items:flex-start; gap:16px; background:rgba(255,255,255,.72); border:1px solid rgba(15,120,150,.13); border-radius:14px; padding:18px 20px; transition:.2s; }
+  .why-item:hover { transform: translateY(-3px); box-shadow:0 12px 28px rgba(13,40,70,.12); border-color:rgba(31,198,198,.4); }
+  .why-item .wi { flex:0 0 auto; width:46px; height:46px; border-radius:13px; color:#fff; display:flex; align-items:center; justify-content:center;
+    background:linear-gradient(135deg, var(--teal), var(--blue)); box-shadow:0 6px 14px rgba(31,140,190,.32); }
+  .why-item b { display:block; color:var(--ink); font-size:1.1rem; margin-bottom:3px; }
+  .why-item p { margin:0; color:var(--body); font-size:1rem; line-height:1.6; }
+  .why-grid .why-item.wide { grid-column: span 2; }
+  .why-footer { margin-top:18px; display:flex; align-items:center; gap:14px; background:linear-gradient(120deg,var(--teal),var(--blue)); color:#fff; border-radius:16px; padding:18px 22px; box-shadow:0 12px 28px rgba(31,120,200,.28); }
+  .why-footer .wi { flex:0 0 auto; width:44px; height:44px; border-radius:12px; background:rgba(255,255,255,.22); color:#fff; display:flex; align-items:center; justify-content:center; }
+  .why-footer p { margin:0; font-size:1.08rem; line-height:1.5; font-weight:600; }
+  @media (max-width: 920px){ .why-band{padding:34px 26px;} .why-grid{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width: 560px){ .why-grid{grid-template-columns:1fr;} }
+
+  /* Собственное дело на своих условиях */
+  .own-band { margin-top:0; background:
+      radial-gradient(760px 320px at 100% 0%, rgba(31,198,198,.18), transparent 62%);
+    border:0; padding:12px 0 0; }
+  .own-head { text-align:center; max-width:46em; margin:0 auto 30px; }
+  .own-head h4 { font-size:clamp(1.5rem,2.8vw,2rem); margin:0 0 14px; }
+  .own-head h4 em { font-style:normal; color:var(--teal-dark); }
+  .own-intro { color:var(--body); font-size:1.1rem; line-height:1.7; margin:0; }
+  .own-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  .own-item { display:flex; align-items:flex-start; gap:16px; background:rgba(255,255,255,.78); border:1px solid rgba(15,120,150,.13); border-radius:14px; padding:18px 20px; transition:.2s; }
+  .own-item:hover { transform: translateY(-3px); box-shadow:0 12px 28px rgba(13,40,70,.12); border-color:rgba(31,198,198,.4); }
+  .own-item .wi { flex:0 0 auto; width:46px; height:46px; border-radius:13px; color:#fff; display:flex; align-items:center; justify-content:center;
+    background:linear-gradient(135deg, var(--teal), var(--blue)); box-shadow:0 6px 14px rgba(31,140,190,.32); }
+  .own-item b { display:block; color:var(--ink); font-size:1.1rem; margin-bottom:3px; }
+  .own-item p { margin:0; color:var(--body); font-size:1rem; line-height:1.6; }
+  .own-grid .own-item.wide { grid-column: span 2; }
+  .own-footer { margin-top:18px; display:flex; align-items:center; gap:14px; background:linear-gradient(120deg,var(--teal),var(--blue)); color:#fff; border-radius:16px; padding:18px 22px; box-shadow:0 12px 28px rgba(31,120,200,.28); }
+  .own-footer .wi { flex:0 0 auto; width:44px; height:44px; border-radius:12px; background:rgba(255,255,255,.22); color:#fff; display:flex; align-items:center; justify-content:center; }
+  .own-footer p { margin:0; font-size:1.08rem; line-height:1.5; font-weight:600; }
+  @media (max-width: 920px){ .own-band{padding:34px 26px;} .own-grid{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width: 560px){ .own-grid{grid-template-columns:1fr;} }
+
+  /* Диагностика реальности */
+  .diag-band { margin-top:26px; position:relative; border-radius:26px; overflow:hidden; color:#fff;
+    background: radial-gradient(760px 340px at 90% -10%, rgba(15,200,170,.35), transparent 60%),
+      radial-gradient(700px 300px at 0% 120%, rgba(31,111,208,.5), transparent 60%),
+      linear-gradient(130deg,#0a1c3f 0%, #0b2f66 45%, #0a6fd0 100%);
+    padding:60px 56px; box-shadow:0 20px 60px rgba(6,20,50,.35); }
+  .diag-grid { display:grid; grid-template-columns:1.1fr .9fr; gap:40px; align-items:center; }
+  .diag-left h2 { color:#fff; font-size:clamp(1.9rem,3.6vw,2.9rem); margin:0 0 18px; letter-spacing:-.02em; }
+  .diag-left h2 em { font-style:normal; color:#5ee0cf; }
+  .diag-left p { color:rgba(255,255,255,.85); font-size:1.15rem; line-height:1.75; margin:0 0 26px; max-width:32em; }
+  .diag-cta { display:inline-flex; align-items:center; gap:12px; background:linear-gradient(120deg,var(--teal),#15b7e8); color:#fff;
+    padding:17px 34px; border-radius:15px; font-weight:800; font-size:1.12rem; box-shadow:0 14px 34px rgba(15,200,170,.4); transition:.2s; }
+  .diag-cta:hover { transform:translateY(-3px); box-shadow:0 20px 44px rgba(15,200,170,.5); }
+  .diag-cta .arr { display:inline-flex; align-items:center; justify-content:center; width:26px; height:26px; border-radius:50%; background:rgba(255,255,255,.25); font-size:15px; }
+  .diag-note { margin-top:16px; font-size:.85rem; color:rgba(255,255,255,.55); }
+  .diag-right { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  .diag-stat { background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.14); backdrop-filter:blur(6px); border-radius:18px; padding:22px 20px; }
+  .diag-stat b { display:block; font-size:1.2rem; color:#9ff0e4; margin-bottom:6px; }
+  .diag-stat span { font-size:.85rem; color:rgba(255,255,255,.7); line-height:1.5; display:block; }
+  @media (max-width: 920px){ .diag-grid{grid-template-columns:1fr;} .diag-right{grid-template-columns:1fr 1fr;} .diag-band{padding:44px 28px;} }
+  @media (max-width: 560px){ .diag-right{grid-template-columns:1fr;} }
+
+  @media (max-width: 920px){ .mp-def{grid-template-columns:1fr;} .benefit-row{grid-template-columns:repeat(2,1fr);} .mp-band{grid-template-columns:1fr;} .mp-steps-row{grid-template-columns:1fr;} .mp-intro{flex-direction:column; text-align:center;} }
+  @media (max-width: 560px){ .benefit-row{grid-template-columns:1fr;} .ladder .rank{grid-template-columns:auto 1fr;} }
+  .ch { display:flex; align-items:flex-start; gap:14px; background: rgba(255,255,255,.6); border:1px solid rgba(15,120,150,.14); border-radius:13px; padding:16px 18px; }
+  .ch-n { flex:0 0 auto; width:36px; height:36px; border-radius:10px; background:linear-gradient(135deg,var(--teal),var(--blue)); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700; box-shadow:0 4px 10px rgba(31,140,190,.3); }
+  .ch p { margin:0; font-size:1rem; color:var(--body); line-height:1.55; }
+  .ch p strong { color:var(--ink); }
+  /* CALCULATOR */
+  .calc { background: rgba(255,255,255,.85); border:1px solid rgba(255,255,255,.8); border-radius:28px; overflow:hidden;
+    box-shadow: var(--shadow-lg); backdrop-filter: blur(16px) saturate(1.3); display:grid; grid-template-columns: 1fr 1fr; margin-top:48px; }
+  .calc-controls { padding:44px 46px; }
+  .calc-panel { padding:44px 46px; background: linear-gradient(150deg, rgba(31,198,198,.2), rgba(31,111,208,.16)), rgba(255,255,255,.5); color:var(--ink); display:flex; flex-direction:column; }
+  .calc-field { margin-bottom:28px; }
+  .calc-field label { display:flex; justify-content:space-between; align-items:baseline; font-weight:700; color:var(--ink); margin-bottom:10px; }
+  .calc-field label output { color:var(--teal-dark); font-size:1.15rem; font-weight:800; font-variant-numeric:tabular-nums; }
+  input[type=range] { -webkit-appearance:none; width:100%; height:8px; border-radius:20px; background:rgba(31,120,150,.2); outline:none; }
+  input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; width:24px; height:24px; border-radius:50%; background:#fff; border:3px solid var(--teal); cursor:pointer; box-shadow:0 3px 12px rgba(31,120,150,.35); }
+  input[type=range]::-moz-range-thumb { width:20px; height:20px; border-radius:50%; background:#fff; border:3px solid var(--teal); cursor:pointer; }
+  .seg { display:flex; gap:8px; }
+  .seg button { flex:1; padding:14px 8px; border:1px solid rgba(15,120,150,.16); background: rgba(255,255,255,.7); border-radius:13px; cursor:pointer; font-weight:600; color:var(--body); font:inherit; transition:.18s; font-size:1.02rem; }
+  .seg button.active { border-color:var(--teal); background:#fff; color:var(--teal-dark); box-shadow:0 0 0 1px var(--teal), 0 4px 12px rgba(31,140,190,.2); }
+  .calc-hint { font-size:.95rem; color:var(--muted); margin-top:8px; }
+  .calc-panel h3 { color:var(--ink); font-size:1.5rem; }
+  .calc-result { margin-top:22px; flex:1; }
+  .calc-gauge { height:16px; border-radius:20px; background: rgba(255,255,255,.7); box-shadow:0 1px 4px rgba(13,40,70,.14) inset; overflow:hidden; margin:18px 0; }
+  .calc-gauge i { display:block; height:100%; border-radius:20px; background: linear-gradient(90deg,var(--teal),#3aa7e0,var(--blue)); background-size:200% 100%; animation: shine 3s linear infinite; transition: width .7s ease; }
+  .calc-levels { display:flex; justify-content:space-between; font-size:.9rem; color:var(--muted); font-weight:600; }
+  .calc-line { font-size:1.2rem; color:var(--navy-2); line-height:1.6; }
+  .calc-line b { background: linear-gradient(92deg, var(--teal-dark), var(--blue)); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
+  .calc-badges { display:flex; flex-wrap:wrap; gap:8px; margin-top:20px; }
+  .calc-badge { background: rgba(255,255,255,.8); border:1px solid rgba(15,120,150,.2); color:var(--teal-dark); padding:9px 16px; border-radius:100px; font-size:.95rem; font-weight:600; box-shadow:0 2px 8px rgba(13,40,70,.08); }
+  @keyframes shine { to { background-position: -200% 0; } }
+  .calc-note { margin-top:auto; padding-top:24px; font-size:.88rem; color:var(--muted); line-height:1.6; }
+  @media (max-width: 820px){ .calc { grid-template-columns:1fr; } .calc-panel{ min-height:320px; } }
+
+  /* FINANCE - three lives */
+  .lives { display:grid; grid-template-columns: repeat(3,1fr); gap:22px; margin-top:48px; align-items:stretch; }
+  .life { border-radius: var(--radius); padding:34px; border:1px solid rgba(255,255,255,.75); background: var(--glass); position:relative;
+    box-shadow: 0 12px 34px rgba(13,40,70,.09), inset 0 1px 0 rgba(255,255,255,.8); backdrop-filter: blur(14px); }
+  .life.featured { background: linear-gradient(150deg, rgba(31,198,198,.25), rgba(31,111,208,.18)), rgba(255,255,255,.6); border:1px solid rgba(31,198,198,.4); color:var(--ink); transform: scale(1.03); box-shadow: var(--shadow-lg); }
+  .life.featured h3{ color:var(--ink); } .life.featured p{ color:var(--body); }
+  .life .tag { font-size:.78rem; letter-spacing:1.5px; text-transform:uppercase; font-weight:800; color:var(--teal-dark); }
+  .life.featured .tag { color:var(--teal-dark); }
+  .life h3 { font-size:1.65rem; margin:12px 0 18px; }
+  .life ul { margin:0; padding:0 0 0 20px; }
+  .life li { margin-bottom:12px; font-size:1.08rem; color:var(--body); line-height:1.55; }
+  .life .price { margin-top:24px; font-size:1.15rem; color:var(--ink); font-weight:700; }
+  .life.featured .price { background: linear-gradient(92deg, var(--teal-dark), var(--blue)); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
+
+  /* TESTIMONIALS */
+  .tgrid { display:grid; grid-template-columns: repeat(3,1fr); gap:22px; margin-top:44px; }
+  .tcard { background: var(--glass); border:1px solid rgba(255,255,255,.75); border-radius: var(--radius); padding:30px; display:flex; flex-direction:column;
+    box-shadow: 0 12px 34px rgba(13,40,70,.09), inset 0 1px 0 rgba(255,255,255,.8); backdrop-filter: blur(14px); }
+  .tcard .quote { font-size:1.05rem; color:var(--body); font-style:italic; flex:1; line-height:1.65; }
+  .tcard .who { display:flex; align-items:center; gap:14px; margin-top:22px; }
+  .avatar { width:52px; height:52px; border-radius:50%; background:linear-gradient(135deg, rgba(31,198,198,.3), rgba(31,111,208,.25)); color:var(--teal-dark); display:flex; align-items:center; justify-content:center; font-weight:700; font-size:1.2rem; }
+  .tcard .who b { display:block; color:var(--ink); font-size:1.05rem; }
+  .tcard .who span { font-size:.9rem; color:var(--muted); }
+
+  /* FAQ */
+  details { background: var(--glass); border:1px solid rgba(255,255,255,.75); border-radius:14px; padding:0; margin-bottom:12px; overflow:hidden;
+    backdrop-filter: blur(12px); box-shadow: 0 8px 24px rgba(13,40,70,.06); }
+  summary { cursor:pointer; padding:22px 26px; font-weight:600; color:var(--ink); list-style:none; display:flex; justify-content:space-between; align-items:center; gap:12px; font-size:1.08rem; }
+  summary::-webkit-details-marker { display:none; }
+  summary::after { content:"+"; font-size:1.6rem; font-weight:400; color:var(--teal-dark); line-height:1; transition:.2s; }
+  details[open] summary::after { transform: rotate(45deg); }
+  details .faq-body { padding:0 26px 24px; font-size:1.05rem; line-height:1.65; color:var(--body); }
+
+  /* CTA */
+  .cta { border-radius: 28px; overflow:hidden; position:relative;
+    background:
+      radial-gradient(700px 320px at 90% 0%, rgba(31,198,198,.35) 0%, transparent 55%),
+      linear-gradient(135deg, rgba(31,198,198,.22), rgba(31,111,208,.18)), rgba(255,255,255,.65);
+    color:var(--ink); border:1px solid rgba(255,255,255,.8); box-shadow: var(--shadow-lg); backdrop-filter: blur(14px); }
+  .cta-in { padding: 74px 62px; position:relative; z-index:2; }
+  .cta h2 { color:var(--ink); font-size: clamp(1.75rem, 3.5vw, 2.5rem); max-width:20em; }
+  .cta p { color:var(--body); max-width:44em; margin-top:16px; font-size:1.12rem; }
+
+  /* FOOTER */
+  footer { background: linear-gradient(160deg, #0a2440 0%, #0d3354 100%); color:#b8cbd8; padding:68px 0 34px; position:relative; overflow:hidden; }
+  footer::before { content:""; position:absolute; top:-30%; left:20%; width:60%; height:120%; pointer-events:none;
+    background: radial-gradient(circle, rgba(31,198,198,.18), transparent 60%); }
+  .foot-grid { display:grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap:40px; position:relative; }
+  .foot-grid h4 { color:#fff; font-size:1rem; margin-bottom:16px; }
+  .foot-grid ul { list-style:none; margin:0; padding:0; }
+  .foot-grid li { margin-bottom:10px; }
+  .foot-grid a { color:#b8cbd8; font-size:.95rem; }
+  .foot-grid a:hover { color:#fff; }
+  .foot-brand p { font-size:.93rem; margin-top:14px; max-width:28em; color:#9bb4c4; }
+  .foot-bottom { border-top:1px solid rgba(255,255,255,.12); margin-top:48px; padding-top:26px; font-size:.83rem; display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; position:relative; }
+  .disclaimer { font-size:.8rem; color:#8aa5b6; line-height:1.65; margin-top:8px; position:relative; }
+
+  /* REVEAL animation */
+  .reveal { opacity:0; transform: translateY(22px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.in { opacity:1; transform:none; }
+
+  @media (max-width: 920px){
+    .g4, .g3, .lives, .tgrid { grid-template-columns: repeat(2,1fr); }
+    .two { grid-template-columns: 1fr; gap:32px; }
+    .foot-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 640px){
+    section { padding:44px 0; }
+    .g4, .g3, .lives, .tgrid, .ranks, .foot-grid { grid-template-columns: 1fr; }
+    [style*="grid-template-columns: 360px"] { grid-template-columns: 1fr !important; }
+    [style*="position:absolute; inset:0"] { position:relative !important; height:200px; }
+    .nav-links { position:fixed; top:72px; left:0; right:0; background: rgba(255,255,255,.92); backdrop-filter: blur(18px); flex-direction:column; align-items:stretch;
+      padding:16px; gap:4px; border-bottom:1px solid var(--line); transform: translateY(-120%); transition:.25s; z-index:55; box-shadow: var(--shadow); }
+    .nav-links.open { transform: translateY(0); }
+    .nav-links a { padding:12px; text-align:center; }
+    .burger { display:block; }
+    .hstat { padding:0 16px; } .hstat b{ font-size:1.5rem; }
+    .hero-actions .btn { width:100%; }
+    .life.featured { transform:none; }
+    .cta-in { padding:44px 26px; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{ transition:none!important; animation:none!important; }
+    html{ scroll-behavior:auto; }
+    .reveal{ opacity:1; transform:none; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="#top" aria-label="LifeWave">
+      <img class="brand-logo" src="images/lifewave-logo-t.png" alt="LifeWave" />
+    </a>
+    <div class="nav-right">
+      <div class="nav-links" id="navLinks">
+        <a href="#about" data-i18n="nav.about">О компании</a>
+        <a href="#tech" data-i18n="nav.tech">Технология</a>
+        <a href="#products" data-i18n="nav.products">Продукция</a>
+        <a href="#partner" data-i18n="nav.partner">Партнёрство</a>
+        <a href="#life-calc" data-i18n="nav.calc">Расчёт жизни</a>
+        <a href="#plan" data-i18n="nav.plan">Маркетинг-план</a>
+        <a href="#stories" data-i18n="nav.stories">Истории</a>
+        <a href="#contact" class="nav-cta" data-i18n="nav.cta">Начать сотрудничество</a>
+      </div>
+      <div class="lang" id="langWrap">
+        <button class="lang-btn" id="langBtn" aria-haspopup="true" aria-expanded="false">
+          <span class="flag" id="langFlag">🇷🇺</span><span id="langLabel">Русский</span><span class="caret">▼</span>
+        </button>
+        <div class="lang-menu" id="langMenu">
+          <button data-lang="ru" class="active"><span class="flag">🇷🇺</span>Русский</button>
+          <button data-lang="en"><span class="flag">🇬🇧</span>English</button>
+          <button data-lang="de"><span class="flag">🇩🇪</span>Deutsch</button>
+          <button data-lang="es"><span class="flag">🇪🇸</span>Español</button>
+          <button data-lang="kk"><span class="flag">🇰🇿</span>Қазақша</button>
+        </div>
+      </div>
+      <button class="burger" id="burger" aria-label="Меню"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <span class="eyebrow" data-i18n="hero.eyebrow">LifeWave · Партнёрские возможности</span>
+    <h1><span data-i18n="hero.title1">LifeWave — новая</span> <span class="wave" data-i18n="hero.title2">волна</span> <span data-i18n="hero.title3">возможностей</span></h1>
+    <p class="lead" data-i18n="hero.lead">Инновационная продукция. Собственное дело. Новые финансовые перспективы.</p>
+    <p class="sub" data-i18n="hero.sub">Познакомьтесь с международной компанией LifeWave и узнайте, как интерес к её продукции может стать основой для развития собственного дела и создания дополнительного источника дохода.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#partner" data-i18n="hero.btn1">Узнать о партнёрстве</a>
+      <a class="btn btn-ghost" href="#about" data-i18n="hero.btn2">Познакомиться с компанией</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hstat"><b data-i18n="hero.stat1v">20+</b><span data-i18n="hero.stat1">лет истории</span></div>
+      <div class="hstat"><b><span data-i18n="hero.stat2v">с 2004 г.</span></b><span data-i18n="hero.stat2">международная деятельность</span></div>
+      <div class="hstat"><b data-i18n="hero.stat3v">100+</b><span data-i18n="hero.stat3">стран присутствия*</span></div>
+    </div>
+  </div>
+</header>
+
+<!-- 1. О КОМПАНИИ -->
+<section id="about">
+  <div class="wrap">
+    <div class="two" style="gap:56px">
+      <div class="reveal">
+        <span class="kicker" data-i18n="about.kick">О компании</span>
+        <h2 class="sec-title" data-i18n="about.title">История идеи, которая превратилась в международную компанию</h2>
+        <p data-i18n="about.p1">Всё начинается с одного необычного вопроса: <strong>можно ли использовать свет для взаимодействия с человеческим организмом?</strong> Именно поиск ответов на этот вопрос стал частью истории LifeWave.</p>
+        <p data-i18n="about.p2">В основе компании — американский изобретатель и предприниматель <strong>Дэвид Шмидт (David Schmidt)</strong>. Его опыт в разработке продуктов и бизнесе насчитывает более 30 лет и включает свыше <strong>200 патентов</strong>. Ещё до создания LifeWave он занимался разработкой технологий в области энергетики и инженерных систем, в том числе для военных и коммерческих целей.</p>
+        <p data-i18n="about.p3">ВМС США пригласили его в элитную исследовательскую группу, перед которой стояла задача создать продукт, помогающий экипажам мини-подлодок оставаться бодрыми без лекарств и стимуляторов. Результатом этих исследований стал пластырь, повышающий энергию организма с помощью фототерапии, — <strong>первый прототип LifeWave, Energy Enhancer.</strong></p>
+      </div>
+      <div class="reveal" style="transition-delay:.1s">
+        <div class="founder-card">
+          <div class="founder-photo" style="background:linear-gradient(160deg,#e6f4f6 0%,#d2e9ee 100%)">
+            <img src="images/founder.jpg" alt="Дэвид Шмидт — основатель и генеральный директор LifeWave">
+          </div>
+          <div class="founder-caption">
+            <strong data-i18n="about.founder.name">Дэвид Шмидт</strong>
+            <span data-i18n="about.founder.role">Founder &amp; CEO LifeWave<sup>®</sup></span>
+            <p data-i18n="about.founder.quote">«Моя миссия — улучшать здоровье людей во всём мире с помощью этой инновационной носимой технологии».</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="steps reveal" style="max-width:820px; margin-left:auto; margin-right:auto; margin-top:56px">
+      <div class="step">
+        <div class="step-n">1</div>
+        <div><h4 data-i18n="about.s1t">Идея</h4><p data-i18n="about.s1">Поиск новых способов поддержания энергии и выносливости человека без стимуляторов.</p></div>
+      </div>
+      <div class="step">
+        <div class="step-n">2</div>
+        <div><h4>Технология</h4><p>2002 год — появляются первые прототипы пластырей LifeWave на основе фототерапии.</p></div>
+      </div>
+      <div class="step">
+        <div class="step-n">3</div>
+        <div><h4>Компания</h4><p>2004 год — LifeWave начинает деятельность и выбирает партнёрскую модель развития.</p></div>
+      </div>
+      <div class="step">
+        <div class="step-n">4</div>
+        <div><h4>Сегодня</h4><p>Более двадцати лет истории, международная деятельность и собственная линейка продуктов.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. ТЕХНОЛОГИЯ -->
+<section id="tech" class="soft">
+  <div class="wrap">
+    <div class="center reveal">
+      <span class="kicker">Технология</span>
+      <h2 class="sec-title">Когда свет становится частью инновации</h2>
+      <p class="sec-lead">Мы привыкли, что для воздействия на организм нужно что-то принимать внутрь или наносить на кожу. Но существует и другой подход — использование света. Именно эта идея лежит в основе технологии LifeWave.</p>
+    </div>
+
+    <div class="two" style="margin-top:44px">
+      <div class="steps reveal">
+        <div class="step">
+          <div class="step-n">1</div>
+          <div><h4>Тело излучает энергию</h4><p>Человеческое тело постоянно выделяет тепло, в том числе в виде невидимого инфракрасного излучения.</p></div>
+        </div>
+        <div class="step">
+          <div class="step-n">2</div>
+          <div><h4>Пластырь отражает её обратно</h4><p>Нетрансдермальный пластырь LifeWave отражает часть этой энергии обратно к коже.</p></div>
+        </div>
+        <div class="step">
+          <div class="step-n">3</div>
+          <div><h4>Локальное воздействие</h4><p>Отражённое излучение действует на определённые участки кожи и может способствовать поддержанию хорошего самочувствия.</p></div>
+        </div>
+      </div>
+      <div class="card dark-card reveal" style="transition-delay:.1s">
+        <div class="ic">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9L17 7M7 17l-2.1 2.1"/></svg>
+        </div>
+        <h3>Что делает технологию особенной?</h3>
+        <p>LifeWave использует собственные разработки и запатентованные технологические решения. Разные виды пластырей разработаны для отражения определённых диапазонов излучения и предполагают разные способы применения.</p>
+        <p style="margin-top:14px"><strong>Важно:</strong> пластыри нетрансдермальные — они не предназначены для введения лекарственных веществ через кожу и не доставляют их в организм.</p>
+      </div>
+    </div>
+
+    <div class="grid g4" style="margin-top:44px">
+      <div class="card reveal"><div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.6-9.2-9A6 6 0 0 1 12 5.5 6 6 0 0 1 21.2 12C19 16.4 12 21 12 21z"/></svg></div><h3>Неинвазивно</h3><p>Пластыри не вводят в организм никаких веществ.</p></div>
+      <div class="card reveal"><div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12c4-6 16-6 20 0M2 17c4-6 16-6 20 0"/></svg></div><h3>Естественный подход</h3><p>Используются ресурсы собственного тела — инфракрасное излучение.</p></div>
+      <div class="card reveal"><div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2 4 4.5.5-.3 4.5 3.8 2.5-3.8 2.5.3 4.5L14 21l-2 4-2-4-4.5-.5.3-4.5L2 13.5l3.8-2.5-.3-4.5L10 6z"/><path d="M12 8v8M8 12h8"/></svg></div><h3>Запатентовано</h3><p>В основе — собственные разработки и запатентованные решения компании.</p></div>
+      <div class="card reveal"><div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 2v4M15 2v4M3 10h18M8 14h4"/></svg></div><h3>Разные решения</h3><p>Каждый продукт разработан для своих задач и целей.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. ПРОДУКЦИЯ -->
+<section id="products">
+  <div class="wrap">
+    <div class="center reveal">
+      <span class="kicker">Продукция</span>
+      <h2 class="sec-title">Инновации для активной жизни</h2>
+      <p class="sec-lead">Одна технология — разные направления применения. В основе продуктовой линейки LifeWave лежит технология нетрансдермальных пластырей. Каждый продукт имеет своё назначение и особенности применения.</p>
+    </div>
+
+    <div class="showcase reveal">
+      <div class="showcase-stage">
+        <div class="showcase-media">
+          <div class="imgwrap"><img id="scImg" src="images/x39.png" alt="LifeWave X39"></div>
+        </div>
+        <div class="showcase-info" id="scInfo">
+          <span class="showcase-tag" id="scTag">Флагман</span>
+          <h3 id="scTitle">LifeWave X39<sup>®</sup></h3>
+          <p class="lead" id="scLead">Флагманский продукт компании. Пластырь позиционируется для поддержания жизненной энергии, активности и общего самочувствия.</p>
+          <div class="showcase-points" id="scPoints"></div>
+          <a class="btn btn-primary" href="#contact">Обсудить продукт</a>
+        </div>
+      </div>
+      <div class="showcase-selector" id="scSelector"></div>
+    </div>
+
+    <div class="card dark-card reveal" style="margin-top:34px; padding:0; overflow:hidden">
+      <div style="display:grid; grid-template-columns: 360px 1fr; gap:0; align-items:stretch">
+        <div style="position:relative; min-height:100%; overflow:hidden">
+          <img src="images/alavida-trio.png" alt="Alavida — Regenerating Trio" style="width:100%; height:100%; object-fit:cover; position:absolute; inset:0">
+        </div>
+        <div style="padding:34px 38px">
+          <h3>Alavida<sup>®</sup> — красота, вдохновлённая инновациями</h3>
+          <p style="margin-top:12px">Косметическая линия LifeWave для комплексного ухода за кожей лица. Сочетает современные ингредиенты и продуманные формулы, направленные на увлажнение, поддержание упругости и уменьшение видимости возрастных изменений.</p>
+          <div style="display:flex; flex-direction:column; gap:10px; margin-top:18px">
+            <div class="ch"><div class="ch-n" style="background:var(--teal)">1</div><p><strong>Daily Refresh Facial Nectar</strong><br><span style="color:var(--muted)">дневной нектар для увлажнения и свежести</span></p></div>
+            <div class="ch"><div class="ch-n" style="background:var(--teal)">2</div><p><strong>Nightly Restore Facial Crème</strong><br><span style="color:var(--muted)">ночной крем для питания и восстановления</span></p></div>
+            <div class="ch"><div class="ch-n" style="background:var(--teal)">3</div><p><strong>Revive Eye Cream</strong><br><span style="color:var(--muted)">деликатный уход за областью вокруг глаз</span></p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="center" style="margin:26px 0 0; color:var(--muted); font-size:.95rem">Познакомиться с полной линейкой LifeWave и рекомендациями по применению можно в официальных материалах компании.</p>
+  </div>
+</section>
+
+<!-- 4. ПАРТНЁРСТВО -->
+<section id="partner" class="soft">
+  <div class="wrap">
+    <div class="center reveal">
+      <span class="kicker">Возможности партнёрства</span>
+      <h2 class="sec-title">Своё дело. Своя команда. Новые финансовые перспективы.</h2>
+      <p class="sec-lead">Партнёрство с LifeWave — это возможность развивать собственное дело на основе инновационной продукции международной компании, используя гибридный маркетинг-план и систему командного взаимодействия.</p>
+    </div>
+
+    <div class="grid g3" style="margin-top:44px">
+      <div class="card reveal"><div class="card-num">01</div><div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg></div><h3>Свобода выбора и гибкий график</h3><p>Сами планируйте свою деятельность, определяйте темп развития и совмещайте партнёрство с другими занятиями.</p></div>
+      <div class="card reveal"><div class="card-num">02</div><div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v4M12 18v4M2 12h4M18 12h4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M19.1 4.9l-2.8 2.8M7.7 16.3l-2.8 2.8"/><circle cx="12" cy="12" r="3"/></svg></div><h3>Гибридный маркетинг-план</h3><p>Сочетание нескольких механизмов вознаграждения: за личные приглашения, командный товарооборот и наставничество.</p></div>
+      <div class="card reveal"><div class="card-num">03</div><div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><h3>Собственная команда</h3><p>Объединяйте единомышленников, помогайте им развиваться и выстраивайте совместную деятельность.</p></div>
+      <div class="card reveal"><div class="card-num">04</div><div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6c-1-2-3-3-5-3-3 0-5 2-5 5 0 6 10 13 10 13s10-7 10-13c0-3-2-5-5-5-2 0-4 1-5 3z"/></svg></div><h3>Наставничество и поддержка</h3><p>Обучение, обмен опытом, помощь опытных партнёров и общие инструменты развития.</p></div>
+      <div class="card reveal"><div class="card-num">05</div><div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 6l-9.5 9.5-5-5L1 18"/><path d="M17 6h6v6"/></svg></div><h3>Перспектива масштабирования</h3><p>Расширяйте структуру и развивайте деятельность там, где компания официально работает.</p></div>
+      <div class="card reveal"><div class="card-num">06</div><div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><h3>Несколько направлений дохода</h3><p>Система поощрений за личное привлечение, развитие команды и наставничество лидеров.</p></div>
+    </div>
+
+    <p class="center" style="margin-top:30px; color:var(--muted); font-size:.9rem">Размер вознаграждений зависит от фактического товарооборота, квалификации и выполнения условий маркетинг-плана. Доход не гарантирован, возможны расходы и убытки.</p>
+  </div>
+</section>
+
+<!-- 5. СОБСТВЕННОЕ ДЕЛО -->
+<section id="deal">
+  <div class="wrap">
+    <div class="two">
+      <div class="reveal">
+        <span class="kicker">Собственное дело</span>
+        <h2 class="sec-title">Ваши цели. Ваш темп. Ваши решения.</h2>
+        <p>Представьте деятельность, в которой вы сами определяете направление развития, выбираете время для работы и объединяете вокруг себя людей, разделяющих ваши интересы и стремления.</p>
+        <p>Партнёрство с LifeWave открывает возможность развивать собственное дело, опираясь на продукцию и партнёрскую программу международной компании. Начать можно с малого — дальнейший масштаб определяется вами.</p>
+        <a class="btn btn-dark" href="#contact" style="margin-top:6px">Начать с малого</a>
+      </div>
+      <div class="grid g2" style="margin-top:0; gap:16px">
+        <div class="card reveal"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div><h3 style="font-size:1.02rem">Свобода выбора</h3><p style="font-size:.9rem">Сами планируете свою деятельность, график и способы продвижения. Результат зависит от ваших усилий.</p></div>
+        <div class="card reveal"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="6" rx="1"/><rect x="3" y="14" width="18" height="6" rx="1"/></svg></div><h3 style="font-size:1.02rem">Совмещение</h3><p style="font-size:.9rem">Осваивайте новое направление параллельно с основной работой или другими занятиями.</p></div>
+        <div class="card reveal"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 12l-3 3 3 3M15 6l3 3-3 3"/><circle cx="12" cy="12" r="9"/></svg></div><h3 style="font-size:1.02rem">Развитие команды</h3><p style="font-size:.9rem">Формируйте собственную команду и помогайте новым партнёрам осваивать систему.</p></div>
+        <div class="card reveal"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3l7 4v5c0 4-3 7-7 9-4-2-7-5-7-9V7z"/></svg></div><h3 style="font-size:1.02rem">География без границ</h3><p style="font-size:.9rem">Сотрудничество с партнёрами из разных стран, где компания официально работает.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5.5 РАСЧЁТ ВАШЕЙ ЖИЗНИ (интерактив) -->
+<section id="life-calc">
+  <div class="wrap">
+    <div class="center reveal">
+      <span class="kicker">Интерактив · Ваша жизнь</span>
+      <h2 class="sec-title">Что для вас важнее всего?</h2>
+      <p class="sec-lead">Перед тем как изучать маркетинг-план, представьте желаемый образ жизни. Передвиньте ползунки и выберите темп — мы покажем, к какому уровню жизни обычно ведёт такое развитие.</p>
+    </div>
+
+    <div class="calc reveal">
+      <div class="calc-controls">
+        <div class="calc-field">
+          <label for="calcTime">Время на развитие в неделю <output id="outTime">10 ч</output></label>
+          <input type="range" id="calcTime" min="2" max="30" step="1" value="10">
+          <div class="calc-hint">Сколько часов в неделю вы готовы уделять партнёрству.</div>
+        </div>
+        <div class="calc-field">
+          <label>Темп развития</label>
+          <div class="seg" id="segTempo">
+            <button data-v="slow">Спокойный</button>
+            <button data-v="mid" class="active">Уверенный</button>
+            <button data-v="fast">Активный</button>
+          </div>
+          <div class="calc-hint">Насколько последовательно вы готовы двигаться к целям.</div>
+        </div>
+        <div class="calc-field">
+          <label>Опыт / готовность обучаться</label>
+          <div class="seg" id="segExp">
+            <button data-v="new">Начинаю с нуля</button>
+            <button data-v="exp" class="active">Есть опыт</button>
+          </div>
+          <div class="calc-hint">Опыт ускоряет старт, но главное — желание разобраться.</div>
+        </div>
+      </div>
+
+      <div class="calc-panel">
+        <h3>Ваш возможный ориентир</h3>
+        <div class="calc-result">
+          <div class="calc-gauge"><i id="gaugeFill" style="width:0%"></i></div>
+          <div class="calc-levels"><span>Минимум</span><span>Оптимум</span><span>Мечта</span></div>
+          <p class="calc-line" id="calcLine">Спокойный старт с вашим темпом — это уровень жизни, близкий к <b>«Минимуму»</b>.</p>
+          <div class="calc-badges" id="calcBadges">
+            <span class="calc-badge">Базовая уверенность</span>
+          </div>
+        </div>
+        <p class="calc-note">Ориентир — это иллюстрация, а не обещание дохода. Результаты зависят от ваших усилий, условий маркетинг-плана и множества факторов. Доход не гарантирован.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. МАРКЕТИНГ-ПЛАН -->
+<section id="plan" class="soft">
+  <div class="wrap">
+    <div class="center reveal">
+      <span class="kicker">Маркетинг-план</span>
+      <h2 class="sec-title">Гибридная модель вознаграждения</h2>
+      <p class="sec-lead">Одна из особенностей LifeWave — гибридный маркетинг-план, объединяющий различные механизмы партнёрского вознаграждения. Это позволяет развивать собственную команду, помогать партнёрам достигать результатов и участвовать в нескольких направлениях бонусной программы.</p>
+    </div>
+
+    <div class="mp-hero reveal">
+      <p class="tagline" data-i18n="plan.hero.tag">Как устроен маркетинг-план LifeWave</p>
+      <h3 data-i18n="plan.hero.title">Простая и понятная система вознаграждений</h3>
+      <p class="lead" data-i18n="plan.hero">Вознаграждения за личные приглашения, развитие команды и наставничество — всё работает в одной гибридной системе. Разберём наглядно.</p>
+      <div class="mp-offer">
+        <span class="chip"><span class="big">3</span> <span data-i18n="plan.offer1">составляющие</span></span>
+        <span class="chip"><span class="big">5</span> <span data-i18n="plan.offer2">шагов до старта</span></span>
+        <span class="chip"><span class="big">4</span> <span data-i18n="plan.offer3">карьерных ранга</span></span>
+      </div>
+    </div>
+
+    <div class="mp-intro reveal">
+      <div class="ic"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/></svg></div>
+      <p data-i18n="plan.hero.def"><b>Гибридный маркетинг-план LifeWave</b> — это сочетание трёх механизмов дохода, которые работают в комплексе и позволяют развивать своё дело удобно и на разных уровнях.</p>
+    </div>
+
+    <div class="mp-def">
+      <div class="mp-card reveal">
+        <p class="mp-step-label" data-i18n="plan.c1lbl">Составляющая 1</p>
+        <h4 data-i18n="plan.c1t">Линейная · Личные партнёры</h4>
+        <div class="scheme">
+          <svg width="232" height="168" viewBox="0 0 232 168" role="img" aria-label="Линейная схема">
+            <defs>
+              <linearGradient id="gTopC1" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#26d2d2"/>
+                <stop offset="1" stop-color="#0b7fa0"/>
+              </linearGradient>
+              <linearGradient id="gNodeC1" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#e0f8f8"/>
+                <stop offset="1" stop-color="#b4e9ee"/>
+              </linearGradient>
+              <filter id="shC1" x="-40%" y="-40%" width="180%" height="180%">
+                <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#0b3b52" flood-opacity="0.28"/>
+              </filter>
+            </defs>
+            <circle cx="116" cy="28" r="19" fill="url(#gTopC1)" filter="url(#shC1)"/>
+            <text x="116" y="33" text-anchor="middle" font-size="13" fill="#fff" font-weight="bold">Вы</text>
+            <path d="M116 47 C116 74, 58 76, 58 99" fill="none" stroke="#6ec9d8" stroke-width="2.4" stroke-linecap="round"/>
+            <path d="M116 47 L116 100" fill="none" stroke="#6ec9d8" stroke-width="2.4" stroke-linecap="round"/>
+            <path d="M116 47 C116 74, 174 76, 174 99" fill="none" stroke="#6ec9d8" stroke-width="2.4" stroke-linecap="round"/>
+            <circle cx="50" cy="118" r="15" fill="url(#gNodeC1)" stroke="#2bc1c6" stroke-width="1.6" filter="url(#shC1)"/>
+            <circle cx="116" cy="120" r="15" fill="url(#gNodeC1)" stroke="#2bc1c6" stroke-width="1.6" filter="url(#shC1)"/>
+            <circle cx="182" cy="118" r="15" fill="url(#gNodeC1)" stroke="#2bc1c6" stroke-width="1.6" filter="url(#shC1)"/>
+          </svg>
+        </div>
+        <p data-i18n="plan.c1">Вознаграждение за приглашение новых партнёров в компанию при выполнении условий плана.</p>
+        <p class="mini"><span class="ok">✓</span><span data-i18n="plan.c1m">Личные приглашения — фундамент вашей структуры.</span></p>
+      </div>
+      <div class="mp-card reveal" style="transition-delay:.08s">
+        <p class="mp-step-label" data-i18n="plan.c2lbl">Составляющая 2</p>
+        <h4 data-i18n="plan.c2t">Бинарная · Две ветви</h4>
+        <div class="scheme">
+          <svg width="232" height="168" viewBox="0 0 232 168" role="img" aria-label="Бинарная схема">
+            <defs>
+              <linearGradient id="gTopC2" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#26d2d2"/>
+                <stop offset="1" stop-color="#0b7fa0"/>
+              </linearGradient>
+              <linearGradient id="gNodeC2" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#e0f8f8"/>
+                <stop offset="1" stop-color="#b4e9ee"/>
+              </linearGradient>
+              <filter id="shC2" x="-40%" y="-40%" width="180%" height="180%">
+                <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#0b3b52" flood-opacity="0.28"/>
+              </filter>
+            </defs>
+            <circle cx="116" cy="28" r="19" fill="url(#gTopC2)" filter="url(#shC2)"/>
+            <text x="116" y="33" text-anchor="middle" font-size="13" fill="#fff" font-weight="bold">Вы</text>
+            <path d="M116 47 C116 78, 58 78, 58 100" fill="none" stroke="#6ec9d8" stroke-width="2.4" stroke-linecap="round"/>
+            <path d="M116 47 C116 78, 174 78, 174 100" fill="none" stroke="#6ec9d8" stroke-width="2.4" stroke-linecap="round"/>
+            <circle cx="48" cy="116" r="15" fill="url(#gNodeC2)" stroke="#2bc1c6" stroke-width="1.6" filter="url(#shC2)"/>
+            <circle cx="82" cy="118" r="15" fill="url(#gNodeC2)" stroke="#2bc1c6" stroke-width="1.6" filter="url(#shC2)"/>
+            <circle cx="150" cy="118" r="15" fill="url(#gNodeC2)" stroke="#2bc1c6" stroke-width="1.6" filter="url(#shC2)"/>
+            <circle cx="184" cy="116" r="15" fill="url(#gNodeC2)" stroke="#2bc1c6" stroke-width="1.6" filter="url(#shC2)"/>
+            <g font-size="10" fill="#0e8d8d" text-anchor="middle" font-weight="600">
+              <rect x="38" y="141" width="44" height="16" rx="8" fill="#f2fbfb" stroke="#9fdadf" stroke-width="1"/>
+              <text x="60" y="152" >левая</text>
+              <rect x="140" y="141" width="44" height="16" rx="8" fill="#f2fbfb" stroke="#9fdadf" stroke-width="1"/>
+              <text x="162" y="152">правая</text>
+            </g>
+          </svg>
+        </div>
+        <p data-i18n="plan.c2">Вознаграждение на основе товарооборота правой и левой ветвей вашей команды, с учётом квалификации и правил компании.</p>
+        <p class="mini"><span class="ok">✓</span><span data-i18n="plan.c2m">Развивайте две ветви — и растите масштаб.</span></p>
+      </div>
+      <div class="mp-card reveal" style="transition-delay:.16s">
+        <p class="mp-step-label" data-i18n="plan.c3lbl">Составляющая 3</p>
+        <h4 data-i18n="plan.c3t">Многоуровневая · Matching Bonus</h4>
+        <div class="scheme">
+          <svg width="232" height="168" viewBox="0 0 232 168" role="img" aria-label="Многоуровневая схема">
+            <defs>
+              <linearGradient id="gTopC3" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#26d2d2"/>
+                <stop offset="1" stop-color="#0b7fa0"/>
+              </linearGradient>
+              <linearGradient id="gNodeC3" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#e6f7f9"/>
+                <stop offset="1" stop-color="#c4eef1"/>
+              </linearGradient>
+              <linearGradient id="gLeafC3" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#f5fcfd"/>
+                <stop offset="1" stop-color="#dff5f7"/>
+              </linearGradient>
+              <filter id="shC3" x="-40%" y="-40%" width="180%" height="180%">
+                <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#0b3b52" flood-opacity="0.24"/>
+              </filter>
+            </defs>
+            <circle cx="116" cy="24" r="18" fill="url(#gTopC3)" filter="url(#shC3)"/>
+            <text x="116" y="29" text-anchor="middle" font-size="13" fill="#fff" font-weight="bold">Вы</text>
+            <path d="M116 42 C116 58, 70 58, 70 74" fill="none" stroke="#6ec9d8" stroke-width="2.4" stroke-linecap="round"/>
+            <path d="M116 42 L116 74" fill="none" stroke="#6ec9d8" stroke-width="2.4" stroke-linecap="round"/>
+            <path d="M116 42 C116 58, 162 58, 162 74" fill="none" stroke="#6ec9d8" stroke-width="2.4" stroke-linecap="round"/>
+            <circle cx="48" cy="92" r="13" fill="url(#gNodeC3)" stroke="#35c6cb" stroke-width="1.5" filter="url(#shC3)"/>
+            <circle cx="116" cy="94" r="13" fill="url(#gNodeC3)" stroke="#35c6cb" stroke-width="1.5" filter="url(#shC3)"/>
+            <circle cx="184" cy="92" r="13" fill="url(#gNodeC3)" stroke="#35c6cb" stroke-width="1.5" filter="url(#shC3)"/>
+            <path d="M48 104 C44 120, 34 132, 29 139" fill="none" stroke="#8fd4db" stroke-width="1.8" stroke-dasharray="4 4" stroke-linecap="round"/>
+            <path d="M48 104 C52 120, 62 132, 67 139" fill="none" stroke="#8fd4db" stroke-width="1.8" stroke-dasharray="4 4" stroke-linecap="round"/>
+            <path d="M116 106 C112 122, 102 132, 101 139" fill="none" stroke="#8fd4db" stroke-width="1.8" stroke-dasharray="4 4" stroke-linecap="round"/>
+            <path d="M116 106 C120 122, 130 132, 131 139" fill="none" stroke="#8fd4db" stroke-width="1.8" stroke-dasharray="4 4" stroke-linecap="round"/>
+            <path d="M184 104 C180 120, 170 132, 165 139" fill="none" stroke="#8fd4db" stroke-width="1.8" stroke-dasharray="4 4" stroke-linecap="round"/>
+            <path d="M184 104 C188 120, 198 132, 203 139" fill="none" stroke="#8fd4db" stroke-width="1.8" stroke-dasharray="4 4" stroke-linecap="round"/>
+            <circle cx="28" cy="146" r="8" fill="url(#gLeafC3)" stroke="#35c6cb" stroke-width="1.2" filter="url(#shC3)"/>
+            <circle cx="68" cy="146" r="8" fill="url(#gLeafC3)" stroke="#35c6cb" stroke-width="1.2" filter="url(#shC3)"/>
+            <circle cx="100" cy="146" r="8" fill="url(#gLeafC3)" stroke="#35c6cb" stroke-width="1.2" filter="url(#shC3)"/>
+            <circle cx="132" cy="146" r="8" fill="url(#gLeafC3)" stroke="#35c6cb" stroke-width="1.2" filter="url(#shC3)"/>
+            <circle cx="164" cy="146" r="8" fill="url(#gLeafC3)" stroke="#35c6cb" stroke-width="1.2" filter="url(#shC3)"/>
+            <circle cx="204" cy="146" r="8" fill="url(#gLeafC3)" stroke="#35c6cb" stroke-width="1.2" filter="url(#shC3)"/>
+          </svg>
+        </div>
+        <p data-i18n="plan.c3">Matching Bonus — вознаграждение, связанное с результатами партнёров нескольких поколений в вашей команде.</p>
+        <p class="mini"><span class="ok">✓</span><span data-i18n="plan.c3m">Развивайте лидеров — и получайте за их успех.</span></p>
+      </div>
+    </div>
+
+    <div class="mp-band">
+      <div class="mp-box reveal">
+        <h4 data-i18n="plan.mech.title"><span class="dot">⇄</span>Как начисляется вознаграждение</h4>
+        <p class="box-sub" data-i18n="plan.mech.sub">Прозрачный путь от работы команды — к выплате на ваш счёт. Просто и без скрытых условий.</p>
+        <div class="mech-line">
+          <div class="mech-step">
+            <div class="step-body">
+              <div class="step-ic"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1.5"/><circle cx="19" cy="21" r="1.5"/><path d="M2 3h2.2l2.1 12.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L21 7H5.2"/></svg></div>
+              <div class="step-txt"><b data-i18n="plan.mech.s1">Закупки команды</b><span data-i18n="plan.mech.s1d">формируется товарооборот</span></div>
+            </div>
+          </div>
+          <div class="mech-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+          <div class="mech-step">
+            <div class="step-body">
+              <div class="step-ic"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+              <div class="step-txt"><b data-i18n="plan.mech.s2">Условия квалификации</b><span data-i18n="plan.mech.s2d">проверка выполнения плана</span></div>
+            </div>
+          </div>
+          <div class="mech-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+          <div class="mech-step">
+            <div class="step-body">
+              <div class="step-ic"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="5" x2="5" y2="19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg></div>
+              <div class="step-txt"><b data-i18n="plan.mech.s3">Расчёт бонусов</b><span data-i18n="plan.mech.s3d">по правилам компании</span></div>
+            </div>
+          </div>
+          <div class="mech-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
+          <div class="mech-step">
+            <div class="step-body">
+              <div class="step-ic"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4z"/></svg></div>
+              <div class="step-txt"><b data-i18n="plan.mech.s4">Выплата на счёт</b><span data-i18n="plan.mech.s4d">вознаграждение получено</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mp-box reveal" style="transition-delay:.06s">
+        <h4 data-i18n="plan.rank.title"><span class="dot">★</span>Карьерные ранги (квалификации)</h4>
+        <p class="box-sub" data-i18n="plan.rank.sub">Маркетинг-план LifeWave предусматривает систему рангов, которые отражают ваш рост и развитие команды.</p>
+        <div class="rank-ladder">
+          <div class="rank-step r4">
+            <div class="r-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f3d066" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 5l3 3 4-4 4 4 4-4 5 5H3V5z"/><path d="M3 22c6-2 12-2 18 0V11H3z"/></svg></div>
+            <div class="r-txt"><b data-i18n="plan.rank.r4">Президент</b><span data-i18n="plan.rank.step4">высший уровень</span></div>
+            <div class="r-deg">
+              <div class="deg deg1"><span>★</span></div>
+              <div class="deg deg2"><span>★★</span></div>
+              <div class="deg deg3"><span>★★★</span></div>
+            </div>
+          </div>
+          <div class="rank-step r3">
+            <div class="r-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 6l-9.5 9.5-5-5L1 18"/><path d="M17 6h6v6"/></svg></div>
+            <div class="r-txt"><b data-i18n="plan.rank.r3">Исп. директор</b><span data-i18n="plan.rank.step3">устойчивая структура</span></div>
+            <div class="r-deg">
+              <div class="deg deg1"><span>★</span></div>
+              <div class="deg deg2"><span>★★</span></div>
+              <div class="deg deg3"><span>★★★</span></div>
+            </div>
+          </div>
+          <div class="rank-step r2">
+            <div class="r-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+            <div class="r-txt"><b data-i18n="plan.rank.r2">Директор</b><span data-i18n="plan.rank.step2">рост команды</span></div>
+            <div class="r-deg">
+              <div class="deg deg1"><span>★</span></div>
+              <div class="deg deg2"><span>★★</span></div>
+              <div class="deg deg3"><span>★★★</span></div>
+            </div>
+          </div>
+          <div class="rank-step r1">
+            <div class="r-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+            <div class="r-txt"><b data-i18n="plan.rank.r1">Менеджер</b><span data-i18n="plan.rank.step1">стартовая квалификация</span></div>
+            <div class="r-deg">
+              <div class="deg deg1"><span>★</span></div>
+              <div class="deg deg2"><span>★★</span></div>
+              <div class="deg deg3"><span>★★★</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mp-benefits reveal">
+      <h4 data-i18n="plan.ben.title">Что даёт партнёрская программа</h4>
+      <div class="benefit-row">
+        <div class="benefit"><div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 6l-9.5 9.5-5-5L1 18"/><path d="M17 6h6v6"/></svg></div><b>Рост дохода</b><span>несколько механизмов выплат</span></div>
+        <div class="benefit"><div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.7"/></svg></div><b>Развитие команды</b><span>растёте вместе</span></div>
+        <div class="benefit"><div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/></svg></div><b>Личный рост</b><span>обучение и навыки</span></div>
+        <div class="benefit"><div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2 4 4.5.5-.3 4.5 3.8 2.5-3.8 2.5.3 4.5L14 21l-2 4-2-4-4.5-.5.3-4.5L2 13.5l3.8-2.5-.3-4.5L10 6z"/></svg></div><b>Бонусы и поощрения</b><span>квалификации, промо, признание</span></div>
+      </div>
+    </div>
+
+    <div class="mp-steps reveal">
+      <div class="mp-box reveal" style="margin-top:28px">
+        <h4 data-i18n="plan.steps.title"><span class="dot">→</span>С чего начать: 5 шагов</h4>
+        <p class="box-sub">Простой путь входа — от первого знакомства до развития собственной команды.</p>
+        <div class="mp-steps-row">
+          <div class="stepp"><b>1</b><p>Познакомьтесь с продукцией LifeWave</p></div>
+          <div class="stepp"><b>2</b><p>Зарегистрируйтесь в качестве партнёра</p></div>
+          <div class="stepp"><b>3</b><p>Изучите маркетинг-план и обучение</p></div>
+          <div class="stepp"><b>4</b><p>Приглашайте партнёров, стройте команду</p></div>
+          <div class="stepp"><b>5</b><p>Развивайтесь, растите квалификацию</p></div>
+        </div>
+      </div>
+      <div class="mp-box reveal" style="margin-top:28px">
+        <h4 data-i18n="plan.bonus.title"><span class="dot">◆</span>Дополнительные возможности</h4>
+        <p class="box-sub">Помимо трёх составляющих, план предусматривает дополнительные бонусы и поощрения.</p>
+        <div class="bonus-row">
+          <span class="bonus-chip"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2 4 4.5.5-.3 4.5 3.8 2.5-3.8 2.5.3 4.5L14 21l-2 4-2-4-4.5-.5.3-4.5L2 13.5l3.8-2.5-.3-4.5L10 6z"/></svg>Бонусы за достижение квалификаций</span>
+          <span class="bonus-chip"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17l6-6-6-6M12 19h8"/></svg>Поощрительные программы и промоакции</span>
+          <span class="bonus-chip"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15l-3 3 3 3 3-3-3-3zM9 4l-1.5 4L4 9.5 7.5 11 9 15l1.5-4L14 9.5 10.5 8z"/></svg>Признание и участие в мероприятиях компании</span>
+        </div>
+      </div>
+
+    <div class="mp-outro reveal">
+      <p data-i18n="plan.note"><b>Ваш результат зависит от ваших действий:</b> активности, развития команды и выполнения условий маркетинг-плана.</p>
+    </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- 6.5 ПОЧЕМУ ПАРТНЁРСТВО С LifeWave -->
+<section id="why-partner" class="soft">
+  <div class="wrap">
+    <div class="why-band reveal">
+      <div class="why-head">
+        <h4><em data-i18n="why.title1">Почему стоит рассмотреть партнёрство с</em> <em data-i18n="why.brand">LifeWave?</em></h4>
+        <p class="why-intro" data-i18n="why.intro">LifeWave — международная компания, которая объединяет инновационные технологии для здоровья и красоты и современную возможность развития собственного дела.</p>
+      </div>
+      <div class="why-grid">
+        <div class="why-item">
+          <div class="wi"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+          <div><b data-i18n="why.b1t">Международный масштаб</b><p data-i18n="why.b1">Бизнес в более чем 100 странах мира.</p></div>
+        </div>
+        <div class="why-item">
+          <div class="wi"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
+          <div><b data-i18n="why.b2t">Инновационная продукция</b><p data-i18n="why.b2">Уникальные разработки в области поддержки здоровья, активности и молодости.</p></div>
+        </div>
+        <div class="why-item">
+          <div class="wi"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <div><b data-i18n="why.b3t">Партнёрская модель развития</b><p data-i18n="why.b3">Возможность рекомендовать продукцию, создавать команду и получать вознаграждение.</p></div>
+        </div>
+        <div class="why-item">
+          <div class="wi"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 7L13.5 15.5 8.5 10.5 2 17"/><path d="M16 7h6v6"/></svg></div>
+          <div><b data-i18n="why.b4t">Потенциал долгосрочного дохода</b><p data-i18n="why.b4">Пошаговый рост, система рангов и бонусов за развитие команды.</p></div>
+        </div>
+        <div class="why-item wide">
+          <div class="wi"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c-5 0-9-3.5-9-8 0-5 3-9 9-12 6 3 9 7 9 12 0 4.5-4 8-9 8z"/><path d="M12 22v-6"/><path d="M9 11a3 3 0 0 1 6 0"/></svg></div>
+          <div><b data-i18n="why.b5t">Больше, чем доход</b><p data-i18n="why.b5">Личное развитие, новые знания, сообщество единомышленников и образ жизни, в котором есть место для здоровья, семьи, путешествий и любимых дел.</p></div>
+        </div>
+      </div>
+      <div class="why-footer">
+        <div class="wi"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c-5 0-9-3.5-9-8 0-5 3-9 9-12 6 3 9 7 9 12 0 4.5-4 8-9 8z"/></svg></div>
+        <p data-i18n="why.footer">Партнёрство с LifeWave — это возможность создать гибкий, современный бизнес, который работает на ваше будущее.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6.6 СОБСТВЕННОЕ ДЕЛО НА СВОИХ УСЛОВИЯХ -->
+<section id="own-deal" class="soft">
+  <div class="wrap">
+    <div class="own-band reveal">
+      <div class="own-head">
+        <h4><em data-i18n="own.title">Собственное дело на своих условиях</em></h4>
+        <p class="own-intro" data-i18n="own.intro">Партнёрство с LifeWave — это возможность развивать свой бизнес в удобном для вас формате, сочетая доход, самореализацию и баланс в жизни.</p>
+      </div>
+      <div class="own-grid">
+        <div class="own-item">
+          <div class="wi"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></div>
+          <div><b data-i18n="own.b1t">Гибкий график</b><p data-i18n="own.b1">Вы сами определяете, сколько времени уделять развитию.</p></div>
+        </div>
+        <div class="own-item">
+          <div class="wi"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
+          <div><b data-i18n="own.b2t">Личные цели</b><p data-i18n="own.b2">Ставьте собственные финансовые и жизненные цели и шаг за шагом к ним идёте.</p></div>
+        </div>
+        <div class="own-item">
+          <div class="wi"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <div><b data-i18n="own.b3t">Развитие команды</b><p data-i18n="own.b3">Создаёте команду единомышленников и растёте вместе.</p></div>
+        </div>
+        <div class="own-item">
+          <div class="wi"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/></svg></div>
+          <div><b data-i18n="own.b4t">Обучение и поддержка</b><p data-i18n="own.b4">Получаете готовые инструменты, обучение и сопровождение опытных наставников.</p></div>
+        </div>
+<div class="own-item wide">
+              <div class="wi"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 7L13.5 15.5 8.5 10.5 2 17"/><path d="M16 7h6v6"/></svg></div>
+              <div><b data-i18n="own.b5t">Дополнительный доход и новые перспективы</b><p data-i18n="own.b5">Строите источник дохода, который может со временем стать основным.</p></div>
+            </div>
+      </div>
+      <div class="own-footer">
+        <div class="wi"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 4 5 .5-1 4.5 3 3-3 3 1 4.5-5 .5-2 4-2-4-5-.5 1-4.5-3-3 3-3-1-4.5L7 6z"/></svg></div>
+        <p data-i18n="own.footer">Ваш бизнес. Ваш темп. Ваши цели — вместе с LifeWave!</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6.7 ДИАГНОСТИКА РЕАЛЬНОСТИ -->
+<section id="diag">
+  <div class="wrap">
+    <div class="diag-band reveal">
+      <div class="diag-grid">
+        <div class="diag-left">
+          <h2><em>Диагностика реальности</em> — ваш личный сценарий</h2>
+          <p>Пройдите интерактивный расчёт: укажите текущий доход, выберите темп развития команды и стартовый пакет LifeWave — и увидите, как могут складываться бинарные и ранговые бонусы по месяцам. Это иллюстративный сценарий, а не гарантия дохода.</p>
+          <a class="diag-cta" href="diagnostika.html">Запустить диагностику <span class="arr">→</span></a>
+          <div class="diag-note">Откроется отдельный калькулятор. Расчёт сохраняется в вашем браузере.</div>
+        </div>
+        <div class="diag-right">
+          <div class="diag-stat"><b>ФИНАНСЫ</b><span>Текущий доход и доход на годы вперёд</span></div>
+          <div class="diag-stat"><b>ТЕМП</b><span>Черепаший, средний или быстрый рост команды</span></div>
+          <div class="diag-stat"><b>ПАКЕТ</b><span>6 стартовых вариантов с ценой и объёмом BV</span></div>
+          <div class="diag-stat"><b>БОНУСЫ</b><span>Бинарные и ранговые начисления по 13 месяцам</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. ФИНАНСОВОЕ БУДУЩЕЕ -->
+<section id="future">
+  <div class="wrap">
+    <div class="center reveal">
+      <span class="kicker">Ваше финансовое будущее</span>
+      <h2 class="sec-title">Три уровня жизни</h2>
+      <p class="sec-lead">Иногда для нового этапа нужна новая возможность. Подумайте, какой образ жизни вы бы хотели себе обеспечить, — и какой из уровней вам ближе сегодня.</p>
+    </div>
+
+    <div class="lives">
+      <div class="life reveal">
+        <span class="tag">Уровень 1</span>
+        <h3>Минимум</h3>
+        <ul>
+          <li>Базовые потребности закрыты</li>
+          <li>Покрытие текущих расходов</li>
+          <li>Запас финансовой уверенности</li>
+        </ul>
+        <div class="price">Точка опоры</div>
+      </div>
+      <div class="life featured reveal" style="transition-delay:.1s">
+        <span class="tag">Уровень 2</span>
+        <h3>Оптимум</h3>
+        <ul>
+          <li>Комфортный уровень жизни</li>
+          <li>Больше свободы и выбора</li>
+          <li>Возможность откладывать на цели</li>
+          <li>Баланс работы и личного времени</li>
+        </ul>
+        <div class="price">Цель большинства</div>
+      </div>
+      <div class="life reveal" style="transition-delay:.2s">
+        <span class="tag">Уровень 3</span>
+        <h3>Мечта</h3>
+        <ul>
+          <li>Финансовая свобода</li>
+          <li>Рост пассивного дохода</li>
+          <li>Личное развитие и путешествия</li>
+        </ul>
+        <div class="price">Большой горизонт</div>
+      </div>
+    </div>
+
+    <p class="center" style="margin-top:34px; color:var(--muted); font-size:.9rem">Партнёрство предполагает самостоятельную деятельность. Финансовые результаты индивидуальны, зависят от множества факторов и не гарантированы.</p>
+  </div>
+</section>
+
+<!-- 8. ОТЗЫВЫ -->
+<section id="stories">
+  <div class="wrap">
+    <div class="center reveal">
+      <span class="kicker">Истории</span>
+      <h2 class="sec-title">LifeWave: личный опыт применения</h2>
+      <p class="sec-lead">Реальные истории людей, познакомившихся с технологией LifeWave. Разные знакомства, разные пути — объединяет их интерес к инновационной технологии.</p>
+    </div>
+
+    <div class="tgrid">
+      <div class="tcard reveal">
+        <p class="quote">«Моё знакомство с LifeWave началось с обычного интереса к технологии. Хотелось разобраться, как это работает, — а затем пришёл вопрос, какие возможности открывает сотрудничество с компанией».</p>
+        <div class="who"><div class="avatar">А</div><div><b>Андрей</b><span>История знакомства с технологией</span></div></div>
+      </div>
+      <div class="tcard reveal" style="transition-delay:.1s">
+        <p class="quote">«Рассказ о продукции меня заинтересовал, а формату сотрудничества я удивилась: оказалось, можно развивать дело в своём темпе, совмещая с привычной жизнью».</p>
+        <div class="who"><div class="avatar">М</div><div><b>Мария</b><span>Путь к партнёрству</span></div></div>
+      </div>
+      <div class="tcard reveal" style="transition-delay:.2s">
+        <p class="quote">«Поначалу мне было важно разобраться в деталях. Меня поддержали опытные партнёры, помогли освоить инструменты и последовательно двигаться к целям».</p>
+        <div class="who"><div class="avatar">Д</div><div><b>Дмитрий</b><span>Командная поддержка</span></div></div>
+      </div>
+    </div>
+
+    <div class="card dark-card reveal" style="margin-top:34px">
+      <div class="wrap" style="padding:8px 0">
+        <p style="font-size:1.15rem; color:var(--ink); max-width:42em; margin:0"><strong>Для многих знакомство с LifeWave начинается с интереса к технологии.</strong><br>А затем возникает вопрос: какие возможности открывает сотрудничество с компанией?</p>
+        <a class="btn btn-primary" href="#contact" style="margin-top:20px">Узнать о партнёрстве</a>
+      </div>
+    </div>
+
+    <p class="center" style="margin-top:22px; color:var(--muted); font-size:.9rem">* Истории носят личный характер. Личный опыт не заменяет доказательства эффективности и не содержит обещаний лечебного эффекта.</p>
+  </div>
+</section>
+
+<!-- 9. FAQ -->
+<section id="faq" class="soft">
+  <div class="wrap">
+    <div class="center reveal">
+      <span class="kicker">Вопросы и ответы</span>
+      <h2 class="sec-title">Остались вопросы?</h2>
+    </div>
+    <div style="max-width:820px; margin:38px auto 0">
+      <details class="reveal" open>
+        <summary>Что значит «нетрансдермальный» пластырь?</summary>
+        <div class="faq-body">Это означает, что пластырь не предназначен для доставки лекарственных или иных веществ через кожу. Он работает иначе: по описанию производителя, пластырь отражает часть инфракрасного излучения тела обратно к коже.</div>
+      </details>
+      <details class="reveal">
+        <summary>Нужен ли опыт сетевого предпринимательства?</summary>
+        <div class="faq-body">Нет, опыт не обязателен. Гораздо важнее желание разобраться в новой модели сотрудничества, готовность учиться и последовательно действовать. Наставники и обучение помогут освоить инструменты с нуля.</div>
+      </details>
+      <details class="reveal">
+        <summary>Можно ли совмещать партнёрство с основной работой?</summary>
+        <div class="faq-body">Да. Вы сами планируете деятельность, определяете темп и способы развития. Новое направление можно осваивать параллельно с основной работой или другими занятиями.</div>
+      </details>
+      <details class="reveal">
+        <summary>От чего зависит размер вознаграждения?</summary>
+        <div class="faq-body">Вознаграждения определяются действующими правилами LifeWave и зависят от квалификации, товарооборота, фактической деятельности и выполнения условий маркетинг-плана. Доход не гарантирован.</div>
+      </details>
+      <details class="reveal">
+        <summary>Как начать сотрудничество?</summary>
+        <div class="faq-body">Первый шаг — познакомиться с продукцией и партнёрской программой. Свяжитесь с партнёром, который пригласил вас на сайт, чтобы обсудить условия, задать вопросы и получить поддержку на старте.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- 10. CTA -->
+<section id="contact">
+  <div class="wrap">
+    <div class="cta reveal">
+      <div class="cta-in">
+        <span class="eyebrow" style="background:rgba(15,163,163,.18); border-color:rgba(15,163,163,.4)">Следующий шаг</span>
+        <h2>Возможно, для кого-то знакомство с LifeWave станет началом нового профессионального пути.</h2>
+        <p>Изучите подробную информацию и обсудите сотрудничество с партнёром, который познакомил вас с этим сайтом. Иногда новые возможности появляются тогда, когда мы решаем посмотреть на привычные вещи по-другому.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#top">Познакомиться с компанией</a>
+          <a class="btn btn-ghost" href="#contact">Обсудить сотрудничество с партнёром</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand brand-invert" href="#top" aria-label="LifeWave">
+        <img class="brand-logo-invert" src="images/lifewave-logo.png" alt="LifeWave" />
+      </a>
+        <p>Инновационная технология, международная компания и возможность создать собственное партнёрское дело.</p>
+      </div>
+      <div>
+        <h4>Компания</h4>
+        <ul>
+          <li><a href="#about">О компании</a></li>
+          <li><a href="#tech">Технология</a></li>
+          <li><a href="#products">Продукция</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Партнёрство</h4>
+        <ul>
+          <li><a href="#partner">Возможности</a></li>
+          <li><a href="#plan">Маркетинг-план</a></li>
+          <li><a href="#future">Финансовое будущее</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Контакты</h4>
+        <ul>
+          <li><a href="#contact">Связаться с партнёром</a></li>
+          <li><a href="#stories">Истории</a></li>
+          <li><a href="#faq">Вопросы и ответы</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="disclaimer" style="margin-top:28px">Информация на этом сайте носит ознакомительный характер и предназначена для поиска бизнес-партнёров. Пластыри LifeWave нетрансдермальные, не предназначены для введения лекарственных веществ и не являются лекарственным средством. Партнёрская деятельность не является трудоустройством. Доход и результаты не гарантированы и зависят от фактической деятельности и выполнения условий компании. Возможны расходы и убытки. Сведения о странах присутствия приведены в соответствии с официальными материалами LifeWave.</p>
+    <div class="foot-bottom">
+      <span>© 2026 Партнёрский проект LifeWave</span>
+      <span>Сделано для знакомства с возможностями партнёрства</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  var burger = document.getElementById('burger');
+  var links = document.getElementById('navLinks');
+  burger.addEventListener('click', function(){ links.classList.toggle('open'); });
+  links.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ links.classList.remove('open'); }); });
+
+  /* PRODUCT SHOWCASE */
+  var PROD = [
+    { key:'x39', img:'images/x39.png', thumb:'images/x39.png', name:'X39', cat:'Флагман', color:'#1663a6',
+      title:'LifeWave X39<sup>®</sup>',
+      text:'Флагманский продукт компании. Пластырь позиционируется для поддержания жизненной энергии, активности и общего самочувствия.',
+      points:['Поддержка жизненной энергии','Активность и бодрость','Общее самочувствие','30 пластырей в упаковке'] },
+    { key:'x49', img:'images/x49.png', thumb:'images/x49.png', name:'X49', cat:'Активность', color:'#d4538f',
+      title:'LifeWave X49<sup>™</sup>',
+      text:'Продукт линейки, ориентированной на физическую активность и поддержание работоспособности.',
+      points:['Физическая активность','Поддержка работоспособности','30 пластырей в упаковке'] },
+    { key:'icewave', img:'images/icewave.png', thumb:'images/icewave.png', name:'IceWave', cat:'Комфорт', color:'#2f91c4',
+      title:'IceWave<sup>®</sup>',
+      text:'Пластыри, которые компания представляет как средство для поддержания комфорта при физической активности.',
+      points:['Физический комфорт','Поддержка при активности','30 пластырей в упаковке'] },
+    { key:'energy', img:'images/energy.png', thumb:'images/energy.png', name:'Energy Enhancer', cat:'Энергия', color:'#e8872e',
+      title:'Energy Enhancer<sup>®</sup>',
+      text:'Разработаны для людей, заинтересованных в поддержании энергии и физической выносливости.',
+      points:['Энергия','Физическая выносливость','30 пластырей в упаковке'] },
+    { key:'sp6', img:'images/sp6.png', thumb:'images/sp6.png', name:'SP6 Complete', cat:'Питание', color:'#3aa76d',
+      title:'LifeWave SP6 Complete<sup>®</sup>',
+      text:'Технология, позиционируемая компанией для поддержки осознанного питания и контроля аппетита.',
+      points:['Осознанное питание','Поддержка контроля аппетита','30 пластырей в упаковке'] },
+    { key:'silent', img:'images/silent-nights-bg.jpg', thumb:'images/silent-nights-bg.jpg', name:'Silent Nights', cat:'Отдых', color:'#6f4fa8',
+      title:'Silent Nights<sup>®</sup>',
+      text:'Продукт, позиционируемый компанией для поддержания качественного отдыха и сна.',
+      points:['Качественный отдых','Поддержка сна','30 пластырей в упаковке'] },
+    { key:'aeon', img:'images/aeon.png', thumb:'images/aeon.png', name:'Y-Age Aeon', cat:'Благополучие', color:'#119d76',
+      title:'Y-Age Aeon<sup>®</sup>',
+      text:'Пластыри из линейки Y-Age, ориентированной на поддержание общего благополучия.',
+      points:['Общее благополучие','Поддержка расслабления','30 пластырей в упаковке'] },
+    { key:'carnosine', img:'images/carnosine.png', thumb:'images/carnosine.png', name:'Y-Age Carnosine', cat:'Активность', color:'#1f6fd0',
+      title:'Y-Age Carnosine<sup>®</sup>',
+      text:'Пластырь линейки Y-Age, ориентированный на поддержку физической активности и хорошего самочувствия.',
+      points:['Физическая активность','Хорошее самочувствие','30 пластырей в упаковке'] },
+    { key:'glutathione', img:'images/glutathione.png', thumb:'images/glutathione.png', name:'Y-Age Glutathione', cat:'Благополучие', color:'#c9a227',
+      title:'Y-Age Glutathione<sup>®</sup>',
+      text:'Пластырь линейки Y-Age для поддержки расслабления и здорового вида кожи.',
+      points:['Поддержка расслабления','Здоровый вид кожи','30 пластырей в упаковке'] },
+    { key:'alavida', img:'images/alavida-patch.png', thumb:'images/alavida-patch.png', name:'Alavida', cat:'Красота', color:'#2bb3a3',
+      title:'Alavida<sup>®</sup> — патч',
+      text:'Косметический нетрансдермальный пластырь для поддержания здорового и сияющего вида кожи.',
+      points:['Здоровый вид кожи','Естественное сияние','30 пластырей в упаковке'] }
+  ];
+  var scImg = document.getElementById('scImg');
+  var scInfo = document.getElementById('scInfo');
+  var scTag = document.getElementById('scTag');
+  var scTitle = document.getElementById('scTitle');
+  var scLead = document.getElementById('scLead');
+  var scPoints = document.getElementById('scPoints');
+  var scSel = document.getElementById('scSelector');
+  var currentIdx = 0;
+  window.currentIdxHolder = { v:0 };
+  function renderShowcase(i){
+    currentIdx = i;
+    var p = PROD[i];
+    var l = LANG.t;
+    scImg.classList.remove('pop'); void scImg.offsetWidth;
+    scImg.src = p.img; scImg.alt = p.name;
+    var catKey = 'prod.' + p.key;
+    scTag.style.color = p.color; scTag.textContent = l(catKey);
+    scTitle.innerHTML = l(catKey + 't');
+    scLead.textContent = l(catKey + 'd');
+    var pts = l(catKey + 'p');
+    if(typeof pts === 'string') pts = PROD[i].points;
+    scPoints.innerHTML = pts.map(function(x){ return '<div class="showcase-point"><span class="chk">✓</span>'+x+'</div>'; }).join('');
+    scImg.classList.add('pop');
+    var pills = scSel.querySelectorAll('.showcase-pill');
+    pills.forEach(function(pill,idx){ pill.classList.toggle('active', idx===i); });
+    var active = pills[i]; if(active && active.scrollIntoView){ active.scrollIntoView({block:'nearest', inline:'nearest'}); }
+  }
+  scSel.innerHTML = PROD.map(function(p,i){
+    return '<button class="showcase-pill'+(i===0?' active':'')+'" data-i="'+i+'">' +
+      '<span class="th"><img src="'+p.thumb+'" alt=""></span>' +
+      '<span><b>'+p.name+'</b><span class="pill-cat" data-pill-cat="'+i+'">'+p.cat+'</span></span></button>';
+  }).join('');
+  scSel.querySelectorAll('.showcase-pill').forEach(function(pill){
+    pill.addEventListener('click', function(){ renderShowcase(parseInt(pill.getAttribute('data-i'),10)); });
+  });
+
+  /* LIFE CALCULATOR */
+  var timeIn = document.getElementById('calcTime');
+  var outTime = document.getElementById('outTime');
+  var tempoSel = { value:'mid' }, expSel = { value:'exp' };
+  function score(){
+    var t = parseInt(timeIn.value,10);
+    var s = 20 + (t-2)*(2.2);            // время
+    s += tempoSel.value==='slow'?8: tempoSel.value==='mid'?18:30;   // темп
+    s += expSel.value==='new'?6:14;      // опыт
+    return Math.max(12, Math.min(100, Math.round(s)));
+  }
+  function levelName(v){
+    var l = LANG.t;
+    if(v < 45) return {n:l('calc.lv1'), d:l('calc.lv1')};
+    if(v < 75) return {n:l('calc.lv2'), d:l('calc.lv2')};
+    return {n:l('calc.lv3'), d:l('calc.lv3')};
+  }
+  function badgesFor(v){
+    var l = LANG.t;
+    if(v < 45) return [l('calc.b1a'), l('calc.b1b')];
+    if(v < 75) return [l('calc.b2a'), l('calc.b2b'), l('calc.b2c')];
+    return [l('calc.b3a'), l('calc.b3b'), l('calc.b3c')];
+  }
+  function renderCalc(){
+    var l = LANG.t;
+    var v = score();
+    outTime.textContent = timeIn.value + ' ' + (LANG.cur==='en' ? 'h' : LANG.cur==='kk' ? 'с' : 'ч');
+    document.getElementById('gaugeFill').style.width = v + '%';
+    var L = levelName(v);
+    document.getElementById('calcLine').innerHTML = l('calc.line').replace('{level}', L.n);
+    document.getElementById('calcBadges').innerHTML = badgesFor(v).map(function(b){ return '<span class="calc-badge">'+b+'</span>'; }).join('');
+  }
+  timeIn.addEventListener('input', renderCalc);
+  function bindSeg(seg, store){
+    seg.querySelectorAll('button').forEach(function(b){
+      b.addEventListener('click', function(){
+        seg.querySelectorAll('button').forEach(function(x){ x.classList.remove('active'); });
+        b.classList.add('active'); store.value = b.getAttribute('data-v'); renderCalc();
+      });
+    });
+  }
+  bindSeg(document.getElementById('segTempo'), tempoSel);
+  bindSeg(document.getElementById('segExp'), expSel);
+
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+</script>
+<script>
+  /* ===== I18N ===== */
+  var I18N = {
+    ru: {
+      "nav.about":"О компании","nav.tech":"Технология","nav.products":"Продукция","nav.partner":"Партнёрство",
+      "nav.calc":"Расчёт жизни","nav.plan":"Маркетинг-план","nav.stories":"Истории","nav.cta":"Начать сотрудничество",
+      "lang.name":"Русский",
+      "hero.eyebrow":"LifeWave · Партнёрские возможности",
+      "hero.title1":"LifeWave — новая","hero.title2":"волна","hero.title3":"возможностей",
+      "hero.lead":"Инновационная продукция. Собственное дело. Новые финансовые перспективы.",
+      "hero.sub":"Познакомьтесь с международной компанией LifeWave и узнайте, как интерес к её продукции может стать основой для развития собственного дела и создания дополнительного источника дохода.",
+      "hero.btn1":"Узнать о партнёрстве","hero.btn2":"Познакомиться с компанией",
+      "hero.stat1v":"20+","hero.stat1":"лет истории","hero.stat2v":"с 2004 г.","hero.stat2":"международная деятельность",
+      "hero.stat3v":"100+","hero.stat3":"стран присутствия*",
+      "about.kick":"О компании","about.title":"История идеи, которая превратилась в международную компанию",
+      "about.p1":"Всё начинается с одного необычного вопроса: можно ли использовать свет для взаимодействия с человеческим организмом? Именно поиск ответов на этот вопрос стал частью истории LifeWave.",
+      "about.p2":"В основе компании — американский изобретатель и предприниматель Дэвид Шмидт (David Schmidt). Его опыт в разработке продуктов и бизнесе насчитывает более 30 лет и включает свыше 200 патентов. Ещё до создания LifeWave он занимался разработкой технологий в области энергетики и инженерных систем, в том числе для военных и коммерческих целей.",
+      "about.p3":"ВМС США пригласили его в элитную исследовательскую группу, перед которой стояла задача создать продукт, помогающий экипажам мини-подлодок оставаться бодрыми без лекарств и стимуляторов. Результатом этих исследований стал пластырь, повышающий энергию организма с помощью фототерапии, — первый прототип LifeWave, Energy Enhancer.",
+      "about.founder.name":"Дэвид Шмидт","about.founder.role":"Founder & CEO LifeWave®",
+      "about.founder.quote":"«Моя миссия — улучшать здоровье людей во всём мире с помощью этой инновационной носимой технологии».",
+      "about.s1t":"Идея","about.s1":"Поиск новых способов поддержания энергии и выносливости человека без стимуляторов.",
+      "about.s2t":"Технология","about.s2":"2002 год — появляются первые прототипы пластырей LifeWave на основе фототерапии.",
+      "about.s3t":"Компания","about.s3":"2004 год — LifeWave начинает деятельность и выбирает партнёрскую модель развития.",
+      "about.s4t":"Сегодня","about.s4":"Более двадцати лет истории, международная деятельность и собственная линейка продуктов.",
+      "tech.kick":"Технология","tech.title":"Когда свет становится частью инновации",
+      "tech.lead":"Мы привыкли, что для воздействия на организм нужно что-то принимать внутрь или наносить на кожу. Но существует и другой подход — использование света. Именно эта идея лежит в основе технологии LifeWave.",
+      "tech.st1t":"Тело излучает энергию","tech.st1":"Человеческое тело постоянно выделяет тепло, в том числе в виде невидимого инфракрасного излучения.",
+      "tech.st2t":"Пластырь отражает её обратно","tech.st2":"Нетрансдермальный пластырь LifeWave отражает часть этой энергии обратно к коже.",
+      "tech.st3t":"Локальное воздействие","tech.st3":"Отражённое излучение действует на определённые участки кожи и может способствовать поддержанию хорошего самочувствия.",
+      "tech.special.title":"Что делает технологию особенной?",
+      "tech.special":"LifeWave использует собственные разработки и запатентованные технологические решения. Разные виды пластырей разработаны для отражения определённых диапазонов излучения и предполагают разные способы применения.",
+      "tech.special.imp":"Важно: пластыри нетрансдермальные — они не предназначены для введения лекарственных веществ через кожу и не доставляют их в организм.",
+      "tech.c1t":"Неинвазивно","tech.c1":"Пластыри не вводят в организм никаких веществ.",
+      "tech.c2t":"Естественный подход","tech.c2":"Используются ресурсы собственного тела — инфракрасное излучение.",
+      "tech.c3t":"Запатентовано","tech.c3":"В основе — собственные разработки и запатентованные решения компании.",
+      "tech.c4t":"Разные решения","tech.c4":"Каждый продукт разработан для своих задач и целей.",
+      "prod.kick":"Продукция","prod.title":"Инновации для активной жизни",
+      "prod.lead":"Одна технология — разные направления применения. В основе продуктовой линейки LifeWave лежит технология нетрансдермальных пластырей. Каждый продукт имеет своё назначение и особенности применения.",
+      "prod.cta":"Обсудить продукт",
+      "prod.note":"Познакомиться с полной линейкой LifeWave и рекомендациями по применению можно в официальных материалах компании.",
+      "prod.alavida":"Alavida® — красота, вдохновлённая инновациями",
+      "prod.alavida.desc":"Косметическая линия LifeWave для комплексного ухода за кожей лица. Сочетает современные ингредиенты и продуманные формулы, направленные на увлажнение, поддержание упругости и уменьшение видимости возрастных изменений.",
+      "prod.al1":"Daily Refresh Facial Nectar","prod.al1d":"дневной нектар для увлажнения и свежести",
+      "prod.al2":"Nightly Restore Facial Crème","prod.al2d":"ночной крем для питания и восстановления",
+      "prod.al3":"Revive Eye Cream","prod.al3d":"деликатный уход за областью вокруг глаз",
+      "partner.kick":"Возможности партнёрства","partner.title":"Своё дело. Своя команда. Новые финансовые перспективы.",
+      "partner.lead":"Партнёрство с LifeWave — это возможность развивать собственное дело на основе инновационной продукции международной компании, используя гибридный маркетинг-план и систему командного взаимодействия.",
+      "partner.c1t":"Свобода выбора и гибкий график","partner.c1":"Сами планируйте свою деятельность, определяйте темп развития и совмещайте партнёрство с другими занятиями.",
+      "partner.c2t":"Гибридный маркетинг-план","partner.c2":"Сочетание нескольких механизмов вознаграждения: за личные приглашения, командный товарооборот и наставничество.",
+      "partner.c3t":"Собственная команда","partner.c3":"Объединяйте единомышленников, помогайте им развиваться и выстраивайте совместную деятельность.",
+      "partner.c4t":"Наставничество и поддержка","partner.c4":"Обучение, обмен опытом, помощь опытных партнёров и общие инструменты развития.",
+      "partner.c5t":"Перспектива масштабирования","partner.c5":"Расширяйте структуру и развивайте деятельность там, где компания официально работает.",
+      "partner.c6t":"Несколько направлений дохода","partner.c6":"Система поощрений за личное привлечение, развитие команды и наставничество лидеров.",
+      "partner.note":"Размер вознаграждений зависит от фактического товарооборота, квалификации и выполнения условий маркетинг-плана. Доход не гарантирован, возможны расходы и убытки.",
+      "calc.kick":"Интерактив · Ваша жизнь","calc.title":"Что для вас важнее всего?",
+      "calc.lead":"Перед тем как изучать маркетинг-план, представьте желаемый образ жизни. Передвиньте ползунки и выберите темп — мы покажем, к какому уровню жизни обычно ведёт такое развитие.",
+      "calc.time":"Время на развитие в неделю","calc.time.hint":"Сколько часов в неделю вы готовы уделять партнёрству.",
+      "calc.tempo":"Темп развития","calc.tempo.hint":"Насколько последовательно вы готовы двигаться к целям.",
+      "calc.tempo.slow":"Спокойный","calc.tempo.mid":"Уверенный","calc.tempo.fast":"Активный",
+      "calc.exp":"Опыт / готовность обучаться","calc.exp.hint":"Опыт ускоряет старт, но главное — желание разобраться.",
+      "calc.exp.new":"Начинаю с нуля","calc.exp.ok":"Есть опыт",
+      "calc.h3":"Ваш возможный ориентир","calc.min":"Минимум","calc.opt":"Оптимум","calc.dream":"Мечта",
+      "calc.line":"С учётом вашего темпа и времени это ориентир, близкий к уровню «{level}».",
+      "calc.note":"Ориентир — это иллюстрация, а не обещание дохода. Результаты зависят от ваших усилий, условий маркетинг-плана и множества факторов. Доход не гарантирован.",
+      "calc.lv1":"«Минимум»","calc.lv2":"«Оптимум»","calc.lv3":"«Мечта»",
+      "calc.b1a":"Базовая уверенность","calc.b1b":"Покрытие расходов",
+      "calc.b2a":"Комфортный уровень","calc.b2b":"Запас на цели","calc.b2c":"Больше свободы",
+      "calc.b3a":"Финансовая свобода","calc.b3b":"Рост дохода","calc.b3c":"Развитие и путешествия",
+      "plan.kick":"Маркетинг-план","plan.title":"Гибридная модель вознаграждения",
+      "plan.lead":"Одна из особенностей LifeWave — гибридный маркетинг-план, объединяющий различные механизмы партнёрского вознаграждения. Это позволяет развивать собственную команду, помогать партнёрам достигать результатов и участвовать в нескольких направлениях бонусной программы.",
+      "plan.hero.tag":"Как устроен маркетинг-план LifeWave",
+      "plan.hero.title":"Простая и понятная система вознаграждений",
+      "plan.hero":"Вознаграждения за личные приглашения, развитие команды и наставничество — всё работает в одной гибридной системе. Разберём наглядно.",
+      "plan.hero.def":"<b>Гибридный маркетинг-план LifeWave</b> — это сочетание трёх механизмов дохода, которые работают в комплексе и позволяют развивать своё дело удобно и на разных уровнях.",
+      "plan.offer1":"составляющие","plan.offer2":"шагов до старта","plan.offer3":"карьерных ранга",
+      "plan.step1":"Составляющая 1","plan.step2":"Составляющая 2","plan.step3":"Составляющая 3",
+      "plan.cta.title":"С чего начать — уже понятно. Осталось сделать шаг.",
+      "plan.cta.desc":"Партнёрский план LifeWave устроен просто: начинаете с личных приглашений, растите команду и поднимаетесь по карьерным рангам. Наставники и обучение помогают на каждом этапе.",
+      "plan.cta.note":"Ваш результат зависит от ваших действий: активности, развития команды и выполнения условий маркетинг-плана. Доход не гарантирован.",
+      "plan.c1lbl":"Составляющая 1","plan.c1t":"Линейная составляющая · Личные партнёры","plan.c1":"Вознаграждение за приглашение новых партнёров в компанию при выполнении условий плана.","plan.c1m":"Личные приглашения — фундамент вашей структуры.",
+      "plan.c2lbl":"Составляющая 2","plan.c2t":"Бинарная составляющая · Две ветви","plan.c2":"Вознаграждение на основе товарооборота правой и левой ветвей вашей команды с учётом квалификации и правил компании.","plan.c2m":"Развивайте две ветви — и растите масштаб",
+      "plan.c3lbl":"Составляющая 3","plan.c3t":"Многоуровневая составляющая · Matching Bonus","plan.c3":"Matching Bonus — вознаграждение, связанное с результатами партнёров нескольких поколений в вашей команде.","plan.c3m":"Развивайте лидеров — и получайте бонус за их успех.",
+      "plan.mech.title":"Как начисляется вознаграждение","plan.mech.sub":"Прозрачный механизм: от работы команды — к выплате на ваш счёт. Без сложностей и скрытых условий.",
+      "plan.mech.s1":"Закупки команды","plan.mech.s1d":"формируется товарооборот","plan.mech.s2":"Условия квалификации","plan.mech.s2d":"проверка выполнения плана","plan.mech.s3":"Расчёт бонусов","plan.mech.s3d":"по правилам компании","plan.mech.s4":"Выплата на счёт","plan.mech.s4d":"вознаграждение получено",
+      "plan.rank.title":"Карьерные ранги (квалификации)","plan.rank.sub":"Маркетинг-план LifeWave предусматривает систему рангов, которые отражают ваш рост и развитие команды.","plan.rank.deg":"степень","plan.rank.step1":"Стартовая квалификация","plan.rank.step2":"Рост команды","plan.rank.step3":"Устойчивая структура","plan.rank.step4":"Высший уровень","plan.rank.r1":"Менеджер","plan.rank.r2":"Директор","plan.rank.r3":"Исполнительный директор","plan.rank.r4":"Президент",
+      "plan.ben.title":"Что даёт партнёрская программа","plan.b1t":"Рост дохода","plan.b1":"несколько механизмов выплат","plan.b2t":"Развитие команды","plan.b2":"растёте вместе","plan.b3t":"Личный рост","plan.b3":"обучение и навыки","plan.b4t":"Бонусы и поощрения","plan.b4":"квалификации, промо, признание",
+      "plan.steps.title":"С чего начать: 5 шагов","plan.s1":"Познакомьтесь с продукцией LifeWave","plan.s2":"Зарегистрируйтесь в качестве партнёра","plan.s3":"Изучите маркетинг-план и обучение","plan.s4":"Приглашайте партнёров и стройте команду","plan.s5":"Развивайтесь, растите квалификацию",
+      "plan.bonus.title":"Дополнительные возможности","plan.bn1":"Бонусы за квалификацию","plan.bn2":"Поощрительные программы и промоакции","plan.bn3":"Признание и участие в мероприятиях",
+      "plan.note":"Ваш результат зависит от ваших действий: активности, развития команды и выполнения условий маркетинг-плана.",
+      "plan.cta":"Обсудить сотрудничество",
+      "why.tag":"LifeWave — технологии для здоровья, красоты и возможностей для самостоятельного развития","why.title1":"Почему стоит рассмотреть партнёрство с","why.brand":"LifeWave?","why.intro":"LifeWave — международная компания, которая объединяет инновационные технологии для здоровья и красоты и современную возможность развития собственного дела.","why.b1t":"Международный масштаб","why.b1":"Бизнес в более чем 100 странах мира.","why.b2t":"Инновационная продукция","why.b2":"Уникальные разработки в области поддержки здоровья, активности и молодости.","why.b3t":"Партнёрская модель развития","why.b3":"Возможность рекомендовать продукцию, создавать команду и получать вознаграждение.","why.b4t":"Потенциал долгосрочного дохода","why.b4":"Пошаговый рост, система рангов и бонусов за развитие команды.","why.b5t":"Больше, чем доход","why.b5":"Личное развитие, новые знания, сообщество единомышленников и образ жизни, в котором есть место для здоровья, семьи, путешествий и любимых дел.","why.footer":"Партнёрство с LifeWave — это возможность создать гибкий, современный бизнес, который работает на ваше будущее.",
+      "own.teaser":"LifeWave — возможность реализовать свой потенциал, развиваться, помогать людям и создавать доход, который работает на ваши цели.","own.title":"Собственное дело на своих условиях","own.intro":"Партнёрство с LifeWave — это возможность развивать свой бизнес в удобном для вас формате, сочетая доход, самореализацию и баланс в жизни.","own.b1t":"Гибкий график","own.b1":"Вы сами определяете, сколько времени уделять развитию.","own.b2t":"Личные цели","own.b2":"Ставьте собственные финансовые и жизненные цели и шаг за шагом к ним идёте.","own.b3t":"Развитие команды","own.b3":"Создаёте команду единомышленников и растёте вместе.","own.b4t":"Обучение и поддержка","own.b4":"Получаете готовые инструменты, обучение и сопровождение опытных наставников.","own.b5t":"Дополнительный доход и новые перспективы","own.b5":"Строите источник дохода, который может со временем стать основным.","own.footer":"Ваш бизнес. Ваш темп. Ваши цели — вместе с LifeWave!",
+      "future.kick":"Ваше финансовое будущее","future.title":"Три уровня жизни",
+      "future.lead":"Иногда для нового этапа нужна новая возможность. Подумайте, какой образ жизни вы бы хотели себе обеспечить, — и какой из уровней вам ближе сегодня.",
+      "future.l1t":"Минимум","future.l1k":"Уровень 1","future.l1a":"Базовые потребности закрыты","future.l1b":"Покрытие текущих расходов","future.l1c":"Запас финансовой уверенности","future.l1p":"Точка опоры",
+      "future.l2t":"Оптимум","future.l2k":"Уровень 2","future.l2a":"Комфортный уровень жизни","future.l2b":"Больше свободы и выбора","future.l2c":"Возможность откладывать на цели","future.l2d":"Баланс работы и личного времени","future.l2p":"Цель большинства",
+      "future.l3t":"Мечта","future.l3k":"Уровень 3","future.l3a":"Финансовая свобода","future.l3b":"Рост пассивного дохода","future.l3c":"Личное развитие и путешествия","future.l3p":"Большой горизонт",
+      "future.note":"Партнёрство предполагает самостоятельную деятельность. Финансовые результаты индивидуальны, зависят от множества факторов и не гарантированы.",
+      "stories.kick":"Истории","stories.title":"LifeWave: личный опыт применения",
+      "stories.lead":"Реальные истории людей, познакомившихся с технологией LifeWave. Разные знакомства, разные пути — объединяет их интерес к инновационной технологии.",
+      "stories.q1":"«Моё знакомство с LifeWave началось с обычного интереса к технологии. Хотелось разобраться, как это работает, — а затем пришёл вопрос, какие возможности открывает сотрудничество с компанией».",
+      "stories.n1":"Андрей","stories.d1":"История знакомства с технологией",
+      "stories.q2":"«Рассказ о продукции меня заинтересовал, а формату сотрудничества я удивилась: оказалось, можно развивать дело в своём темпе, совмещая с привычной жизнью».",
+      "stories.n2":"Мария","stories.d2":"Путь к партнёрству",
+      "stories.q3":"«Поначалу мне было важно разобраться в деталях. Меня поддержали опытные партнёры, помогли освоить инструменты и последовательно двигаться к целям».",
+      "stories.n3":"Дмитрий","stories.d3":"Командная поддержка",
+      "stories.banner":"Для многих знакомство с LifeWave начинается с интереса к технологии. А затем возникает вопрос: какие возможности открывает сотрудничество с компанией?",
+      "stories.cta":"Узнать о партнёрстве",
+      "stories.note":"* Истории носят личный характер. Личный опыт не заменяет доказательства эффективности и не содержит обещаний лечебного эффекта.",
+      "faq.kick":"Вопросы и ответы","faq.title":"Остались вопросы?",
+      "faq.q1":"Что значит «нетрансдермальный» пластырь?","faq.a1":"Это означает, что пластырь не предназначен для доставки лекарственных или иных веществ через кожу. Он работает иначе: по описанию производителя, пластырь отражает часть инфракрасного излучения тела обратно к коже.",
+      "faq.q2":"Нужен ли опыт сетевого предпринимательства?","faq.a2":"Нет, опыт не обязателен. Гораздо важнее желание разобраться в новой модели сотрудничества, готовность учиться и последовательно действовать. Наставники и обучение помогут освоить инструменты с нуля.",
+      "faq.q3":"Можно ли совмещать партнёрство с основной работой?","faq.a3":"Да. Вы сами планируете деятельность, определяете темп и способы развития. Новое направление можно осваивать параллельно с основной работой или другими занятиями.",
+      "faq.q4":"От чего зависит размер вознаграждения?","faq.a4":"Вознаграждения определяются действующими правилами LifeWave и зависят от квалификации, товарооборота, фактической деятельности и выполнения условий маркетинг-плана. Доход не гарантирован.",
+      "faq.q5":"Как начать сотрудничество?","faq.a5":"Первый шаг — познакомиться с продукцией и партнёрской программой. Свяжитесь с партнёром, который пригласил вас на сайт, чтобы обсудить условия, задать вопросы и получить поддержку на старте.",
+      "cta.kick":"Следующий шаг","cta.title":"Возможно, для кого-то знакомство с LifeWave станет началом нового профессионального пути.",
+      "cta.desc":"Изучите подробную информацию и обсудите сотрудничество с партнёром, который познакомил вас с этим сайтом. Иногда новые возможности появляются тогда, когда мы решаем посмотреть на привычные вещи по-другому.",
+      "cta.btn1":"Познакомиться с компанией","cta.btn2":"Обсудить сотрудничество с партнёром",
+      "foot.deal":"Собственное дело","foot.title":"Ваши цели. Ваш темп. Ваши решения.",
+      "deal.d1":"Представьте деятельность, в которой вы сами определяете направление развития, выбираете время для работы и объединяете вокруг себя людей, разделяющих ваши интересы и стремления.",
+      "deal.d2":"Партнёрство с LifeWave открывает возможность развивать собственное дело, опираясь на продукцию и партнёрскую программу международной компании. Начать можно с малого — дальнейший масштаб определяется вами.",
+      "deal.btn":"Начать с малого",
+      "deal.c1t":"Свобода выбора","deal.c1":"Сами планируете свою деятельность, график и способы продвижения. Результат зависит от ваших усилий.",
+      "deal.c2t":"Совмещение","deal.c2":"Осваивайте новое направление параллельно с основной работой или другими занятиями.",
+      "deal.c3t":"Развитие команды","deal.c3":"Формируйте собственную команду и помогайте новым партнёрам осваивать систему.",
+      "deal.c4t":"География без границ","deal.c4":"Сотрудничество с партнёрами из разных стран, где компания официально работает.",
+      "footb.tag":"Компания","footb.partner":"Партнёрство","footb.contact":"Контакты",
+      "footb.about":"О компании","footb.tech":"Технология","footb.prod":"Продукция",
+      "footb.opp":"Возможности","footb.plan":"Маркетинг-план","footb.future":"Финансовое будущее",
+      "footb.talk":"Связаться с партнёром","footb.stories":"Истории","footb.faq":"Вопросы и ответы",
+      "footb.disc":"Информация на этом сайте носит ознакомительный характер и предназначена для поиска бизнес-партнёров. Пластыри LifeWave нетрансдермальные, не предназначены для введения лекарственных веществ и не являются лекарственным средством. Партнёрская деятельность не является трудоустройством. Доход и результаты не гарантированы и зависят от фактической деятельности и выполнения условий компании. Возможны расходы и убытки.",
+      "footb.cr":"© 2026 Партнёрский проект LifeWave","footb.made":"Сделано для знакомства с возможностями партнёрства",
+      "prod.x39":"Флагман","prod.x39t":"LifeWave X39®","prod.x39d":"Флагманский продукт компании. Пластырь позиционируется для поддержания жизненной энергии, активности и общего самочувствия.",
+      "prod.x39p":["Поддержка жизненной энергии","Активность и бодрость","Общее самочувствие","30 пластырей в упаковке"],
+      "prod.x49":"Активность","prod.x49t":"LifeWave X49™","prod.x49d":"Продукт линейки, ориентированной на физическую активность и поддержание работоспособности.",
+      "prod.x49p":["Физическая активность","Поддержка работоспособности","30 пластырей в упаковке"],
+      "prod.ice":"Комфорт","prod.icet":"IceWave®","prod.iced":"Пластыри, которые компания представляет как средство для поддержания комфорта при физической активности.",
+      "prod.icep":["Физический комфорт","Поддержка при активности","30 пластырей в упаковке"],
+      "prod.energy":"Энергия","prod.energyt":"Energy Enhancer®","prod.energyd":"Разработаны для людей, заинтересованных в поддержании энергии и физической выносливости.",
+      "prod.energyp":["Энергия","Физическая выносливость","30 пластырей в упаковке"],
+      "prod.sp6":"Питание","prod.sp6t":"LifeWave SP6 Complete®","prod.sp6d":"Технология, позиционируемая компанией для поддержки осознанного питания и контроля аппетита.",
+      "prod.sp6p":["Осознанное питание","Поддержка контроля аппетита","30 пластырей в упаковке"],
+      "prod.silent":"Отдых","prod.silentt":"Silent Nights®","prod.silentd":"Продукт, позиционируемый компанией для поддержания качественного отдыха и сна.",
+      "prod.silentp":["Качественный отдых","Поддержка сна","30 пластырей в упаковке"],
+      "prod.aeon":"Благополучие","prod.aeont":"Y-Age Aeon®","prod.aeond":"Пластыри из линейки Y-Age, ориентированной на поддержание общего благополучия.",
+      "prod.aeonp":["Общее благополучие","Поддержка расслабления","30 пластырей в упаковке"],
+      "prod.carn":"Активность","prod.carnt":"Y-Age Carnosine®","prod.carnd":"Пластырь линейки Y-Age, ориентированный на поддержку физической активности и хорошего самочувствия.",
+      "prod.carnp":["Физическая активность","Хорошее самочувствие","30 пластырей в упаковке"],
+      "prod.glut":"Благополучие","prod.glutt":"Y-Age Glutathione®","prod.glutd":"Пластырь линейки Y-Age для поддержки расслабления и здорового вида кожи.",
+      "prod.glutp":["Поддержка расслабления","Здоровый вид кожи","30 пластырей в упаковке"],
+      "prod.alav":"Красота","prod.alavt":"Alavida® — патч","prod.alavd":"Косметический нетрансдермальный пластырь для поддержания здорового и сияющего вида кожи.",
+      "prod.alavp":["Здоровый вид кожи","Естественное сияние","30 пластырей в упаковке"]
+    },
+    en: {
+      "nav.about":"About","nav.tech":"Technology","nav.products":"Products","nav.partner":"Partnership",
+      "nav.calc":"Life Calculator","nav.plan":"Compensation Plan","nav.stories":"Stories","nav.cta":"Start Cooperation",
+      "lang.name":"English",
+      "hero.eyebrow":"LifeWave · Partnership Opportunities",
+      "hero.title1":"LifeWave — a new","hero.title2":"wave","hero.title3":"of opportunities",
+      "hero.lead":"Innovative products. Your own business. New financial prospects.",
+      "hero.sub":"Meet the international company LifeWave and learn how interest in its products can become the foundation for building your own business and creating an additional source of income.",
+      "hero.btn1":"Learn about partnership","hero.btn2":"Meet the company",
+      "hero.stat1v":"20+","hero.stat1":"years of history","hero.stat2v":"since 2004","hero.stat2":"international activity",
+      "hero.stat3v":"100+","hero.stat3":"countries of presence*",
+      "about.kick":"About us","about.title":"The story of an idea that became an international company",
+      "about.p1":"Everything starts with one unusual question: can light be used to interact with the human body? The search for answers to this question became part of LifeWave's history.",
+      "about.p2":"At the heart of the company is American inventor and entrepreneur David Schmidt. His experience in product development and business spans more than 30 years and includes over 200 patents. Before creating LifeWave, he worked on technologies in energy and engineering systems, including for military and commercial purposes.",
+      "about.p3":"The US Navy invited him to an elite research group tasked with creating a product to help mini-submarine crews stay alert without drugs or stimulants. The result was a patch that boosts the body's energy through phototherapy — LifeWave's first prototype, Energy Enhancer.",
+      "about.founder.name":"David Schmidt","about.founder.role":"Founder & CEO LifeWave®",
+      "about.founder.quote":"\"My mission is to improve health and extend lives throughout the world with this innovative wearable wellness technology\".",
+      "about.s1t":"Idea","about.s1":"Searching for new ways to support human energy and endurance without stimulants.",
+      "about.s2t":"Technology","about.s2":"2002 — the first LifeWave patch prototypes based on phototherapy appear.",
+      "about.s3t":"Company","about.s3":"2004 — LifeWave starts operations and chooses a partnership model of development.",
+      "about.s4t":"Today","about.s4":"More than twenty years of history, international activity and an own product line.",
+      "tech.kick":"Technology","tech.title":"When light becomes part of innovation",
+      "tech.lead":"We are used to taking something orally or applying it to the skin to affect the body. But there is another approach — the use of light. This is the idea behind LifeWave technology.",
+      "tech.st1t":"The body emits energy","tech.st1":"The human body constantly emits heat, including invisible infrared radiation.",
+      "tech.st2t":"The patch reflects it back","tech.st2":"The LifeWave non-transdermal patch reflects part of this energy back to the skin.",
+      "tech.st3t":"Local effect","tech.st3":"The reflected radiation acts on certain areas of the skin and may support your overall well-being.",
+      "tech.special.title":"What makes the technology special?",
+      "tech.special":"LifeWave uses its own developments and patented technological solutions. Different patch types are designed to reflect specific ranges of radiation and imply different ways of use.",
+      "tech.special.imp":"Important: the patches are non-transdermal — they are not intended to deliver medicinal substances through the skin.",
+      "tech.c1t":"Non-invasive","tech.c1":"Patches do not introduce any substances into the body.",
+      "tech.c2t":"Natural approach","tech.c2":"The body's own resources — infrared radiation — are used.",
+      "tech.c3t":"Patented","tech.c3":"Based on the company's own developments and patented solutions.",
+      "tech.c4t":"Different solutions","tech.c4":"Each product is designed for its own tasks and goals.",
+      "prod.kick":"Products","prod.title":"Innovations for an active life",
+      "prod.lead":"One technology — different applications. LifeWave's product line is based on non-transdermal patch technology. Each product has its own purpose and application.",
+      "prod.cta":"Discuss product",
+      "prod.note":"You can learn more about the full LifeWave line and usage advice in the company's official materials.",
+      "prod.alavida":"Alavida® — beauty inspired by innovation",
+      "prod.alavida.desc":"LifeWave's cosmetic line for comprehensive facial care. Combines modern ingredients and thoughtful formulas aimed at hydration, firmness support and reducing the visibility of age-related changes.",
+      "prod.al1":"Daily Refresh Facial Nectar","prod.al1d":"day nectar for hydration and freshness",
+      "prod.al2":"Nightly Restore Facial Crème","prod.al2d":"night cream for nutrition and recovery",
+      "prod.al3":"Revive Eye Cream","prod.al3d":"delicate care for the eye area",
+      "partner.kick":"Partnership opportunities","partner.title":"Your business. Your team. New financial prospects.",
+      "partner.lead":"Partnering with LifeWave is an opportunity to develop your own business based on the innovative products of an international company, using a hybrid compensation plan and a team-based system.",
+      "partner.c1t":"Freedom of choice and flexible schedule","partner.c1":"Plan your own activities, set the pace and combine partnership with other pursuits.",
+      "partner.c2t":"Hybrid compensation plan","partner.c2":"A combination of reward mechanisms: personal invitations, team volume and mentoring.",
+      "partner.c3t":"Your own team","partner.c3":"Bring together like-minded people, help them grow and build joint activities.",
+      "partner.c4t":"Mentoring and support","partner.c4":"Training, experience sharing, help from experienced partners and shared development tools.",
+      "partner.c5t":"Scaling opportunities","partner.c5":"Expand your structure and develop where the company officially operates.",
+      "partner.c6t":"Multiple income streams","partner.c6":"Rewards for personal recruiting, team development and leader mentoring.",
+      "partner.note":"Reward sizes depend on actual volume, qualification and meeting the compensation plan conditions. Income is not guaranteed; expenses and losses are possible.",
+      "calc.kick":"Interactive · Your life","calc.title":"What matters most to you?",
+      "calc.lead":"Before studying the compensation plan, imagine the life you want. Move the sliders and choose a pace — we'll show what level of life such development usually leads to.",
+      "calc.time":"Hours per week for development","calc.time.hint":"How many hours a week you are ready to devote to the partnership.",
+      "calc.tempo":"Pace of development","calc.tempo.hint":"How consistently you are ready to move toward your goals.",
+      "calc.tempo.slow":"Relaxed","calc.tempo.mid":"Steady","calc.tempo.fast":"Active",
+      "calc.exp":"Experience / readiness to learn","calc.exp.hint":"Experience speeds up the start, but the desire to figure things out is what matters most.",
+      "calc.exp.new":"Starting from zero","calc.exp.ok":"Have experience",
+      "calc.h3":"Your possible benchmark","calc.min":"Minimum","calc.opt":"Optimum","calc.dream":"Dream",
+      "calc.line":"Given your pace and time, this is a benchmark close to the \"{level}\" level.",
+      "calc.note":"The benchmark is an illustration, not a promise of income. Results depend on your efforts, the plan conditions and many factors. Income is not guaranteed.",
+      "calc.lv1":"\"Minimum\"","calc.lv2":"\"Optimum\"","calc.lv3":"\"Dream\"",
+      "calc.b1a":"Basic confidence","calc.b1b":"Covering expenses",
+      "calc.b2a":"Comfort level","calc.b2b":"Reserve for goals","calc.b2c":"More freedom",
+      "calc.b3a":"Financial freedom","calc.b3b":"Income growth","calc.b3c":"Growth and travel",
+      "plan.kick":"Compensation plan","plan.title":"A hybrid reward model",
+      "plan.lead":"One of LifeWave's features is a hybrid compensation plan that combines various reward mechanisms. It allows you to grow your own team, help partners achieve results and participate in several bonus programs.",
+      "plan.hero.tag":"How the LifeWave compensation plan works",
+      "plan.hero.title":"A simple and clear reward system",
+      "plan.hero":"Rewards for personal invitations, team building and mentoring — all in one hybrid system. Let's break it down visually.",
+      "plan.hero.def":"<b>The LifeWave hybrid compensation plan</b> combines three income mechanisms that work together and let you build your business comfortably and at different levels.",
+      "plan.offer1":"components","plan.offer2":"steps to start","plan.offer3":"career ranks",
+      "plan.step1":"Component 1","plan.step2":"Component 2","plan.step3":"Component 3",
+      "plan.cta.title":"Where to start is clear. All that's left is to take the step.",
+      "plan.cta.desc":"LifeWave's partner plan is simple: you start with personal invitations, grow a team and climb the career ranks. Mentors and training support you at every stage.",
+      "plan.cta.note":"Your results depend on your actions: activity, team development and meeting the plan conditions. Income is not guaranteed.",
+      "plan.c1lbl":"Component 1","plan.c1t":"Linear component · Personal partners","plan.c1":"Rewards for inviting new partners into the company when the plan conditions are met.",
+      "plan.c1m":"Personal invitations are the foundation of your structure.",
+      "plan.c2lbl":"Component 2","plan.c2t":"Binary component · Two branches","plan.c2":"Rewards based on the turnover of the left and right branches of your team, subject to qualification and company rules.",
+      "plan.c2m":"Develop two branches — and scale up.",
+      "plan.c3lbl":"Component 3","plan.c3t":"Multi-level component · Matching Bonus","plan.c3":"Matching Bonus — a reward tied to the results of partners across several generations of your team.",
+      "plan.c3m":"Develop leaders — and earn bonuses from their success.",
+      "plan.mech.title":"How compensation is calculated","plan.mech.sub":"A transparent mechanism: from the team's work to a payout to your account. No complications or hidden conditions.",
+      "plan.mech.s1":"Team purchases","plan.mech.s1d":"creates the volume","plan.mech.s2":"Qualification conditions","plan.mech.s2d":"meeting the plan","plan.mech.s3":"Bonus calculation","plan.mech.s3d":"by company rules","plan.mech.s4":"Payout to account","plan.mech.s4d":"reward received",
+      "plan.rank.title":"Career ranks (qualifications)","plan.rank.sub":"LifeWave's marketing plan provides a system of ranks that reflect your growth and team development.","plan.rank.deg":"level","plan.rank.step1":"Starting qualification","plan.rank.step2":"Team growth","plan.rank.step3":"Stable structure","plan.rank.step4":"Top level","plan.rank.r1":"Manager","plan.rank.r2":"Director","plan.rank.r3":"Executive","plan.rank.r4":"President",
+      "plan.ben.title":"What the partner program gives","plan.b1t":"Income growth","plan.b1":"several payment mechanisms","plan.b2t":"Team development","plan.b2":"grow together","plan.b3t":"Personal growth","plan.b3":"learning and skills","plan.b4t":"Bonuses and rewards","plan.b4":"qualifications, promo, recognition",
+      "plan.steps.title":"Where to start: 5 steps","plan.s1":"Get to know LifeWave products","plan.s2":"Register as a partner","plan.s3":"Study the plan and training","plan.s4":"Invite partners and build a team","plan.s5":"Develop and grow your qualification",
+      "plan.bonus.title":"Additional opportunities","plan.bn1":"Qualification bonuses","plan.bn2":"Promotional programs and promos","plan.bn3":"Recognition and company events",
+      "plan.note":"Your results depend on your actions: activity, team development and meeting the plan conditions.",
+      "plan.cta":"Discuss cooperation",
+      "why.tag":"LifeWave — technology for health, beauty and opportunities for independent growth","why.title1":"Why consider a partnership with","why.brand":"LifeWave?","why.intro":"LifeWave is an international company that combines innovative health and beauty technology with a modern way to build your own business.","why.b1t":"International scale","why.b1":"Business in more than 100 countries worldwide.","why.b2t":"Innovative products","why.b2":"Unique developments supporting health, activity and youthfulness.","why.b3t":"Partner growth model","why.b3":"Recommend products, build a team and earn rewards.","why.b4t":"Long-term income potential","why.b4":"Step-by-step growth, a rank system and bonuses for team development.","why.b5t":"More than income","why.b5":"Personal growth, new knowledge, a community of like-minded people and a lifestyle with room for health, family, travel and the things you love.","why.footer":"Partnering with LifeWave is a way to build a flexible, modern business that works for your future.",
+      "own.teaser":"LifeWave — a chance to realise your potential, grow, help people and build an income that works for your goals.","own.title":"Your own business on your terms","own.intro":"Partnering with LifeWave lets you grow your business in a format that suits you, combining income, self-fulfilment and balance in life.","own.b1t":"Flexible schedule","own.b1":"You decide how much time to devote to your growth.","own.b2t":"Personal goals","own.b2":"Set your own financial and life goals and work toward them step by step.","own.b3t":"Team building","own.b3":"Build a team of like-minded people and grow together.","own.b4t":"Training and support","own.b4":"Get ready-made tools, training and guidance from experienced mentors.","own.b5t":"Extra income and new prospects","own.b5":"Build a source of income that may eventually become your main one.","own.footer":"Your business. Your pace. Your goals — together with LifeWave!",
+      "future.kick":"Your financial future","future.title":"Three levels of life",
+      "future.lead":"Sometimes a new stage needs a new opportunity. Think about the kind of life you would like to secure — and which level is closest to you today.",
+      "future.l1t":"Minimum","future.l1k":"Level 1","future.l1a":"Basic needs covered","future.l1b":"Covering current expenses","future.l1c":"A reserve of financial confidence","future.l1p":"Anchor point",
+      "future.l2t":"Optimum","future.l2k":"Level 2","future.l2a":"Comfortable standard of living","future.l2b":"More freedom and choice","future.l2c":"Ability to save for goals","future.l2d":"Work-life balance","future.l2p":"Goal of most",
+      "future.l3t":"Dream","future.l3k":"Level 3","future.l3a":"Financial freedom","future.l3b":"Passive income growth","future.l3c":"Personal growth and travel","future.l3p":"Big horizon",
+      "future.note":"Partnership involves independent activity. Financial results are individual, depend on many factors and are not guaranteed.",
+      "stories.kick":"Stories","stories.title":"LifeWave: personal experience",
+      "stories.lead":"Real stories of people who discovered LifeWave technology. Different encounters, different paths — united by interest in an innovative technology.",
+      "stories.q1":"\"My introduction to LifeWave started with ordinary curiosity about the technology. I wanted to understand how it works — and then came the question of what cooperation with the company opens up\".",
+      "stories.n1":"Andrey","stories.d1":"Getting to know the technology",
+      "stories.q2":"\"I was interested in the product story, and I was surprised by the cooperation format: it turned out you can develop a business at your own pace while keeping your usual life\".",
+      "stories.n2":"Maria","stories.d2":"Path to partnership",
+      "stories.q3":"\"At first it was important for me to understand the details. Experienced partners supported me, helped me master the tools and move steadily toward my goals\".",
+      "stories.n3":"Dmitry","stories.d3":"Team support",
+      "stories.banner":"For many, getting to know LifeWave starts with an interest in the technology. And then the question arises: what opportunities does cooperation with the company open up?",
+      "stories.cta":"Learn about partnership",
+      "stories.note":"* Stories are personal in nature. Personal experience does not replace evidence of effectiveness and makes no promises of health effects.",
+      "faq.kick":"FAQ","faq.title":"Any questions?",
+      "faq.q1":"What does \"non-transdermal\" patch mean?","faq.a1":"It means the patch is not designed to deliver medicinal or other substances through the skin. It works differently: according to the manufacturer, the patch reflects part of the body's infrared radiation back to the skin.",
+      "faq.q2":"Do I need network marketing experience?","faq.a2":"No, experience is not required. More important is the desire to understand a new cooperation model, the readiness to learn and act consistently. Mentors and training help you master the tools from scratch.",
+      "faq.q3":"Can I combine partnership with a main job?","faq.a3":"Yes. You plan your activity, set the pace and choose ways to develop. You can master the new direction alongside your main job or other activities.",
+      "faq.q4":"What does the reward size depend on?","faq.a4":"Rewards are set by LifeWave's current rules and depend on qualification, volume, actual activity and meeting the plan conditions. Income is not guaranteed.",
+      "faq.q5":"How do I start cooperating?","faq.a5":"The first step is to get to know the products and the partnership program. Contact the partner who invited you to this site to discuss terms, ask questions and get support at the start.",
+      "cta.kick":"Next step","cta.title":"For some, getting to know LifeWave may be the start of a new professional path.",
+      "cta.desc":"Explore the details and discuss cooperation with the partner who introduced you to this site. Sometimes new opportunities appear when we decide to look at familiar things differently.",
+      "cta.btn1":"Meet the company","cta.btn2":"Discuss cooperation with a partner",
+      "foot.deal":"Your own business","foot.title":"Your goals. Your pace. Your decisions.",
+      "deal.d1":"Imagine an activity where you yourself set the direction of development, choose your working time and bring together people who share your interests and aspirations.",
+      "deal.d2":"Partnering with LifeWave opens the opportunity to develop your own business based on an international company's products and partnership program. You can start small — the future scale is up to you.",
+      "deal.btn":"Start small",
+      "deal.c1t":"Freedom of choice","deal.c1":"You plan your own activity, schedule and promotion methods. Results depend on your efforts.",
+      "deal.c2t":"Combination","deal.c2":"Master the new direction alongside your main job or other activities.",
+      "deal.c3t":"Team development","deal.c3":"Build your own team and help new partners master the system.",
+      "deal.c4t":"Geography without borders","deal.c4":"Cooperate with partners from different countries where the company officially operates.",
+      "footb.tag":"Company","footb.partner":"Partnership","footb.contact":"Contacts",
+      "footb.about":"About us","footb.tech":"Technology","footb.prod":"Products",
+      "footb.opp":"Opportunities","footb.plan":"Compensation plan","footb.future":"Financial future",
+      "footb.talk":"Contact a partner","footb.stories":"Stories","footb.faq":"FAQ",
+      "footb.disc":"The information on this site is for informational purposes and is intended for finding business partners. LifeWave patches are non-transdermal, are not intended to deliver medicinal substances and are not a medicine. Partnership is not employment. Income and results are not guaranteed and depend on actual activity and meeting company conditions. Expenses and losses are possible.",
+      "footb.cr":"© 2026 LifeWave partner project","footb.made":"Made to introduce partnership opportunities",
+      "prod.x39":"Flagship","prod.x39t":"LifeWave X39®","prod.x39d":"The company's flagship product. The patch is positioned to support life energy, activity and overall well-being.",
+      "prod.x39p":["Support of life energy","Activity and vitality","Overall well-being","30 patches per pack"],
+      "prod.x49":"Activity","prod.x49t":"LifeWave X49™","prod.x49d":"A product of the line focused on physical activity and performance support.",
+      "prod.x49p":["Physical activity","Performance support","30 patches per pack"],
+      "prod.ice":"Comfort","prod.icet":"IceWave®","prod.iced":"Patches that the company presents as a means to support comfort during physical activity.",
+      "prod.icep":["Physical comfort","Support during activity","30 patches per pack"],
+      "prod.energy":"Energy","prod.energyt":"Energy Enhancer®","prod.energyd":"Designed for people interested in maintaining energy and physical endurance.",
+      "prod.energyp":["Energy","Physical endurance","30 patches per pack"],
+      "prod.sp6":"Nutrition","prod.sp6t":"LifeWave SP6 Complete®","prod.sp6d":"Technology positioned by the company to support mindful eating and appetite control.",
+      "prod.sp6p":["Mindful eating","Appetite control support","30 patches per pack"],
+      "prod.silent":"Sleep","prod.silentt":"Silent Nights®","prod.silentd":"A product positioned by the company to support quality rest and sleep.",
+      "prod.silentp":["Quality rest","Sleep support","30 patches per pack"],
+      "prod.aeon":"Wellness","prod.aeont":"Y-Age Aeon®","prod.aeond":"Patches from the Y-Age line focused on supporting overall well-being.",
+      "prod.aeonp":["Overall well-being","Relaxation support","30 patches per pack"],
+      "prod.carn":"Activity","prod.carnt":"Y-Age Carnosine®","prod.carnd":"A Y-Age line patch aimed at supporting physical activity and good well-being.",
+      "prod.carnp":["Physical activity","Good well-being","30 patches per pack"],
+      "prod.glut":"Wellness","prod.glutt":"Y-Age Glutathione®","prod.glutd":"A Y-Age line patch for supporting relaxation and healthy-looking skin.",
+      "prod.glutp":["Relaxation support","Healthy-looking skin","30 patches per pack"],
+      "prod.alav":"Beauty","prod.alavt":"Alavida® — patch","prod.alavd":"A cosmetic non-transdermal patch for supporting healthy, radiant-looking skin.",
+      "prod.alavp":["Healthy-looking skin","Natural radiance","30 patches per pack"]
+    },
+    de: {
+      "nav.about":"Über uns","nav.tech":"Technologie","nav.products":"Produkte","nav.partner":"Partnerschaft",
+      "nav.calc":"Lebensrechner","nav.plan":"Vergütungsplan","nav.stories":"Geschichten","nav.cta":"Zusammenarbeit starten",
+      "lang.name":"Deutsch",
+      "hero.title2":"Welle","hero.cta.btn1":"Über Partnerschaft erfahren","hero.cta.btn2":"Unternehmen kennenlernen",
+      "about.kick":"Über uns","tech.kick":"Technologie","prod.kick":"Produkte","partner.kick":"Partnerschaft",
+      "calc.kick":"Interaktiv · Ihr Leben","plan.kick":"Vergütungsplan","future.kick":"Ihre finanzielle Zukunft",
+      "stories.kick":"Geschichten","faq.kick":"Fragen & Antworten","cta.kick":"Nächster Schritt",
+      "footb.tag":"Unternehmen","footb.partner":"Partnerschaft","footb.contact":"Kontakte",
+      "footb.cr":"© 2026 LifeWave Partnerprojekt",
+      "prod.x39":"Flaggschiff","prod.x49":"Aktivität","prod.ice":"Komfort","prod.energy":"Energie",
+      "prod.sp6":"Ernährung","prod.silent":"Schlaf","prod.aeon":"Wohlbefinden","prod.carn":"Aktivität",
+      "prod.glut":"Wohlbefinden","prod.alav":"Schönheit"
+    },
+    es: {
+      "nav.about":"Nosotros","nav.tech":"Tecnología","nav.products":"Productos","nav.partner":"Asociación",
+      "nav.calc":"Calculadora","nav.plan":"Plan de compensación","nav.stories":"Historias","nav.cta":"Empezar cooperación",
+      "lang.name":"Español",
+      "hero.title2":"ola","hero.cta.btn1":"Conocer la asociación","hero.cta.btn2":"Conocer la empresa",
+      "about.kick":"Nosotros","tech.kick":"Tecnología","prod.kick":"Productos","partner.kick":"Asociación",
+      "calc.kick":"Interactivo · Su vida","plan.kick":"Plan de compensación","future.kick":"Su futuro financiero",
+      "stories.kick":"Historias","faq.kick":"Preguntas","cta.kick":"Siguiente paso",
+      "footb.tag":"Empresa","footb.partner":"Asociación","footb.contact":"Contactos",
+      "footb.cr":"© 2026 Proyecto del socio LifeWave",
+      "prod.x39":"Buque insignia","prod.x49":"Actividad","prod.ice":"Confort","prod.energy":"Energía",
+      "prod.sp6":"Nutrición","prod.silent":"Sueño","prod.aeon":"Bienestar","prod.carn":"Actividad",
+      "prod.glut":"Bienestar","prod.alav":"Belleza"
+    },
+    kk: {
+      "nav.about":"Компания","nav.tech":"Технология","nav.products":"Өнімдер","nav.partner":"Серіктестік",
+      "nav.calc":"Өмір есебі","nav.plan":"Маркетинг-жоспар","nav.stories":"Тарихтар","nav.cta":"Бастау",
+      "lang.name":"Қазақша",
+      "hero.title2":"толқын","hero.cta.btn1":"Серіктестік жайлы","hero.cta.btn2":"Компаниямен танысу",
+      "about.kick":"Компания","tech.kick":"Технология","prod.kick":"Өнімдер","partner.kick":"Серіктестік",
+      "calc.kick":"Интерактив · Сіздің өміріңіз","plan.kick":"Маркетинг-жоспар","future.kick":"Қаржылық болашақ",
+      "stories.kick":"Тарихтар","faq.kick":"Сұрақтар","cta.kick":"Келесі қадам",
+      "footb.tag":"Компания","footb.partner":"Серіктестік","footb.contact":"Байланыс",
+      "footb.cr":"© 2026 LifeWave серіктестік жобасы",
+      "prod.x39":"Флагман","prod.x49":"Белсенділік","prod.ice":"Жайлылық","prod.energy":"Энергия",
+      "prod.sp6":"Тамақтану","prod.silent":"Ұйқы","prod.aeon":"Амандық","prod.carn":"Белсенділік",
+      "prod.glut":"Амандық","prod.alav":"Сұлулық"
+    }
+  };
+  var LANG = (function(){
+    var langs = ['ru','en','de','es','kk'];
+    var saved = null;
+    try { saved = localStorage.getItem('lw_lang'); } catch(e) {}
+    var ql = (window.location.search || '').match(/[?&]lang=([a-z]{2})/i);
+    if(ql) saved = ql[1].toLowerCase();
+    var cur = langs.indexOf(saved) !== -1 ? saved : 'ru';
+    return {
+      cur: cur,
+      t: function(key){
+        var dict = I18N[cur] || {};
+        if(dict[key] !== undefined) return dict[key];
+        if(I18N.ru[key] !== undefined) return I18N.ru[key];
+        return key;
+      },
+      set: function(l){ cur = l; try{ localStorage.setItem('lw_lang', l); }catch(e){}; },
+      available: langs
+    };
+  })();
+  var langWrap = document.getElementById('langWrap');
+  var langBtn = document.getElementById('langBtn');
+  var langMenu = document.getElementById('langMenu');
+  var langFlag = document.getElementById('langFlag');
+  var langLabel = document.getElementById('langLabel');
+  var FLAGS = { ru:'🇷🇺', en:'🇬🇧', de:'🇩🇪', es:'🇪🇸', kk:'🇰🇿' };
+  langBtn.addEventListener('click', function(e){ e.stopPropagation(); langWrap.classList.toggle('open'); langBtn.setAttribute('aria-expanded', langWrap.classList.contains('open')); });
+  document.addEventListener('click', function(e){ if(!langWrap.contains(e.target)) langWrap.classList.remove('open'); });
+  langMenu.querySelectorAll('button').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      LANG.set(btn.getAttribute('data-lang'));
+      applyLang();
+      langWrap.classList.remove('open');
+    });
+  });
+  function applyLang(){
+    var l = LANG.t;
+    document.documentElement.lang = LANG.cur;
+    langFlag.textContent = FLAGS[LANG.cur] || '🌐';
+    langLabel.textContent = l('lang.name');
+    langMenu.querySelectorAll('button').forEach(function(b){ b.classList.toggle('active', b.getAttribute('data-lang')===LANG.cur); });
+    document.querySelectorAll('[data-i18n]').forEach(function(el){
+      var key = el.getAttribute('data-i18n');
+      var val = l(key);
+      if(val !== undefined && val !== null) el.innerHTML = val;
+    });
+    /* auto-translate: match RU text to dictionary values */
+    if(LANG.cur !== 'ru'){
+      var ru = I18N.ru, en = I18N[LANG.cur] || {};
+      var ruToEn = {};
+      for(var k2 in ru){ if(en[k2] !== undefined) ruToEn[ru[k2]] = en[k2]; }
+      document.querySelectorAll('h1,h2,h3,h4,p,span,a,li,summary,button,label,.faq-body,div,b,strong').forEach(function(el){
+        if(!el.children.length){
+          var raw = el.textContent.trim();
+          if(raw && raw.length > 2 && raw.length < 400 && ruToEn[raw]) el.textContent = ruToEn[raw];
+        }
+      });
+    }
+    renderShowcase(currentIdx);
+    renderCalc();
+  }
+  // wire translate keys via data-i18n automatically (added to nav); UI strings static set below
+  applyLang();
+
+  // Начинать просмотр с начала главной страницы (если не задан явный якорь)
+  if (!window.location.hash) {
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    window.scrollTo(0, 0);
+    setTimeout(function(){ window.scrollTo(0, 0); }, 0);
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,599 @@
+﻿<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Диагностика реальности — LifeWave</title>
+<style>
+:root{--blue:#1f6fd0;--ink:#0d2440;--muted:#5d7287;--line:rgba(15,120,150,.16);--bg:#eaf3f8;--soft:#e6f6f8;--teal:#1fc6c6;--teal-dark:#0e8d8d;--navy:#08182c;--silver:#c9d6e0;--cyan:#e6f6f8;--gold:#e3a82b}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:
+  radial-gradient(1100px 700px at 85% -5%, rgba(31,198,198,.22), transparent 60%),
+  radial-gradient(900px 600px at -10% 20%, rgba(31,111,208,.18), transparent 55%),
+  linear-gradient(160deg,#eef7fb 0%,#e3f2f7 40%,#dbeaf4 100%);background-attachment:fixed;color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,system-ui,Arial,sans-serif}
+button,input,select{font:inherit}button{cursor:pointer}
+.mtop{position:sticky;top:0;z-index:70;background:rgba(255,255,255,.8);backdrop-filter:blur(20px) saturate(1.5);-webkit-backdrop-filter:blur(20px) saturate(1.5);border-bottom:1px solid rgba(15,120,150,.12);box-shadow:0 6px 24px rgba(13,40,70,.06);color:var(--ink);padding:18px 25px;display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}
+.brand2{display:flex;align-items:center}
+.brand2 img{height:40px;width:auto}
+.mtop .sel{width:auto;height:38px;background:rgba(255,255,255,.6);border:1px solid rgba(15,120,150,.2);border-radius:10px;color:#123c63;font-weight:700;font-size:14px;padding:0 10px}
+.mtop .back{display:inline-flex;align-items:center;font-size:13px;font-weight:700;color:#fff!important;background:linear-gradient(120deg,var(--teal) 0%,var(--blue) 130%);padding:9px 18px;border-radius:12px;text-decoration:none;box-shadow:0 8px 22px rgba(31,198,198,.35);transition:.2s}
+.mtop .back:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(31,198,198,.5)}
+.shell{max-width:1530px;margin:auto;padding:25px 25px 110px}
+.header{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:23px}
+.brandtext{font-size:13px;letter-spacing:.19em;font-weight:800;color:var(--blue)}
+h1{font-size:clamp(25px,3.1vw,42px);margin:8px 0 3px;letter-spacing:-.035em}
+.tagline{color:var(--muted);font-size:14px}
+.topright{font-weight:800;text-align:right;font-size:14px}
+.pill{background:#dcecff;padding:8px 13px;border-radius:90px;color:#0e8d8d;display:inline-block;margin-top:6px}
+.grid{display:grid;grid-template-columns:minmax(350px,.87fr) minmax(510px,1.13fr);gap:19px;align-items:start}
+.grid.solo{grid-template-columns:minmax(320px,760px);justify-content:center}
+.card{background:white;border:1px solid #e4eaf5;border-radius:22px;box-shadow:0 15px 40px rgba(35,75,140,.06);overflow:hidden}
+.pad{padding:25px}
+h2{font-size:20px;margin:0 0 8px}
+.desc{margin:0 0 22px;color:var(--muted);font-size:13px;line-height:1.6}
+.fields{display:grid;grid-template-columns:1.4fr .65fr;gap:11px}
+.fields label:last-child{grid-column:1/-1}
+label small{display:block;font-size:11px;color:var(--muted);font-weight:700;margin-bottom:6px;text-transform:uppercase;letter-spacing:.06em}
+input,select{width:100%;height:43px;border:1px solid var(--line);border-radius:10px;padding:0 12px;background:#fbfdff;color:var(--ink);outline:none}
+input:focus,select:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(31,111,208,.12)}
+.sectionhead{display:flex;justify-content:space-between;align-items:center;margin:26px 0 10px;gap:10px}
+.sectionhead b{font-size:14px}
+.sectionhead span{font-size:11px;color:var(--muted)}
+table{width:100%;border-collapse:collapse}
+th{color:var(--muted);text-align:left;font-size:11px;letter-spacing:.06em;text-transform:uppercase;font-weight:750;padding:11px 7px;background:#f6f9ff}
+td{padding:10px 7px;border-bottom:1px solid #edf1f8;font-size:13px}
+tr:last-child td{border-bottom:0}
+.money{text-align:right;font-variant-numeric:tabular-nums;font-weight:800;color:#0e8d8d}
+.income input{height:35px;max-width:130px;font-weight:750}
+.totalfirst{margin-top:19px;padding:15px;background:var(--soft);border-radius:13px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.totalfirst span{font-size:12px;color:#43658b}
+.totalfirst strong{font-size:22px;color:#1f6fd0}
+.righttop{background:linear-gradient(120deg,#08182c,#1f6fd0);color:#fff;padding:24px;min-height:100px}
+.righttop b{font-size:23px}
+.righttop p{margin:5px 0 0;opacity:.83;font-size:13px}
+.empty{padding:55px 35px;text-align:center;color:var(--muted);min-height:400px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px}
+.empty strong{color:var(--ink)}
+.reveal{animation:rise .35s both}
+@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.offer{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.metric{border:1px solid #e1eaf7;background:#f9fbff;padding:16px;border-radius:14px}
+.metric small{display:block;color:var(--muted);font-size:11px;margin-bottom:6px}
+.metric strong{font-size:24px;color:#0e8d8d}
+.offerNote{font-size:12px;color:#566b87;margin:15px 0 4px;line-height:1.55}
+.underline{border-bottom:4px solid #ed4c5e;padding-bottom:2px}
+.tree{padding:14px 0 4px;text-align:center}
+.tree svg{width:100%;max-width:420px;height:auto;filter:drop-shadow(0 8px 20px rgba(13,40,70,.10))}
+.tree .node{stroke-width:2.4}
+.tree text{font-weight:800}
+.treeBox{border-radius:13px;background:#e6f6f8;border:1px solid rgba(15,120,150,.14);padding:12px;font-weight:750;color:#0e8d8d;font-size:12px;text-align:center;margin-top:6px}
+.monthrow{display:flex;align-items:center;gap:12px;margin:20px 0}
+.monthrow label{flex:1}
+.monthrow label small{margin-bottom:5px}
+.monthrow .minitext{font-size:11px;color:var(--muted);width:50%}
+.model{overflow-x:auto}
+.model table{min-width:660px}
+.model th{padding:11px 8px;font-size:10px}
+.model td{padding:9px 8px;font-size:12px}
+.model tr.current{background:#eaf4ff}
+.model .participants{font-weight:850;color:#1f6fd0}
+.rank{font-size:11px;color:#4a6081}
+.num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+.model .blue{color:#1f6fd0;font-weight:800}
+.totals{margin-top:18px;border-radius:16px;background:linear-gradient(130deg,#08182c,#1f6fd0);color:white;padding:23px;animation:rise .4s both}
+.totals h3{margin:0 0 17px}
+.totalgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.totalgrid div{background:rgba(255,255,255,.08);padding:12px;border-radius:10px}
+.totalgrid span{display:block;font-size:11px;color:#c5ddff;margin-bottom:6px}
+.totalgrid strong{font-size:clamp(17px,2vw,25px);font-variant-numeric:tabular-nums}
+.disclaimer{margin:17px 0 0;color:#77849a;font-size:11px;line-height:1.55}
+.controls{position:fixed;bottom:0;left:0;right:0;z-index:5;backdrop-filter:blur(15px);background:rgba(255,255,255,.95);box-shadow:0 -6px 32px rgba(11,49,91,.08);border-top:1px solid #e5eaf2;padding:12px 25px;display:flex;justify-content:center;align-items:center;gap:15px;flex-wrap:wrap}
+.controls button{border:1px solid #ccdced;background:white;color:#1f6fd0;border-radius:11px;padding:11px 18px;font-weight:750}
+.controls button.primary{background:#1f6fd0;color:#fff;border:1px solid #1f6fd0}
+.controls button:disabled{opacity:.35;cursor:default}
+.progress{min-width:160px;text-align:center;font-size:12px;font-weight:800}
+.progress small{display:block;color:var(--muted);font-weight:500;margin-top:3px}
+.reset{margin-left:15px!important;border-color:transparent!important;color:#8491a6!important}
+.subinfo{margin-top:6px;color:#6b7e9b;font-size:11px}
+.outcome{font-size:12px;color:#54739d;line-height:1.5}
+.tempoWrap{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.tempoBtn{border:2px solid var(--line);background:#fff;border-radius:13px;padding:15px 12px;text-align:center;font-weight:800;color:var(--ink);transition:.2s}
+.tempoBtn:hover{border-color:#7bb2f0}
+.tempoBtn.active{border-color:var(--blue);background:var(--soft);color:#0e8d8d}
+.tempoBtn small{display:block;font-weight:600;font-size:11px;color:var(--muted);margin-top:4px}
+details.scenario{border:1px solid #e1eaf7;border-radius:14px;background:#f9fbff;padding:14px 16px;margin-top:16px}
+details.scenario summary{cursor:pointer;font-weight:750;color:#0e8d8d;font-size:13px}
+.scenario table{margin-top:10px}
+.scenario td input{height:32px;max-width:110px;font-size:12px;font-weight:700}
+.sliderLine{display:flex;gap:10px;align-items:center;margin:12px 0;flex-wrap:wrap}
+.sliderLine label{font-size:12px;flex:1}
+.sliderLine select{max-width:170px}
+.save-status{font-size:11px;color:#5b8;;margin-top:8px}
+.save-status{color:#5b8}
+.pack-sel{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.packBtn{border:2px solid var(--line);background:#fff;border-radius:13px;padding:13px;text-align:left;font-weight:700;transition:.2s}
+.packBtn:hover{border-color:#7bb2f0}
+.packBtn.active{border-color:var(--blue);background:var(--soft)}
+.packBtn small{display:block;font-weight:600;font-size:11px;color:var(--muted);margin-top:3px}
+dialog{border:0;border-radius:18px;padding:26px;box-shadow:0 30px 80px rgba(10,30,70,.3);max-width:460px;width:90%}
+dialog::backdrop{background:rgba(10,30,70,.4)}
+.export-note{font-size:11px;color:var(--muted);width:150px;text-align:center}
+/* Прогресс шагов */
+.wizardbar{display:flex;align-items:center;gap:14px;margin:4px 0 20px;flex-wrap:wrap}
+.wizard-track{flex:1;min-width:160px;height:8px;border-radius:99px;background:#e3ecf7;overflow:hidden}
+.wizard-fill{height:100%;background:linear-gradient(90deg,var(--teal),var(--blue));border-radius:99px;transition:width .35s}
+.wizard-labels{display:flex;justify-content:space-between;margin-top:7px;font-size:11px;color:var(--muted);gap:6px}
+.wizard-labels span{padding:3px 9px;border-radius:20px;background:#eef4ff;font-weight:700;color:#5a7aa8;white-space:nowrap}
+.wizard-labels span.on{background:linear-gradient(90deg,var(--teal),var(--blue));color:#fff}
+/* Вводный блок */
+.hero-welcome{text-align:center;padding:10px 4px 4px}
+.hero-welcome .hw-ic{width:64px;height:64px;border-radius:20px;background:linear-gradient(135deg,var(--teal),var(--blue));color:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;box-shadow:0 12px 28px rgba(31,111,208,.3);font-size:26px;font-weight:800}
+.hero-steps{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:20px}
+.hero-step{background:#f9fbff;border:1px solid #e1eaf7;border-radius:13px;padding:14px;text-align:left}
+.hero-step b{display:block;font-size:13px;margin-bottom:4px;color:var(--ink)}
+.hero-step small{color:var(--muted);font-size:11px;line-height:1.4;display:block}
+.hero-step .hs-n{float:right;font-size:20px;font-weight:800;color:#d7e4f7}
+.cta-start{display:inline-block;margin-top:24px;background:linear-gradient(120deg,var(--teal),var(--blue));color:#fff;padding:14px 34px;border-radius:14px;font-weight:800;font-size:15px;border:0;cursor:pointer;box-shadow:0 12px 28px rgba(31,111,208,.3);transition:.2s}
+.cta-start:hover{transform:translateY(-2px);box-shadow:0 16px 34px rgba(31,111,208,.4)}
+.phase-tag{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:linear-gradient(90deg,var(--teal),var(--blue));padding:5px 12px;border-radius:20px;margin-bottom:14px}
+@media(max-width:920px){.grid,.grid.solo{grid-template-columns:1fr}.shell{padding:17px 12px 110px}.pad{padding:19px}.header{align-items:start}.topright{font-size:11px}.controls{padding:10px;gap:5px}.controls button{padding:10px}.progress{min-width:80px;font-size:11px}.reset{margin-left:2px!important}.tempoWrap,.pack-sel{grid-template-columns:1fr}.hero-steps{grid-template-columns:1fr}}
+@media print{.controls,.mtop{display:none}.shell{padding:0}.grid{grid-template-columns:1fr;gap:10px}.card{box-shadow:none;break-inside:avoid}.pad{padding:12px}body{background:#fff}}
+</style>
+</head>
+<body>
+<div class="mtop">
+  <div class="brand2">
+    <img src="images/lifewave-logo-t.png" alt="LifeWave">
+  </div>
+  <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+    <select id="lang" class="sel" aria-label="Language">
+      <option value="ru">RU</option>
+    </select>
+    <a class="back" href="index.html#diag">← На сайт</a>
+  </div>
+</div>
+<div class="shell">
+  <div class="header">
+    <div>
+      <h1 data-t="title">Диагностика реальности</h1>
+      <div class="tagline" data-t="tag">Интерактивный сценарий: финансы, рост команды и бинарные бонусы по модели LifeWave.</div>
+    </div>
+  </div>
+
+  <div class="wizardbar" id="wizardBar" style="display:none">
+    <div class="wizard-track"><div class="wizard-fill" id="wizardFill" style="width:0%"></div></div>
+    <div style="text-align:center;font-size:12px;font-weight:800;color:var(--blue)" id="wizardPct">0%</div>
+  </div>
+  <div class="wizard-labels" id="wizardLabels" style="display:none"></div>
+
+  <div class="grid solo" id="mainGrid">
+    <section class="card" id="leftCard">
+      <div class="pad" id="leftForm" style="display:none">
+        <h2 data-t="financial">01 · Финансовая реальность</h2>
+        <p class="desc" data-t="finDesc">Расскажите о себе и о том, как вы видите свой доход в ближайшие годы. Это станет основой для расчёта возможностей.</p>
+        <div class="fields">
+          <label><small data-t="name">Имя</small><input id="name" maxlength="100" placeholder="Ваше имя"></label>
+          <label><small data-t="age">Возраст</small><input id="age" type="number" min="16" max="110" placeholder="30"></label>
+          <label><small data-t="profession">Профессия / специальность</small><input id="profession" maxlength="150" placeholder="Ваша специальность"></label>
+        </div>
+        <div class="sectionhead"><b data-t="income">Доход сейчас и в будущем</b><span>USD · <span data-t="monthly2">в месяц</span></span></div>
+        <table><thead><tr><th data-t="year">Год</th><th data-t="monthly">В месяц, $</th><th data-t="annual">В год, $</th></tr></thead><tbody id="incomeRows"></tbody></table>
+        <div class="totalfirst"><span data-t="six">Сумма возможных будущих доходов за 2027–2030 годы</span><strong id="sixTotal">$0.00</strong></div>
+        <p class="disclaimer" data-t="future">Будущие доходы — оценки собеседника.</p>
+        <p class="save-status" id="saveStatus"></p>
+      </div>
+      <div class="pad hero-welcome" id="welcome" style="display:none">
+        <div class="hw-ic">§</div>
+        <h2 style="font-size:26px;margin-bottom:8px">Диагностика реальности</h2>
+        <p style="color:var(--muted);font-size:14px;line-height:1.7;max-width:34em;margin:0 auto">Это интерактивный сценарий, который покажет, как на основе вашего дохода и темпа развития команды может выглядеть партнёрство с LifeWave. Данные — иллюстрация возможностей, а не гарантия дохода.</p>
+        <div class="hero-steps">
+          <div class="hero-step"><span class="hs-n">1</span><b>Финансовая реальность</b><small>Ваш доход сейчас и в ближайшие годы.</small></div>
+          <div class="hero-step"><span class="hs-n">2</span><b>Темп развития</b><small>Скорость роста вашей команды.</small></div>
+          <div class="hero-step"><span class="hs-n">3</span><b>Стартовый пакет</b><small>Вложение и объём продаж (BV).</small></div>
+          <div class="hero-step"><span class="hs-n">4</span><b>Расчёт бонусов</b><small>Бинарные и ранговые бонусы по месяцам.</small></div>
+        </div>
+        <button class="cta-start" id="startBtn">Начать диагностику →</button>
+      </div>
+    </section>
+    <section class="card" id="lifeCard" style="display:none">
+      <div class="righttop"><b data-t="opportunity">Возможность LifeWave</b><p data-t="opportunitySub">Модель партнёрства, рост команды и бонусы по сценарию.</p></div>
+      <div class="pad" id="rightContent"></div>
+    </section>
+  </div>
+</div>
+
+<div class="controls">
+  <button id="back" data-t="back">← Назад</button>
+  <div class="progress"><span id="stepLabel"></span><small id="stepSub"></small></div>
+  <button class="primary" id="next" data-t="next">Дальше →</button>
+  <button id="finish" data-t="finish">Закончить расчёт</button>
+  <button class="reset" id="reset" data-t="reset">↺ Начать сначала</button>
+  <button id="pdf" data-t="pdf">Скачать PDF</button>
+  <button id="email" data-t="email" style="display:none">Отправить email</button>
+  <div class="export-note" data-t="pdfNote">PDF включает все 13 месяцев независимо от текущего шага.</div>
+</div>
+
+<dialog id="emailDialog">
+  <h2 style="margin-top:0" data-t="emailTitle">Отправить отчёт</h2>
+  <p style="font-size:13px;color:var(--muted);line-height:1.6" data-t="emailNote">Сначала скачайте PDF, затем откройте письмо и прикрепите файл вручную. Эта страница не отправляет письма и не прикрепляет PDF автоматически.</p>
+  <div style="display:flex;gap:10px;flex-wrap:wrap;margin:14px 0">
+    <button id="emailPdf" data-t="pdf" style="background:#1f6fd0;color:#fff;border:0;border-radius:10px;padding:11px 16px;font-weight:750">Скачать PDF</button>
+    <button id="openEmail" data-t="openEmail" style="border:1px solid #ccdced;border-radius:10px;padding:11px 16px;background:#fff;font-weight:750">Открыть письмо</button>
+  </div>
+  <label><small>Email</small><input id="emailAddress" type="email" placeholder="you@example.com"></label>
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-top:14px">
+    <button id="closeDialog" style="border:0;background:none;color:var(--muted)">✕ Закрыть</button>
+  </div>
+  <p id="emailStatus" style="font-size:11px;color:var(--muted)"></p>
+</dialog>
+
+<noscript><p style="padding:20px;text-align:center">Включите JavaScript — диагностика не запустится без него.</p></noscript>
+
+<script>
+(function(){
+"use strict";
+const $=id=>document.getElementById(id);
+const KEY='diagnostika-realnosti-v3';
+const cloneData=v=>JSON.parse(JSON.stringify(v));
+const last=a=>a[a.length-1];
+const nvl=(v,f)=>v==null?f:v;
+const fromPairs=p=>p.reduce((o,k)=>{o[k[0]]=k[1];return o},{});
+const maxStep=58;
+
+const packages=[
+ {id:1,name:'X39 Maintenance Pack 1',qty:3,bv:77,months:3,price:269.85},
+ {id:3,name:'X39 Maintenance Pack 3',qty:9,bv:110,months:6,price:749.50},
+ {id:'core',name:'Core',qty:3,bv:77,schedule:[180],price:295,eur:280},
+ {id:'advanced',name:'Advanced',qty:6,bv:110,schedule:[300],price:535,eur:508},
+ {id:'advancedPlus',name:'Advanced Plus',qty:11,bv:110,schedule:[500],price:975,eur:926},
+ {id:'premium',name:'Premium',qty:20,bv:110,schedule:[555,110,110],price:1750,eur:1663}
+];
+
+const defaults=[
+ ['1-Star Manager',0.10,100,750,0,75,0,0],
+ ['2-Star Manager',0.10,500,1500,100,75,0,0],
+ ['3-Star Manager',0.10,1500,2500,250,75,0,0],
+ ['1-Star Director',0.11,2500,5000,500,110,0,1000],
+ ['2-Star Director',0.11,3500,10000,1000,110,0,2000],
+ ['3-Star Director',0.11,5000,20000,2000,110,0,3000],
+ ['1-Star Executive',0.12,7500,40000,5000,200,5000,5000],
+ ['2-Star Executive',0.12,10000,100000,0,200,10000,10000],
+ ['3-Star Executive',0.12,15000,200000,0,200,15000,15000],
+ ['1-Star Presidential',0.13,20000,400000,0,200,50000,20000],
+ ['2-Star Presidential',0.13,25000,1000000,0,200,100000,25000],
+ ['3-Star Presidential',0.13,25000,2500000,0,200,200000,30000]
+].map(([name,rate,cap,volumeThreshold,bonus,pv,ol2l,balance])=>({name,rate,cap,volumeThreshold,bonus,pv,ol2l,balance}));
+
+const dict={
+ru:{
+ title:'Диагностика реальности',tag:'Интерактивный сценарий: финансы, рост команды и бинарные бонусы по модели LifeWave.',
+ turtle:'ЧЕРЕПАШИЙ ХОД',medium:'СРЕДНИЙ ХОД',fast:'БЫСТРЫЙ ХОД',tempo:'Темп развития',
+ invitesOne:'1 новый / участник в месяц',invitesTwo:'2 новых / участник в месяц',invitesFour:'4 новых / участник в месяц',
+ financial:'01 · Финансовая реальность',finDesc:'Расскажите о себе и о том, как вы видите свой доход в ближайшие годы.',
+ name:'Имя',age:'Возраст',profession:'Профессия / специальность',income:'Доход сейчас и в будущем',
+ year:'Год',monthly:'В месяц, $',annual:'В год, $',monthly2:'в месяц',
+ six:'Сумма возможных будущих доходов за 2027–2030 годы',future:'Будущие доходы — оценки собеседника.',
+ opportunity:'Возможность LifeWave',opportunitySub:'Модель партнёрства, рост команды и бонусы по сценарию.',
+ purchase:'Стартовый пакет',packName:'Пакет',packUnits:'упаковки',packUnitsSix:'упаковок',
+ activity:'BV на участника / месяц',months:'мес.',monthlyBV:'Сценарный BV / участник / месяц',
+ missingBV:'Уточните BV первых месяцев: в приложенном документе этих значений нет. Расчёт команды и PDF доступны после ввода.',
+ enrollmentNote:'Регистрационный пакет: цена и количество X39 — по приложенному документу. Стартовый BV учитывается отдельно для каждой новой группы участников. Дальнейшая активность требует последующих покупок; Premium включает активность первых трёх месяцев; это не подтверждение активности на 13 месяцев. Налоги, доставка и последующие покупки не включены.',
+ renew:'После срока пакета предполагается продолжение активности с тем же BV. Последующие покупки и другие расходы не вычтены.',
+ partners:'4 личных партнёра',treeHint:'1 и 3 слева, 2 и 4 справа — в глубину каждой ноги.',
+ growth:'Рост команды',start:'Начальный месяц',startYear:'Год начала',
+ rate:'Бинарная ставка',fixed:'10% для всех месяцев',rankRate:'10–13% по сценарию рангов',
+ cap:'Недельный лимит выплат',capOn:'Учитывается: 4 равные недели',
+ month:'Месяц',people:'Людей',rank:'Ранг*',volume:'Объём, BV',weak:'Слабая нога, BV',binary:'Бинар, $',bonus:'Rank Up, $',total:'Всего, $',
+ settings:'Параметры сценария: ранги и бонусы',
+ presidentialNote:'Требования PV, QDV, OL2L и бинарного баланса перенесены с предоставленной таблицы компании: 3-Star Presidential — 2 500 000 QDV. В расчёте BV команды сравнивается с порогом QDV только как допущение; квалификационный QDV, PV, OL2L и баланс не проверяются. MVR: не более 50% объёма из одной ветви; личные покупки — до 110 PV, кроме APAC. Ставки, недельные лимиты и премии сохранены как параметры сценария: новая таблица их не содержит.',
+ settingNote:'Показан сценарный ранг по объёму команды, а не подтверждённая квалификация компании. Ставки, лимиты и бонусы — допущения модели; лимиты и бонусы можно менять. Каждая разовая премия учитывается один раз при первом пересечении её порога. При пересечении нескольких порогов за месяц их премии суммируются.',
+ warning:'Сценарий, не прогноз и не гарантия дохода. Равные ноги 50/50; BV → USD условно 1:1. Бинарный бонус — от сценарного ранга Manager. Бинарный бонус = min(слабая нога × ставка, недельный лимит ранга × 4). Лимит применяется всегда; фактические начисления зависят от недельного объёма, квалификаций и правил LifeWave. Покупки, налоги и прочие расходы не вычтены. Rank Up требует отдельного подтверждения.',
+ assumptions:'Ранги, ставки, премии и лимиты — параметры сценария, не официальная таблица квалификаций. Рост команды и сохранение активности не гарантированы.',
+ summary:'ИТОГО · ПОЛНЫЕ 13 МЕСЯЦЕВ',endPeople:'Участников к концу 13-го месяца',endVolume:'Объём в 13-м месяце',
+ sumBinary:'Бинарные бонусы за 13 месяцев',initial:'Твоё первоначальное вложение',sumBonus:'Бонусы за достижение ранга за 13 месяцев',grand:'Сумма начислений за 13 месяцев',
+ back:'← Назад',finish:'Закончить расчёт',resume:'Продолжить расчёт',next:'Дальше →',reset:'↺ Начать сначала',pdf:'Скачать PDF',email:'Отправить email',
+ step:'Шаг',of:'из',reveal:'раскрытие расчёта',confirm:'Очистить все данные и начать заново?',
+ threshold:'Требование QDV*',personal:'Личный PV',outside:'Вне двух ветвей (OL2L)',balance:'Бинарный баланс',weekly:'Лимит сценария / нед., $',oneoff:'Разовая премия, $',
+ emailTitle:'Отправить отчёт',emailNote:'Сначала скачайте PDF, затем откройте письмо и прикрепите файл вручную. Эта страница не отправляет письма и не прикрепляет PDF автоматически.',
+ openEmail:'Открыть письмо',close:'Закрыть',saved:'Данные сохранены в этом браузере.',unsaved:'Сохранение в браузере недоступно; скачайте PDF перед закрытием.',
+ report:'Индивидуальный отчёт · USD',period:'Период',none:'Без ранга',zero:'Бинарный бонус учитывается при наличии сценарного ранга Manager или выше.',
+ pdfNote:'PDF включает все 13 месяцев независимо от текущего шага.',tempoLabel:'Темп развития:',
+ sixSpan:'2027–2030',futureNote:'Доход не гарантирован; сценарий для иллюстрации возможностей.'
+}
+};
+
+let I=dict.ru;
+const loc=()=>'ru-RU';
+const fmt=n=>Number(n).toLocaleString(loc(),{maximumFractionDigits:2});
+const usd=n=>'$'+Number(n).toLocaleString(loc(),{minimumFractionDigits:2,maximumFractionDigits:2});
+const esc=v=>String(nvl(v,'')).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+const monthName=i=>new Date(2026,i-1,1).toLocaleString('ru-RU',{month:'long'});
+const date=i=>new Date(Date.UTC(s.startYear||2026,(s.startMonth||9)+i-1,1)).toLocaleString('ru-RU',{month:'short',year:'2-digit'});
+
+const fresh=()=>({lang:'ru',step:0,name:'',age:'',profession:'',income:fromPairs([2025,2026,2027,2028,2029,2030].map(y=>[y,0])),pack:1,endMonth:null,growthMode:'turtle',startMonth:9,startYear:2026,startBV:{},ranks:cloneData(defaults)});
+let s=fresh();
+
+function save(){try{localStorage.setItem(KEY,JSON.stringify({...s,version:3}));setSave(I.saved);}catch(e){setSave(I.unsaved);}}
+function setSave(t){const el=$('saveStatus');if(el)el.textContent=t;}
+function load(){try{const raw=localStorage.getItem(KEY);if(!raw)return;s=Object.assign(fresh(),JSON.parse(raw));if(s.version===3&&s.ranks&&s.ranks.length===12){I=dict.ru;s.lang='ru';}}catch(e){}}
+
+const recruits=()=>({turtle:1,medium:2,fast:4}[s.growthMode]);
+const peopleAt=i=>i<1?0:recruits()*Math.pow(1+recruits(),i-1);
+
+const num=(v,max)=>Math.min(max||1e12,Math.max(0,Number(v)||0));
+function pack(){
+  const p=packages.find(p=>p.id===s.pack)||packages[0];
+  const schedule=(p.schedule||[]).map((value,i)=>nvl(value,(num(s.startBV[p.id]&&s.startBV[p.id][i],1000000)>0?num(s.startBV[p.id][i],1000000):null)));
+  return {...p,schedule,ready:schedule.every(v=>v!==null)};
+}
+function volumeAt(i){
+  if(i<1)return 0;
+  const p=pack();if(!p.ready)return null;
+  let volume=0;
+  for(let joined=1;joined<=i;joined++){
+    const age=i-joined,newPeople=peopleAt(joined)-peopleAt(joined-1);
+    volume+=newPeople*(age<p.schedule.length?p.schedule[age]:p.bv);
+  }
+  return volume;
+}
+function calc(i){
+  const people=peopleAt(i),bv=volumeAt(i);
+  if(bv==null)return {i,people,bv:null,weak:null,rank:null,rate:.1,cap:0,raw:0,binary:0,bonus:0,total:0};
+  const weak=bv/2,rank=last(s.ranks.filter(r=>bv>=r.volumeThreshold)),rate=(rank&&rank.rate)||.1,
+    cap=(rank&&rank.cap)||0,raw=weak*rate,
+    binary=rank?Math.round(Math.min(raw,cap*4)*100)/100:0,
+    bonus=s.ranks.filter(r=>{const prev=volumeAt(i-1);return prev!=null&&prev<r.volumeThreshold&&bv>=r.volumeThreshold;}).reduce((sum,r)=>sum+r.bonus,0);
+  return {i,people,bv,weak,rank,rate,cap,raw,binary,bonus,total:Math.round((binary+bonus)*100)/100};
+}
+const futureTotal=()=>[2027,2028,2029,2030].reduce((t,y)=>t+s.income[y]*12,0);
+const reportMonths=()=>s.endMonth||13;
+const all=()=>Array.from({length:reportMonths()},(_,i)=>calc(i+1));
+const sum=key=>all().reduce((v,r)=>v+r[key],0);
+
+function applyLang(){
+  document.querySelectorAll('[data-t]').forEach(el=>{
+    const k=el.getAttribute('data-t');if(I[k]!=null)el.textContent=I[k];
+  });
+}
+function drawIncome(){
+  const years=[2025,2026,2027,2028,2029,2030];
+  const tbody=$('incomeRows');
+  tbody.innerHTML=years.map(y=>{
+    const v=s.income[y]||'';
+    return '<tr><td>'+y+'</td><td class="money"><input type="number" min="0" step="100" data-income="'+y+'" value="'+v+'" style="text-align:right"></td><td class="money" data-annual="'+y+'">'+usd((s.income[y]||0)*12)+'</td></tr>';
+  }).join('');
+  tbody.querySelectorAll('[data-income]').forEach(inp=>{
+    inp.addEventListener('input',()=>{
+      const y=parseInt(inp.getAttribute('data-income'),10);
+      s.income[y]=Math.max(0,parseFloat(inp.value)||0);
+      const a=tbody.querySelector('[data-annual="'+y+'"]');a.textContent=usd(s.income[y]*12);
+      $('sixTotal').textContent=usd(futureTotal());save();
+    });
+  });
+  $('sixTotal').textContent=usd(futureTotal());
+}
+function bindPerson(){
+  $('name').value=s.name;$('age').value=s.age;$('profession').value=s.profession;
+  ['name','age','profession'].forEach(id=>$(id).addEventListener('input',e=>{s[id]=e.target.value;save();}));
+}
+function treeSVG(){
+  return '<svg viewBox="0 0 420 300" role="img" aria-label="'+esc(I.treeHint)+'">'
+   +'<defs><linearGradient id="nodeGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1fc6c6"/><stop offset="1" stop-color="#1f6fd0"/></linearGradient></defs>'
+   // корень -> 1 (влево), корень -> 2 (вправо)
+   +'<path d="M210 120 C210 165, 90 165, 90 205" fill="none" stroke="#8cb9f3" stroke-width="3" stroke-linecap="round"/>'
+   +'<path d="M210 120 C210 165, 330 165, 330 205" fill="none" stroke="#8cb9f3" stroke-width="3" stroke-linecap="round"/>'
+   // 1 -> 3, 2 -> 4 (вглубь ноги)
+   +'<path d="M120 250 C120 268, 120 272, 120 278" fill="none" stroke="#8cb9f3" stroke-width="2.6" stroke-linecap="round"/>'
+   +'<path d="M300 250 C300 268, 300 272, 300 278" fill="none" stroke="#8cb9f3" stroke-width="2.6" stroke-linecap="round"/>'
+   // корень Вы
+   +'<circle class="node" cx="210" cy="90" r="30" fill="url(#nodeGrad)" stroke="none"/>'
+   +'<text x="210" y="97" text-anchor="middle" font-size="16" font-weight="800" fill="#fff">Вы</text>'
+   // личные партнёры 1 (слева) и 2 (справа)
+   +'<circle class="node" cx="90" cy="228" r="26" fill="#ffffff" stroke="#1f6fd0" stroke-width="2.4"/>'
+   +'<text x="90" y="235" text-anchor="middle" font-size="16" font-weight="800" fill="#0d2440">1</text>'
+   +'<circle class="node" cx="330" cy="228" r="26" fill="#ffffff" stroke="#1f6fd0" stroke-width="2.4"/>'
+   +'<text x="330" y="235" text-anchor="middle" font-size="16" font-weight="800" fill="#0d2440">2</text>'
+   // подписи ног
+   +'<text x="40" y="234" text-anchor="middle" font-size="11" fill="#0e8d8d" font-weight="700">левая</text>'
+   +'<text x="380" y="234" text-anchor="middle" font-size="11" fill="#0e8d8d" font-weight="700">правая</text>'
+   // 3 под 1 (левая нога вглубь), 4 под 2 (правая нога вглубь)
+   +'<circle class="node" cx="120" cy="280" r="22" fill="#e6f6f8" stroke="#1f6fd0" stroke-width="2.2"/>'
+   +'<text x="120" y="286" text-anchor="middle" font-size="14" font-weight="800" fill="#0d2440">3</text>'
+   +'<circle class="node" cx="300" cy="280" r="22" fill="#e6f6f8" stroke="#1f6fd0" stroke-width="2.2"/>'
+   +'<text x="300" y="286" text-anchor="middle" font-size="14" font-weight="800" fill="#0d2440">4</text>'
+   +'</svg>';
+}
+function renderGrowthTable(rows){
+  const colStage=Math.min(4,1+Math.max(0,Math.floor((s.step-5)/4)+ (s.endMonth?4:0)));
+  let head='<th>'+I.month+'</th><th>'+I.people+'</th>';
+  if(colStage>=3)head+='<th>'+I.volume+'</th><th>'+I.rank+'</th>';
+  if(colStage>=4)head+='<th>%</th><th>'+I.binary+'</th><th>'+I.bonus+'</th><th>'+I.total+'</th>';
+  let body='';
+  for(let i=1;i<=rows;i++){
+    const r=calc(i);
+    if(r.bv==null){body+='<tr><td>'+monthName(i)+'</td><td class="num">'+r.people+'</td></tr>';continue;}
+    let row='<tr'+(i===rows?' class="current"':'')+'><td>'+monthName(i)+'</td><td class="num participants">'+r.people+'</td>';
+    if(colStage>=3)row+='<td class="num">'+fmt(r.bv)+'</td><td class="rank">'+(r.rank?esc(r.rank.name):I.none)+'</td>';
+    if(colStage>=4)row+='<td class="num">'+(Math.round(r.rate*100))+'%</td><td class="num blue">'+usd(r.binary)+'</td><td class="num">'+usd(r.bonus)+'</td><td class="num blue">'+usd(r.total)+'</td>';
+    body+=row+'</tr>';
+  }
+  return '<div class="model"><table><thead><tr>'+head+'</tr></thead><tbody>'+body+'</tbody></table></div>';
+}
+function scenarioEditor(){
+  let rows='';
+  s.ranks.forEach((r,i)=>{
+    rows+='<tr><td>'+esc(r.name)+'</td><td class="num">'+fmt(r.volumeThreshold)+'</td>'
+     +'<td class="num">'+r.pv+'</td><td class="num">'+fmt(r.ol2l)+'</td><td class="num">'+fmt(r.balance)+'</td>'
+     +'<td class="num"><input type="number" min="0" step="100" data-cap="'+i+'" value="'+r.cap+'"></td>'
+     +'<td class="num"><input type="number" min="0" step="50" data-bonus="'+i+'" value="'+r.bonus+'"></td></tr>';
+  });
+  return '<details class="scenario"><summary>'+esc(I.settings)+'</summary>'
+   +'<table><thead><tr><th>Ранг</th><th>'+I.threshold+'</th><th>'+I.personal+'</th><th>'+I.outside+'</th><th>'+I.balance+'</th><th>'+I.weekly+'</th><th>'+I.oneoff+'</th></tr></thead><tbody>'+rows+'</tbody></table>'
+   +'<p class="disclaimer">'+esc(I.settingNote)+'</p></details>';
+}
+function totalsBlock(){
+  const inv=pack().price, sb=sum('binary'), sp=sum('bonus'), grand=sb+sp;
+  const lastRow=calc(reportMonths());
+  return '<div class="totals"><h3>'+esc(I.summary)+'</h3><div class="totalgrid">'
+   +'<div><span>'+esc(I.endPeople)+'</span><strong>'+fmt(lastRow.people)+'</strong></div>'
+   +'<div><span>'+esc(I.endVolume)+'</span><strong>'+fmt(lastRow.bv||0)+' BV</strong></div>'
+   +'<div><span>'+esc(I.sumBinary)+'</span><strong>'+usd(sb)+'</strong></div>'
+   +'<div><span>'+esc(I.initial)+'</span><strong>'+usd(inv)+'</strong></div>'
+   +'<div><span>'+esc(I.sumBonus)+'</span><strong>'+usd(sp)+'</strong></div>'
+   +'<div><span>'+esc(I.grand)+'</span><strong>'+usd(grand)+'</strong></div>'
+   +'</div></div>';
+}
+function content(){
+  const rc=$('rightContent');
+  let html='';
+  if(s.step>=1){ const ph=['Финансы','Модель','Пакет','Партнёры','Расчёт']; const pi=s.step<2?1:s.step<3?2:s.step<4?3:s.step<5?4:5; html+='<span class="phase-tag">'+ph[Math.max(1,pi-1)]+'</span>'; }
+  const showTempo=(s.step>=1&&s.step<3)||s.step>=5;
+  const showPack=(s.step>=2&&s.step<4)||s.step>=5;
+  const showPartners=s.step>=3&&s.step<5;
+  const showTable=s.step>=5;
+  if(showTempo){
+    const modes=[['turtle',I.turtle,I.invitesOne],['medium',I.medium,I.invitesTwo],['fast',I.fast,I.invitesFour]];
+    html+='<div class="sectionhead"><b>'+esc(I.tempo)+'</b></div><div class="tempoWrap">';
+    modes.forEach(m=>{
+      html+='<button class="tempoBtn'+(s.growthMode===m[0]?' active':'')+'" data-mode="'+m[0]+'">'+esc(m[1])+'<small>'+esc(m[2])+'</small></button>';
+    });
+    html+='</div><p class="disclaimer">'+esc(I.assumptions)+'</p>';
+    html+='<div class="monthrow"><label><small>'+esc(I.start)+'</small><select id="startMonth">'+(Array.from({length:12},(_,i)=>'<option value="'+i+'"'+(s.startMonth===i?' selected':'')+'>'+monthName(i+1)+'</option>').join(''))+'</select></label>'
+     +'<label><small>'+esc(I.startYear)+'</small><input id="startYear" type="number" min="2024" max="2100" value="'+s.startYear+'"></label></div>';
+  }
+  if(showPack){
+    const p=pack();
+    html+='<div class="sectionhead"><b>'+esc(I.purchase)+'</b><span class="pill">'+p.price.toFixed(2)+' $</span></div><div class="pack-sel">';
+    packages.forEach(pk=>{
+      html+='<button class="packBtn'+(s.pack===pk.id?' active':'')+'" data-pack="'+pk.id+'"><b>'+esc(pk.name)+'</b><small>'+pk.qty+' '+I.packUnits+' · '+pk.bv+' BV · '+pk.price+' $'+(pk.schedule?' · '+(pk.schedule.length===1?'1 мес':pk.schedule.length+' '+I.months):(pk.months? ' · '+pk.months+' '+I.months:''))+'</small></button>';
+    });
+    html+='</div>';
+    if(p.schedule){
+      html+='<div class="sectionhead" style="margin-top:20px"><b>'+esc(I.monthlyBV)+'</b></div><div class="offerNote">'+esc(I.enrollmentNote)+'</div>';
+      html+=p.schedule.map((_,i)=>{
+        const cur=s.startBV[p.id]&&s.startBV[p.id][i];
+        return '<div class="sliderLine"><label>'+i+' мес · BV</label><input type="number" min="0" step="10" data-start-bv="'+i+'" value="'+(cur||'')+'" style="max-width:120px"></div>';
+      }).join('');
+      if(!p.ready)html+='<p class="disclaimer" style="color:#c0392b">'+esc(I.missingBV)+'</p>';
+    }else{
+      html+='<div class="offerNote">'+esc(I.enrollmentNote)+'</div><div class="offerNote">'+esc(I.renew)+'</div>';
+    }
+  }
+  if(showPartners){
+    html+='<div class="sectionhead"><b>'+esc(I.partners)+'</b></div><div class="tree">'+treeSVG()+'</div><p class="treeBox">'+esc(I.treeHint)+'</p>';
+  }
+  if(showTable){
+    const rows=Math.min(13,s.endMonth?reportMonths():1+Math.max(1,Math.ceil((s.step-5)/4)));
+    html+='<div class="sectionhead"><b>'+esc(I.growth)+'</b><span>'+monthName(Math.min(rows,12))+'</span></div>';
+    html+=renderGrowthTable(rows);
+    html+=scenarioEditor();
+    if(s.endMonth===13||s.step>=maxStep){
+      html+=totalsBlock();
+    }
+  }
+  rc.innerHTML='<div class="reveal">'+html+'</div>';
+  // bind
+  rc.querySelectorAll('.tempoBtn').forEach(b=>b.addEventListener('click',()=>{s.growthMode=b.getAttribute('data-mode');save();content();}));
+  const sm=rc.querySelector('#startMonth');if(sm)sm.addEventListener('change',e=>{s.startMonth=parseInt(e.target.value,10);save();content();});
+  const sy=rc.querySelector('#startYear');if(sy)sy.addEventListener('input',e=>{s.startYear=Math.max(2024,parseInt(e.target.value,10)||2026);save();});
+  rc.querySelectorAll('.packBtn').forEach(b=>b.addEventListener('click',()=>{const v=b.getAttribute('data-pack');s.pack=/^\d+$/.test(v)?parseInt(v,10):v;save();content();}));
+  const p2=pack();
+  if(p2.schedule){
+    rc.querySelectorAll('[data-start-bv]').forEach(inp=>inp.addEventListener('input',()=>{
+      const i=parseInt(inp.getAttribute('data-start-bv'),10);
+      s.startBV[p2.id]=s.startBV[p2.id]||{};s.startBV[p2.id][i]=Math.max(0,parseFloat(inp.value)||0);save();content();
+    }));
+  }
+  rc.querySelectorAll('[data-cap]').forEach(inp=>inp.addEventListener('input',()=>{
+    const i=parseInt(inp.getAttribute('data-cap'),10);s.ranks[i].cap=Math.max(0,parseFloat(inp.value)||0);save();content();
+  }));
+  rc.querySelectorAll('[data-bonus]').forEach(inp=>inp.addEventListener('input',()=>{
+    const i=parseInt(inp.getAttribute('data-bonus'),10);s.ranks[i].bonus=Math.max(0,parseFloat(inp.value)||0);save();content();
+  }));
+  this&&null;
+}
+function render(){
+  applyLang();
+  drawIncome();
+  bindPerson();
+  const grid=$('mainGrid');
+  const left=$('leftCard'),life=$('lifeCard');
+  const form=$('leftForm'),welcome=$('welcome');
+  const showWelcome = s.step===0&&!s.endMonth;
+  grid.classList.toggle('solo',showWelcome);
+  if(form)form.style.display=showWelcome?'none':'block';
+  if(welcome)welcome.style.display=showWelcome?'block':'none';
+  life.style.display=s.step>=1?'block':'none';
+  content();
+  // progress
+  const pct=Math.round(Math.min(100,((s.endMonth?100:(s.step+1)/maxStep)*100)));
+  const wf=$('wizardFill'),wb=$('wizardBar'),wl=$('wizardLabels');
+  wb.style.display=s.step<1?'none':'flex';
+  wl.style.display=s.step<1?'none':'flex';
+  wf.style.width=pct+'%';
+  $('wizardPct').textContent=pct+'%';
+  const phases=['Финансы','Модель','Пакет','Партнёры','Расчёт'];
+  const phaseIdx=s.step<2?0:s.step<3?1:s.step<4?2:s.step<5?3:4;
+  wl.innerHTML=phases.map((p,i)=>'<span class="'+(i<=phaseIdx?'on':'')+'">'+p+'</span>').join('');
+  $('stepLabel').textContent=(s.endMonth?I.summary:I.step+' '+Math.min(s.step+1,maxStep)+' '+I.of+' '+maxStep);
+  $('stepSub').textContent=s.endMonth?('13 '+I.months):I.reveal;
+  $('next').disabled=s.step>=maxStep||s.endMonth!=null;
+  $('back').disabled=s.step<=0;
+  $('finish').textContent=s.endMonth?I.resume:I.finish;
+}
+function download(){
+  const rows=13;const data=all();
+  const el=document.createElement('div');
+  el.innerHTML='<h1>'+esc(s.name||I.report)+'</h1>'
+   +'<table><thead><tr><th>'+I.month+'</th><th>'+I.people+'</th><th>'+I.volume+'</th><th>'+I.rank+'</th><th>'+I.binary+'</th><th>'+I.bonus+'</th><th>'+I.total+'</th></tr></thead><tbody>'
+   +data.map(r=>'<tr><td>'+monthName(r.i)+'</td><td>'+r.people+'</td><td>'+(r.bv==null?'':fmt(r.bv))+'</td><td>'+(r.rank?esc(r.rank.name):'')+'</td><td>'+usd(r.binary)+'</td><td>'+usd(r.bonus)+'</td><td>'+usd(r.total)+'</td></tr>').join('')
+   +'</tbody></table>';
+  const win=window.open('','_blank');
+  win.document.write('<html><head><title>'+esc(I.report)+'</title><style>body{font-family:system-ui,sans-serif;padding:30px}h1{color:#08182c}table{border-collapse:collapse;width:100%}td,th{border:1px solid #ddd;padding:7px;font-size:12px}th{background:#eef4ff}</style></head><body>'+el.innerHTML+'</body></html>');
+  win.document.close();win.focus();win.print();
+}
+function stepsFromEnd(){return s.endMonth?5+4*s.endMonth:s.step;}
+
+$('next').addEventListener('click',()=>{s.step=Math.min(maxStep,s.step+1);save();render();});
+const startBtn=$('startBtn');if(startBtn)startBtn.addEventListener('click',()=>{s.step=1;save();render();});
+$('back').addEventListener('click',()=>{
+  if(s.endMonth!=null){s.endMonth=null;save();render();return;}
+  s.step=Math.max(0,s.step-1);save();render();
+});
+$('finish').addEventListener('click',()=>{
+  if(s.endMonth!=null){s.endMonth=null;save();render();return;}
+  s.endMonth=Math.min(13,Math.max(1,Math.ceil((s.step-5)/4)));save();render();download();
+});
+$('reset').addEventListener('click',()=>{
+  if(confirm(I.confirm)){s=fresh();localStorage.removeItem(KEY);applyLang();render();}
+});
+$('pdf').addEventListener('click',download);
+document.addEventListener('keydown',e=>{
+  const tag=(e.target.tagName||'').toLowerCase();
+  if(tag==='input'||tag==='select'||tag==='textarea')return;
+  if(e.key==='ArrowRight'){if(s.endMonth==null){$('next').click();}}
+  else if(e.key==='ArrowLeft'){$('back').click();}
+});
+
+(function emailInit(){
+  const dlg=$('emailDialog');
+  $('email').addEventListener('click',()=>dg.showModal());
+  $('closeDialog').addEventListener('click',()=>dg.close());
+  $('emailPdf').addEventListener('click',download);
+  $('openEmail').addEventListener('click',()=>{
+    const addr=$('emailAddress').value;
+    const subject=encodeURIComponent(I.report);
+    const body=encodeURIComponent('Здравствуйте!\n\nПрикрепляю отчёт «Диагностика реальности». Это иллюстративный сценарий, не гарантия дохода.\n\n[Прикрепите скачанный PDF перед отправкой.]');
+    const skip=addr&&/^\S+@\S+\.\S+$/.test(addr)?('?to='+encodeURIComponent(addr)):'';
+    window.location.href='mailto:'+addr+skip+'?subject='+subject+'&body='+body;
+    $('emailStatus').textContent='Запрошено открытие почтового приложения. Прикрепите PDF и отправьте письмо самостоятельно.';
+  });
+})();
+
+// The email button is part of the controls markup.
+load();applyLang();render();save();
+window.diagnostic={calc,getState:()=>JSON.parse(JSON.stringify(s))};
+})();
+</script>
+</body>
+</html>
